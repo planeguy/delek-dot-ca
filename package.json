@@ -1,0 +1,19 @@
+{
+  "name": "ddo",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-brunch": "^6.0.0",
+    "babel-preset-es2015": "^6.3.13",
+    "brunch": "^2.0.4",
+    "javascript-brunch": "^1.8.0",
+    "riot-brunch": "0.0.2",
+    "sass-brunch": "^1.9.2"
+  }
+}
