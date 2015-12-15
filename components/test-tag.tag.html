@@ -1,0 +1,23 @@
+<test-tag>
+	TEST: <span>{opts.text}</span>
+	
+	<feed-view store="{store}"></feed-view>
+	
+	<script>
+		this.store = {
+			feed: {
+				items:['1','2','3']
+			},
+			posts:{
+				'1':{
+					poster:'http://delek.org/profile',
+					date:'20151214',
+					text:'hello'
+				}
+			},
+			people:{
+				'http://delek.org/profile': 'Delek'
+			}
+		}
+	</script>
+</test-tag>

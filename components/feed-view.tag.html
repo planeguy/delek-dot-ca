@@ -1,0 +1,12 @@
+<feed-view>
+	<section class="posts" >
+		<header><h3>posts</h3></header>
+		<div each="{opts.store.feed.items}">
+		<post-view store="{opts.store}" post="{this}"></post-view>
+		</div>
+	</section>
+	<section class="feed-navigation">
+		<a each="{opts.store.feed.prev?[opts.store.feed.prev]:[]}" href="{this}">older</a>
+		<a each="{opts.store.feed.next?[opts.store.feed.next]:[]}" href="{this}">newer</a>
+	</section>
+</feed-view>

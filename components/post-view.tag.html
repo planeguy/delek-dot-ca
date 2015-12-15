@@ -1,0 +1,18 @@
+<post-view>
+	<h4>a post</h4>
+	<div style="border:1px red solid">{opts}</div>
+	<div each="{opts.store.posts[opts.post]?[opts.store.posts[opts.post]]:[]}" class="post">
+		<span>{opts.store.people[poster]}</span>
+		<span>{date}</span>
+		<span each="{text?[text]:[]}" class="post-text">{this}</span>
+		<a each="{link?[link]:[]}" href="{this}">{this}</a>
+		<img each="{image?[image]:[]}" src="{this}"/>
+		<span each="{feeling?[image]:[]}">{this}</span>
+		<div each="{re?[re]:[]}">
+			<post-view store="{opts.store}" post="{re}"></post-view>
+		</div>
+		<small><a href="{opts.post}">{opts.post}</a></small>
+	</div>
+	<script>
+	</script>
+</post-view>

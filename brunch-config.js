@@ -13,14 +13,21 @@ module.exports = {
 			}
 		},
 		conventions:{
-			vendor: ['vendor/globals/**'],
+			vendor: ['vendor/es5/global/**', 'components/**'],
 			assets: ['assets/**']
 		},
 		plugins: {
 			on: ["riot"],
 			riot:{
 				extension: 'tag.html',
-				pattern: /\.tag.html$/
+				pattern: /\.tag.html$/,
+				type: 'es6'
+			},
+			babel: {
+				presets: ['es2015'],
+				ignore: [
+					'vendor/es5/**'
+				]
 			}
 		},
 		overrides: {
