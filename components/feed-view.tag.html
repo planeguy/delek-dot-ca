@@ -1,8 +1,8 @@
 <feed-view>
 	<section class="posts" >
 		<header><h3>posts</h3></header>
-		<div each="{opts.store.feed.items}">
-		<post-view store="{opts.store}" post="{this}"></post-view>
+		<div each="{post in opts.store.feed.items}">
+			<post-view store="{parent.opts.store}" post="{post}"></post-view>
 		</div>
 	</section>
 	<section class="feed-navigation">

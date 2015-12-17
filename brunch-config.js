@@ -20,11 +20,10 @@ module.exports = {
 			on: ["riot"],
 			riot:{
 				extension: 'tag.html',
-				pattern: /\.tag.html$/,
-				type: 'es6'
+				pattern: /\.tag.html$///,
+				//type: 'babel'
 			},
 			babel: {
-				presets: ['es2015'],
 				ignore: [
 					'vendor/es5/**'
 				]
