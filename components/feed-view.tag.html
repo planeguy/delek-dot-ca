@@ -1,12 +1,19 @@
 <feed-view>
 	<section class="posts" >
-		<header><h3>posts</h3></header>
-		<div each="{post in opts.store.feed.items}">
-			<post-view store="{parent.opts.store}" post="{post}"></post-view>
+		<div each="{post in (!opts.state.item.id?opts.state.feed.items:[])}">
+			<post-view state="{parent.opts.state}" post="{post}"></post-view>
 		</div>
+		
+		<post-view state="{opts.state}" post="{opts.state.item.id}"></post-view>
+		<button onclick="{showall}">Show All</button>
 	</section>
 	<section class="feed-navigation">
-		<a each="{opts.store.feed.prev?[opts.store.feed.prev]:[]}" href="{this}">older</a>
-		<a each="{opts.store.feed.next?[opts.store.feed.next]:[]}" href="{this}">newer</a>
+		<a each="{opts.state.feed.prev?[opts.state.feed.prev]:[]}" href="{this}">older</a>
+		<a each="{opts.state.feed.next?[opts.state.feed.next]:[]}" href="{this}">newer</a>
 	</section>
+	<script>
+		this.showall = function showall(){
+			this.opts.dispatch({type:'show all items'});
+		}.bind(this);
+	</script>
 </feed-view>

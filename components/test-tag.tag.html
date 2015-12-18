@@ -1,5 +1,11 @@
 <test-tag>
 	TEST: <span>{opts.text}</span>
-	
-	<feed-view store="{opts.store}"></feed-view>
+	<h2>Posts</h2>
+	<feed-view state="{opts.store.getState()}" dispatch="{opts.store.dispatch}"></feed-view>
+	<script>
+		var me = this;
+		this.opts.store.subscribe(function(){
+			me.update()
+		});
+	</script>
 </test-tag>

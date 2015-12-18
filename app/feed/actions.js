@@ -4,22 +4,49 @@ let ajax = (x)=>{
 	return {
 	get:()=>{
 		console.log('fake ajax '+x);
-		return { response: '{"items":{"1":1, "2":2, "3":3}, "prev": 4, "next": 9}'};
+		var fakestore = {
+            feed: {
+                items:['1','2','3']
+            },
+            items:{
+                '1':{
+                    poster:'http://delek.org/profile',
+                    date:'20151214',
+                    text:'hello'
+                },
+                '2':{
+                    poster:'http://delek.org/profile',
+                    date:'20151214',
+                    text:'2',
+                    link:'http://google.ca'
+                },
+                '3':{
+                    poster:'http://delek.org/profile',
+                    date:'20151214',
+                    text:'3',
+                    feeling:'like',
+                    re:'1'
+                }
+            },
+            people:{
+                'http://delek.org/profile': 'Delek'
+            }
+        };
+		return { response: JSON.stringify(fakestore) };
 	}}
 };
 
 function requestFeed(url){
 	return {
-		type:"fetch feed",
+		type:"request feed",
 		url:url
 	};
 }
 
-function recieveFeed(items, prev, next){
-	return {
+function recieveFeed(feed){
+	return Object.assign({},{
 		type:'feed recieved',
-		items, prev, next
-	};
+	}, feed);
 }
 
 export function fetchFeed(url){
@@ -32,7 +59,7 @@ export function fetchFeed(url){
 			return ajax(u).get();
 		}).then((xhr)=>{
 			let f = JSON.parse(xhr.response);
-			dispatch(recieveFeed(f.items, f.prev, f.next))
+			dispatch(recieveFeed(f))
 		});
 	};
 }

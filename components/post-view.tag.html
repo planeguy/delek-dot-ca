@@ -1,14 +1,14 @@
 <post-view>
-	<div each="{opts.store.posts[opts.post]?[opts.store.posts[opts.post]]:[]}" class="post">
-		<span>{parent.opts.store.people[poster]}</span>
+	<div each="{opts.state.items[opts.post]?[opts.state.items[opts.post]]:[]}" class="post">
+		<span>{parent.opts.state.people[poster]}</span>
 		<span>{date}</span>
 		<span each="{value in (text?[text]:[])}" class="post-text">{value}</span>
 		<a each="{value in (link?[link]:[])}" href="{value}">{value}</a>
 		<img each="{value in (image?[image]:[])}" src="{value}"/>
 		<span each="{value in (feeling?[feeling]:[])}">{value}</span>
-		<div each="{value in (re?[re]:[])}">
-			<post-view store="{parent.parent.opts.store}" post="{value}"></post-view>
-		</div>
+		<!--<div each="{value in (re?[re]:[])}">
+			<post-view state="{parent.parent.opts.state}" post="{value}"></post-view>
+		</div>-->
 		<small><a href="{opts.post}">{opts.post}</a></small>
 	</div>
 </post-view>

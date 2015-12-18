@@ -35,6 +35,7 @@ module.exports = {
 			}
 		},
 		server:{
+			port:1337,
 			base:'/dist/dev',
 			noPushState:true
 		}

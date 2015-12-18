@@ -3,40 +3,9 @@
 	<script src="vendor.js"></script>
 	<script src="app.js"></script>
 	
-	<script>
-		var store = {
-			feed: {
-				items:['1','2','3']
-			},
-			posts:{
-				'1':{
-					poster:'http://delek.org/profile',
-					date:'20151214',
-					text:'hello'
-				},
-				'2':{
-					poster:'http://delek.org/profile',
-					date:'20151214',
-					text:'2',
-					link:'http://google.ca'
-				},
-				'3':{
-					poster:'http://delek.org/profile',
-					date:'20151214',
-					text:'3',
-					feeling:'like',
-					re:'1'
-				}
-			},
-			people:{
-				'http://delek.org/profile': 'Delek'
-			}
-		};
-	</script>
-	
 	<test-tag></test-tag>
 	
 	<script>
-		riot.mount('test-tag', {text:'ok', store:store});
+		require('main').default('test-tag', {text:'hello'});
 	</script>
 </html>
