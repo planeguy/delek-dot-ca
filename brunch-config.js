@@ -13,7 +13,7 @@ module.exports = {
 			}
 		},
 		conventions:{
-			vendor: ['vendor/globals/**'],
+			vendor: ['vendor/es5/globals/**'],
 			assets: ['assets/**']
 		},
 		plugins: {
@@ -21,6 +21,10 @@ module.exports = {
 			riot:{
 				extension: 'tag.html',
 				pattern: /\.tag.html$/
+			},
+			babel:{ 
+				presets: ['es2015'],
+				ignore: ['vendor/es5/**']
 			}
 		},
 		overrides: {
@@ -29,6 +33,10 @@ module.exports = {
 					'public': 'dist/prod'
 				}
 			}
+		},
+		server:{
+			base:'/dist/dev',
+			noPushState:true
 		}
 	}
 };
