@@ -13,20 +13,18 @@ module.exports = {
 			}
 		},
 		conventions:{
-			vendor: ['vendor/es5/global/**', 'components/**'],
+			vendor: ['vendor/es5/globals/**', 'components/**'],
 			assets: ['assets/**']
 		},
 		plugins: {
 			on: ["riot"],
 			riot:{
 				extension: 'tag.html',
-				pattern: /\.tag.html$///,
-				//type: 'babel'
+				pattern: /\.tag.html$/
 			},
-			babel: {
-				ignore: [
-					'vendor/es5/**'
-				]
+			babel:{ 
+				presets: ['es2015'],
+				ignore: ['vendor/es5/**']
 			}
 		},
 		overrides: {
@@ -35,6 +33,10 @@ module.exports = {
 					'public': 'dist/prod'
 				}
 			}
+		},
+		server:{
+			base:'/dist/dev',
+			noPushState:true
 		}
 	}
 };
