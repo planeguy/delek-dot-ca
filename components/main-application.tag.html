@@ -1,0 +1,10 @@
+<main-application>
+	<feed-view each="{!opts.store.getState().item.id?[1]:[]}" state="{parent.opts.store.getState()}" dispatch="{parent.opts.store.dispatch}"></feed-view>
+	<post-view if="{!!opts.store.getState().item.id}" state="{opts.store.getState()}" post="{opts.store.getState().item.id}"></post-view>
+	<script>
+		var me = this;
+		this.opts.store.subscribe(function(){
+			me.update();
+		});
+	</script>
+</main-application>

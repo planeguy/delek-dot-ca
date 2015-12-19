@@ -58,6 +58,7 @@ export function fetchFeed(url){
 		}).then((u)=>{
 			return ajax(u).get();
 		}).then((xhr)=>{
+            console.log(xhr.response);
 			let f = JSON.parse(xhr.response);
 			dispatch(recieveFeed(f))
 		});

@@ -17,7 +17,8 @@
     "brunch": "^2.0.4",
     "javascript-brunch": "^1.8.0",
     "riot-brunch": "0.0.2",
-    "sass-brunch": "^1.9.2"
+    "sass-brunch": "^1.9.2",
+    "uglify-js-brunch": "^1.7.8"
   },
   "dependencies": {}
 }

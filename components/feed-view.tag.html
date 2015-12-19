@@ -3,9 +3,6 @@
 		<div each="{post in (!opts.state.item.id?opts.state.feed.items:[])}">
 			<post-view state="{parent.opts.state}" post="{post}"></post-view>
 		</div>
-		
-		<post-view state="{opts.state}" post="{opts.state.item.id}"></post-view>
-		<button onclick="{showall}">Show All</button>
 	</section>
 	<section class="feed-navigation">
 		<a each="{opts.state.feed.prev?[opts.state.feed.prev]:[]}" href="{this}">older</a>

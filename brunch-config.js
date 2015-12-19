@@ -2,7 +2,7 @@ module.exports = {
 	config: {
 		paths:{
 			public: 'dist/dev',
-			watched: ['app', 'components', 'vendor','assets']
+			watched: ['app', 'components', 'vendor','assets', 'dev-assets']
 		},
 		files:{
 			javascripts: { 
@@ -14,7 +14,7 @@ module.exports = {
 		},
 		conventions:{
 			vendor: ['vendor/es5/globals/**', 'components/**'],
-			assets: ['assets/**']
+			assets: ['assets/**', 'dev-assets/**']
 		},
 		plugins: {
 			on: ["riot"],
@@ -30,13 +30,14 @@ module.exports = {
 		overrides: {
 			production: {
 				paths:{
-					'public': 'dist/prod'
+					public: 'dist/prod',
+					watched: ['app', 'components', 'vendor','assets']
 				}
 			}
 		},
 		server:{
 			port:1337,
-			base:'/dist/dev',
+			base:'/',
 			noPushState:true
 		}
 	}

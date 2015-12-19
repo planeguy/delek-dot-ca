@@ -18,7 +18,7 @@ let store = createStoreWithMiddleware(combineReducers({
 }));
 
 export default function startMain(mainAppTag, opts){
-	riot.mount(mainAppTag, Object.assign(opts, {store}));
+	riot.mount(mainAppTag, Object.assign({}, opts, {store}));
 	store.dispatch(fetchFeed('123'));
-	store.dispatch(requestItem('123', '2'));
+	//store.dispatch(requestItem('123', '2'));
 }
