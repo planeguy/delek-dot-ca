@@ -4,12 +4,16 @@ function jsFromXhr(xhr, options){
 	if(xhr.status<400) return new Promise((rs,rj)=>{rs(JSON.parse(xhr.response));}); 
 }
 
-class ClusterfriendLoader{
-	load(profileUrl){
+export default class ClusterfriendLoader{
+	loadProfile(profileUrl){
 		//return a promise
-		Promise.resolve(profileUrl)
+		return Promise.resolve(profileUrl)
 		.then((url)=>poop(url).get())
-		.then((profileXhr)=>poop((JSON.parse(profileXhr.response)).feed).get())
-		//.then((feedXhr)=>)
+		.then((profileXhr)=>jsFromXhr(profileXhr))
 	}
+    loadFeed(feedUrl){
+        return Promise.resolve(feedUrl)
+		.then((url)=>poop(url).get())
+		.then((feedXhr)=>jsFromXhr(feedXhr))
+    }
 }
