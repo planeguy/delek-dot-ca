@@ -12,7 +12,7 @@ export default function feed(state={
 		console.log('got feed (feed reducer)');
 			return Object.assign({},state,{
 				isFetching:false,
-				items:action.feed.items,
+				items:action.items.map((i)=>i.id),
 				prev:action.prev,
 				next:action.next
 			});

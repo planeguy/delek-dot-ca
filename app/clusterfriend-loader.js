@@ -10,6 +10,6 @@ class ClusterfriendLoader{
 		Promise.resolve(profileUrl)
 		.then((url)=>poop(url).get())
 		.then((profileXhr)=>poop((JSON.parse(profileXhr.response)).feed).get())
-		.then((feedXhr)=>)
+		//.then((feedXhr)=>)
 	}
 }

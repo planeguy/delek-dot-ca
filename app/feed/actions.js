@@ -4,35 +4,32 @@ let ajax = (x)=>{
 	return {
 	get:()=>{
 		console.log('fake ajax '+x);
-		var fakestore = {
-            feed: {
-                items:['1','2','3']
-            },
-            items:{
-                '1':{
+        
+        var fakefeed = {
+            items:[
+                {
+                    id:x+'#1',
                     poster:'http://delek.org/profile',
                     date:'20151214',
                     text:'hello'
-                },
-                '2':{
+                },{
+                    id:x+'#2',
                     poster:'http://delek.org/profile',
                     date:'20151214',
                     text:'2',
                     link:'http://google.ca'
-                },
-                '3':{
+                },{
+                    id:x+'#3',
                     poster:'http://delek.org/profile',
                     date:'20151214',
                     text:'3',
                     feeling:'like',
                     re:'1'
                 }
-            },
-            people:{
-                'http://delek.org/profile': 'Delek'
-            }
+            ]
         };
-		return { response: JSON.stringify(fakestore) };
+        
+		return { response: JSON.stringify(fakefeed) };
 	}}
 };
 

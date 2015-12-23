@@ -1,4 +1,4 @@
-import {fetchFeed} from 'feed/actions';
+import {fetchProfile} from 'profile/actions';
 import {requestItem} from 'item/actions';
 
 import feed from 'feed/reducer';
@@ -19,6 +19,6 @@ let store = createStoreWithMiddleware(combineReducers({
 
 export default function startMain(mainAppTag, opts){
 	riot.mount(mainAppTag, Object.assign({}, opts, {store}));
-	store.dispatch(fetchFeed('123'));
+	store.dispatch(fetchProfile('123', {fetchFeed:true}));
 	//store.dispatch(requestItem('123', '2'));
 }
