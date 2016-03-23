@@ -3,6 +3,6 @@
         <clusterfriend-item state="{opts.state}" item="{item}"></clusterfriend-item>
     </div>
     <script>
-        import 'components/clusterfriend-item.tag!';
+        import './clusterfriend-item.tag!';
     </script>
 <clusterfriend-channel>
