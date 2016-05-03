@@ -5,6 +5,7 @@ import {createStore, combineReducers } from 'redux';
 
 import channels from 'state/channels/reducer';
 import items from 'state/items/reducer';
+import selectedItem from 'state/selected-item/reducer';
 
 import riot from 'riot';
 import 'components/clusterfriend-app.tag!';
@@ -13,7 +14,8 @@ import 'components/clusterfriend-item.tag!';
 
 const clusterfriend = combineReducers({
     channels,
-    items
+    items,
+    selectedItem
 });
 
 let store = createStore(clusterfriend); 
