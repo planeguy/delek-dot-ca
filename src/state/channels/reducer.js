@@ -18,7 +18,6 @@ function onlyItemIds(channel){
 export default function channels(state = {}, action){
     switch(action.type){
         case 'receive channel':
-        debugger;
             return Object.assign({},state,
                 flatten([onlyItemIds(action.channel)],(c)=>c.id));
         case 'request channel':

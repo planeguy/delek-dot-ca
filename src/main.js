@@ -7,7 +7,9 @@ import channels from 'state/channels/reducer';
 import items from 'state/items/reducer';
 
 import riot from 'riot';
+import 'components/clusterfriend-app.tag!';
 import 'components/clusterfriend-channel.tag!';
+import 'components/clusterfriend-item.tag!';
 
 const clusterfriend = combineReducers({
     channels,
@@ -25,9 +27,15 @@ function doIt(rssurl){
             channel: cf
         });
         console.log(store.getState());
+        
+        store.dispatch({
+            type:'select item',
+            guid: 'http://chancedixon.ca/?p=173'
+        });
     });
 }
 
+const feedurl = 'feed.xml';
 
-doIt('feed.xml');
-riot.mount('clusterfriend-channel',{state:store.getState()});
+riot.mount('clusterfriend-app',{store:store, feed:feedurl});
+doIt(feedurl);
