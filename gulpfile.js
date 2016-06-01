@@ -1,6 +1,6 @@
 var Builder = require('jspm').Builder;
 var gulp = require('gulp');
-require('./src/vendor/object.assign.js');
+require('./object.assign.js');
 
 function build(dest, options){
     var builder = new Builder({baseURL:'./src'});
