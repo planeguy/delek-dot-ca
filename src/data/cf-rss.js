@@ -69,6 +69,41 @@ export function cfFrom(rss, url){
     return new Channel(channelSpec);
 }
 
-export function rssFrom(cf){
-    
+function elementFromJSProp(xml, obj, prop, ns){
+    let e;
+    if (!ns) e = xml.createElement(prop);
+    else e = xml.createElementNS(prop, ns);
+    let cd = xml.createTextNode(obj[prop]||'');
+    e.appendChild(cd);
+    return e;
+}
+
+export function rssFrom(channel){
+    let xml = document.implementation.createDocument(rssNS, 'rss', 'text/xml');
+    let ch = xml.createElement('channel');
+
+    ch.appendChild(elementFromJSProp(xml,channel,'title'));
+    ch.appendChild(elementFromJSProp(xml,channel,'description'));
+    ch.appendChild(elementFromJSProp(xml,channel,'link'));
+    ch.appendChild(elementFromJSProp(xml,channel,'image'));
+    ch.appendChild(elementFromJSProp(xml,channel,'id', cfNS));
+    ch.appendChild(elementFromJSProp(xml,channel,'profile', cfNS));
+    ch.appendChild(elementFromJSProp(xml,channel,'isFull', cfNS));
+
+    channel.items.foreach((item)=>{
+        let i = xml.createElement('item');
+        i.appendChild(elementFromJSProp(xml,item,'pubDate'));
+        i.appendChild(elementFromJSProp(xml,item,'description'));
+        i.appendChild(elementFromJSProp(xml,item,'link'));
+        i.appendChild(elementFromJSProp(xml,item,'guid'));
+        i.appendChild(elementFromJSProp(xml,item,'enclosure'));
+        i.appendChild(elementFromJSProp(xml,item,'re', cfNS));
+        i.appendChild(elementFromJSProp(xml,item,'feel', cfNS));
+        ch.appendChild(i);
+    });
+
+    xml.appendChild(ch);
+    var serializer = new XMLSerializer();
+    var rss = serializer.serializeToString(xml);
+    return rss;
 }
