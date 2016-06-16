@@ -3,11 +3,11 @@ var gulp = require('gulp');
 require('./object.assign.js');
 
 function build(dest, options){
-    var builder = new Builder({baseURL:'./src'});
+    var builder = new Builder();
     return builder.loadConfig('jspm.config.js')
     .then(function(){
         return builder.buildStatic(
-            'main.js',
+            'src/main.js',
             dest + '/main.built.js',
             Object.assign({
                 minify: true,
