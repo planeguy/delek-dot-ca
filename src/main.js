@@ -1,4 +1,4 @@
 import riot from 'riot';
-import 'components/clusterfriend-app.tag!';
+import 'src/components/clusterfriend-app.tag!';
 
 riot.mount('*');

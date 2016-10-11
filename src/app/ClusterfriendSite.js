@@ -1,5 +1,5 @@
 import ajax from '../vendor/ajaxpoop';
-import {cfFrom} from '../data/cf-rss';
+import {cfFrom, rssFrom} from '../data/cf-rss';
 
 import {createStore, combineReducers } from 'redux';
 
@@ -32,6 +32,8 @@ export default class ClusterfriendSite {
                 channel: cf
             });
             console.log(store.getState());
+
+            console.log(rssFrom(cf));
             
             this.store.dispatch({
                 type:'select item',
