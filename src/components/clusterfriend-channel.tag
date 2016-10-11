@@ -1,4 +1,4 @@
-import 'components/clusterfriend-item.tag!';
+import './clusterfriend-item.tag!';
 
 <clusterfriend-channel>
     <div each="{selecteditem in (!!opts.state.selectedItem.guid?[opts.state.selectedItem.guid]:[])}">

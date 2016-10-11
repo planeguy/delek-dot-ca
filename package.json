@@ -3,6 +3,7 @@
     "configFile": "jspm.config.js",
     "dependencies": {
       "redux": "npm:redux@^3.5.2",
+      "riot": "npm:riot@^2.4.1",
       "tag": "npm:jspm-riot@^1.0.2"
     },
     "devDependencies": {

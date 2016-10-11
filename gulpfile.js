@@ -8,7 +8,7 @@ function build(dest, options){
     .then(function(){
         return builder.buildStatic(
             'src/main.js',
-            dest + '/main.built.js',
+            dest + '/main.js',
             Object.assign({
                 minify: true,
                 sourceMaps: false

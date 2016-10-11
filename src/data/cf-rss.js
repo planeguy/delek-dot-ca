@@ -1,5 +1,5 @@
-import Channel from 'model/channel';
-import Item from 'model/item';
+import Channel from 'src/model/channel';
+import Item from 'src/model/item';
 
 const rssNS='';
 const cfNS='http://delek.org/schemas/clusterfriend/';
