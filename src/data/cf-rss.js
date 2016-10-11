@@ -72,14 +72,14 @@ export function cfFrom(rss, url){
 function elementFromJSProp(xml, obj, prop, ns){
     let e;
     if (!ns) e = xml.createElement(prop);
-    else e = xml.createElementNS(prop, ns);
+    else e = xml.createElementNS(ns,prop);
     let cd = xml.createTextNode(obj[prop]||'');
     e.appendChild(cd);
     return e;
 }
 
 export function rssFrom(channel){
-    let xml = document.implementation.createDocument(rssNS, 'rss', 'text/xml');
+    let xml = document.implementation.createDocument(rssNS, 'rss');
     let ch = xml.createElement('channel');
 
     ch.appendChild(elementFromJSProp(xml,channel,'title'));
@@ -90,7 +90,7 @@ export function rssFrom(channel){
     ch.appendChild(elementFromJSProp(xml,channel,'profile', cfNS));
     ch.appendChild(elementFromJSProp(xml,channel,'isFull', cfNS));
 
-    channel.items.foreach((item)=>{
+    channel.items.forEach((item)=>{
         let i = xml.createElement('item');
         i.appendChild(elementFromJSProp(xml,item,'pubDate'));
         i.appendChild(elementFromJSProp(xml,item,'description'));
@@ -101,8 +101,7 @@ export function rssFrom(channel){
         i.appendChild(elementFromJSProp(xml,item,'feel', cfNS));
         ch.appendChild(i);
     });
-
-    xml.appendChild(ch);
+    xml.firstChild.appendChild(ch); //firstChild is an "rss" tag
     var serializer = new XMLSerializer();
     var rss = serializer.serializeToString(xml);
     return rss;
