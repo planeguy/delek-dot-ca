@@ -4,12 +4,14 @@ import './clusterfriend-channel.tag!';
 <clusterfriend-app>
     <clusterfriend-channel channel="{state.channels[opts.feed]}" state="{state}"></clusterfriend-channel>
     <script>
-        this.site = new ClusterfriendSite({
+        let cfsOptions = {
             feedurl: this.opts.feed,
-            subscription: () => {
-                this.state = this.opts.store.getState();
+            subscription: (state)=>{
+                this.state=state;
                 this.update();
             }
-        });
+        }
+        this.site = new ClusterfriendSite(cfsOptions);
+        this.site.loadFeed();
     </script>
 </clusterfriend-app>

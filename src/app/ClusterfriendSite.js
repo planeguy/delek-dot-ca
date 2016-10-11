@@ -20,7 +20,9 @@ export default class ClusterfriendSite {
         
         let s = spec || {};
         this.feedurl = s.feedurl || './feed.xml';
-        if(!!s.subscription) this.store.subscribe(s.subscription);
+        if(!!s.subscription) this.store.subscribe(()=>{
+            s.subscription(this.store.getState())
+        });
     }
     
     loadFeed(){
@@ -31,7 +33,8 @@ export default class ClusterfriendSite {
                 type:'receive channel',
                 channel: cf
             });
-            console.log(store.getState());
+            
+            console.log(this.store.getState());
 
             console.log(rssFrom(cf));
             
