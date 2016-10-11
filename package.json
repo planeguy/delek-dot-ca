@@ -2,16 +2,17 @@
   "jspm": {
     "configFile": "jspm.config.js",
     "dependencies": {
-      "redux": "npm:redux@^3.3.1",
-      "redux-promise": "npm:redux-promise@^0.5.3",
-      "redux-promise-middleware": "npm:redux-promise-middleware@^2.3.3",
-      "riot": "npm:riot@^2.3.17",
-      "tag": "npm:systemjs-riot@^0.9.1"
+      "redux": "npm:redux@^3.5.2",
+      "tag": "npm:jspm-riot@^1.0.2"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
       "babel-runtime": "npm:babel-runtime@^5.8.24",
       "core-js": "npm:core-js@^1.1.4"
     }
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "jspm": "^0.16.34"
   }
 }

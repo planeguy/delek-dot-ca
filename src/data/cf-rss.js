@@ -51,7 +51,6 @@ export function cfFrom(rss, url){
     let channelElement = xml.getElementsByTagNameNS(rssNS,'channel')[0];
     let itemElements = xml.getElementsByTagNameNS(rssNS,'item');
     
-    debugger;
     getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'id')[0]); 
     getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'id')[0]) || url;
     getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'id')[0]) || url || getElementNodeValue(channelElement.getElementsByTagNameNS(rssNS,'link')[0]);
