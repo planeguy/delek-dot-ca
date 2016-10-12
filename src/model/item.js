@@ -8,6 +8,8 @@ export default class Item {
         this.comments = spec.comments;
         
         //clusterfriend-specific
+        this.image = spec.image;
+        this.about = spec.about;
         this.re = spec.re;
         this.feel = spec.feel;
     }

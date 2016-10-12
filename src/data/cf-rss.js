@@ -36,6 +36,8 @@ function mapItems(itemElems){
                 link:getElementNodeValue(ie.getElementsByTagNameNS(rssNS,'link')[0]),
                 guid:getElementNodeValue(ie.getElementsByTagNameNS(rssNS,'guid')[0]),
                 enclosure:getEnclosure(ie.getElementsByTagNameNS(rssNS,'enclosure')[0]),
+                image: getElementNodeValue(ie.getElementsByTagNameNS(cfNS,'image')[0]),
+                about:getElementNodeValue(ie.getElementsByTagNameNS(cfNS,'about')[0]),
                 re:getElementNodeValue(ie.getElementsByTagNameNS(cfNS,'re')[0]),
                 feel:getElementNodeValue(ie.getElementsByTagNameNS(cfNS,'feel')[0])
             })
@@ -62,8 +64,8 @@ export function cfFrom(rss, url){
         image: getImage(channelElement.getElementsByTagNameNS(rssNS,'image')[0]),
         items: mapItems(itemElements),
         id: getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'id')[0]) || url || getElementNodeValue(channelElement.getElementsByTagNameNS(rssNS,'link')[0]), 
-        profile: getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'profile')[0]),
-        isFull: getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'isFull')[0]),
+        home: getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'home')[0]),
+        isHome: getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'ishome')[0]),
     }
     
     return new Channel(channelSpec);
@@ -87,8 +89,8 @@ export function rssFrom(channel){
     ch.appendChild(elementFromJSProp(xml,channel,'link'));
     ch.appendChild(elementFromJSProp(xml,channel,'image'));
     ch.appendChild(elementFromJSProp(xml,channel,'id', cfNS));
-    ch.appendChild(elementFromJSProp(xml,channel,'profile', cfNS));
-    ch.appendChild(elementFromJSProp(xml,channel,'isFull', cfNS));
+    ch.appendChild(elementFromJSProp(xml,channel,'home', cfNS));
+    ch.appendChild(elementFromJSProp(xml,channel,'ishome', cfNS));
 
     channel.items.forEach((item)=>{
         let i = xml.createElement('item');
