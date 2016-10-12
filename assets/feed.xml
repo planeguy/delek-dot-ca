@@ -5,6 +5,7 @@
 	xmlns:atom="http://www.w3.org/2005/Atom"
 	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
 	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:cf="http://delek.org/schemas/clusterfriend/"
 	>
 
 <channel>
@@ -26,6 +27,7 @@
 				<category><![CDATA[Writing]]></category>
 
 		<guid isPermaLink="false">http://chancedixon.ca/?p=173</guid>
+		<cf:image>http://lorempixel.com/400/200/</cf:image>
 		<description><![CDATA[Here is the beginning of chapter two. It still needs a bit of work but I thought that I would post it and then work on it later this week. I wake with a start. My mind races. I can hear the fast thump of my heart radiating out of my chest. A few weeks &#8230; <a href="http://chancedixon.ca/index.php/2016/03/10/keepers-trust-chapter-2/" class="more-link">Continue reading <span class="screen-reader-text">Keepers Trust – Chapter 2</span> <span class="meta-nav">&#8594;</span></a>]]></description>
 				<content:encoded><![CDATA[<p>Here is the beginning of chapter two. It still needs a bit of work but I thought that I would post it and then work on it later this week.</p>
 <p><em>I wake with a start. My mind races. I can hear the fast thump of my heart radiating out of my chest. A few weeks have passed since I dropped the twins off with Dr. Zinteco. I shake my head hard and try to think of other things but I can’t get their lifeless faces out of my mind. I roll over and the hard mattress on the concrete floor of the abandoned gas station that I am sleeping in feels paper thin. My shoulder grazes the hard surface beneath. I am used to this type of discomfort and never give it much thought but on this misty cold morning I wish I was somewhere warmer. The gas station is on the outskirts of town or in the fringes a half of days walk outside the signal zone. </p>
@@ -41,6 +43,7 @@
 ]]></content:encoded>
 			<wfw:commentRss>http://chancedixon.ca/index.php/2016/03/10/keepers-trust-chapter-2/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
+		
 		</item>
 		<item>
 		<title>Keepers Trust &#8211; Chapter 1</title>
