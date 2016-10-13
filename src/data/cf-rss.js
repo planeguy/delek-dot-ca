@@ -46,6 +46,29 @@ function mapItems(itemElems){
     return items;
 }
 
+function mapKeys(keysElement){
+    if(!!keysElement){
+        let keyElems = keysElement.getElementsByTagNameNS(cfNS,'key');
+        let keys = [];
+        for (let i=0;i<keyElems.length;i++){
+            let ke = keyElems[i];
+            keys.push({
+                fingerprint:ke.getAttribute('fingerprint'),
+                group:ke.getAttribute('group'),
+                key:getElementNodeValue(ke)
+            });
+        }
+        return keys;
+    }
+}
+
+function getHome(homeElement){
+    if(!!homeElement) return {
+        ishome:homeElement.getAttribute('ishome'),
+        keys: mapKeys(homeElement.getElementsByTagNameNS(cfNS,'keys')[0])
+    }
+}
+
 export function cfFrom(rss, url){
     let parser = new DOMParser();
     let xml = parser.parseFromString(rss,'text/xml');
@@ -64,8 +87,7 @@ export function cfFrom(rss, url){
         image: getImage(channelElement.getElementsByTagNameNS(rssNS,'image')[0]),
         items: mapItems(itemElements),
         id: getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'id')[0]) || url || getElementNodeValue(channelElement.getElementsByTagNameNS(rssNS,'link')[0]), 
-        home: getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'home')[0]),
-        isHome: getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'ishome')[0]),
+        home: getHome(channelElement.getElementsByTagNameNS(cfNS,'home')[0])
     }
     
     return new Channel(channelSpec);
@@ -89,8 +111,15 @@ export function rssFrom(channel){
     ch.appendChild(elementFromJSProp(xml,channel,'link'));
     ch.appendChild(elementFromJSProp(xml,channel,'image'));
     ch.appendChild(elementFromJSProp(xml,channel,'id', cfNS));
-    ch.appendChild(elementFromJSProp(xml,channel,'home', cfNS));
-    ch.appendChild(elementFromJSProp(xml,channel,'ishome', cfNS));
+
+    if(!!channel.home){
+        ch.appendChild(((ho)=>{
+            let h = xml.createElement('home');
+            h.setAttribute('ishome',(!!ho.ishome));
+
+            return h;
+        })(channel.home));
+    }
 
     channel.items.forEach((item)=>{
         let i = xml.createElement('item');
@@ -99,7 +128,9 @@ export function rssFrom(channel){
         i.appendChild(elementFromJSProp(xml,item,'link'));
         i.appendChild(elementFromJSProp(xml,item,'guid'));
         i.appendChild(elementFromJSProp(xml,item,'enclosure'));
+        i.appendChild(elementFromJSProp(xml,item,'about', cfNS));
         i.appendChild(elementFromJSProp(xml,item,'re', cfNS));
+        i.appendChild(elementFromJSProp(xml,item,'image', cfNS));
         i.appendChild(elementFromJSProp(xml,item,'feel', cfNS));
         ch.appendChild(i);
     });

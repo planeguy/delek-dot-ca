@@ -11,7 +11,6 @@ export default class Channel {
         
         //clusterfriend-specific
         this.id = spec.id;
-        this.ishome = spec.ishome;
         this.home = spec.home;
     }
 };
