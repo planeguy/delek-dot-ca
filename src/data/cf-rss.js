@@ -23,6 +23,15 @@ function getImage(imageElement){
         link: imageElement.getAttribute('link')
     };
 }
+function getImageOrEnclosure(cfImage,enclosureElement){
+    if(!!enclosureElement){
+        let e = getEnclosure(enclosureElement);
+        if(!!e.type && e.type.startsWith('image')) return e.url;
+    }
+    if(!!cfImage){
+        return cfImage;
+    }
+}
 
 //because it isn't an array for some reason
 function mapItems(itemElems){
@@ -36,7 +45,7 @@ function mapItems(itemElems){
                 link:getElementNodeValue(ie.getElementsByTagNameNS(rssNS,'link')[0]),
                 guid:getElementNodeValue(ie.getElementsByTagNameNS(rssNS,'guid')[0]),
                 enclosure:getEnclosure(ie.getElementsByTagNameNS(rssNS,'enclosure')[0]),
-                image: getElementNodeValue(ie.getElementsByTagNameNS(cfNS,'image')[0]),
+                image: getImageOrEnclosure(getElementNodeValue(ie.getElementsByTagNameNS(cfNS,'image')[0]),ie.getElementsByTagNameNS(rssNS,'enclosure')[0]) ,
                 about:getElementNodeValue(ie.getElementsByTagNameNS(cfNS,'about')[0]),
                 re:getElementNodeValue(ie.getElementsByTagNameNS(cfNS,'re')[0]),
                 feel:getElementNodeValue(ie.getElementsByTagNameNS(cfNS,'feel')[0])

@@ -1,0 +1,27 @@
+.item {
+    &_date {
+
+    }
+    &_title {
+
+    }
+    &_desc {
+
+    }
+    &_image {
+        margin:0;
+        width:100vw;
+        max-height:100vh;
+        background-attachment: fixed;
+        background-size: contain;
+        background-repeat: repeat;
+        background-position: top center;
+        background-color: deeppink;
+        position: relative;
+        img {
+            visibility: hidden;
+            width:100%;
+            height:auto;
+        }
+    }
+}

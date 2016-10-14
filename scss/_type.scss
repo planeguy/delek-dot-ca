@@ -1,0 +1,7 @@
+.base-type {
+    font: 100%/1.5 sans-serif;
+}
+
+html {
+    @extend .base-type;
+}

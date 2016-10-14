@@ -38,10 +38,10 @@ export default class ClusterfriendSite {
 
             console.log(rssFrom(cf));
             
-            this.store.dispatch({
-                type:'select item',
-                guid: 'http://chancedixon.ca/?p=173'
-            });
+            // this.store.dispatch({
+            //     type:'select item',
+            //     guid: 'http://chancedixon.ca/?p=173'
+            // });
         });
     }   
 }

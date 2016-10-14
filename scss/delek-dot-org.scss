@@ -1,0 +1,13 @@
+@import 'type';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin:0;
+    padding:0;
+}
+
+@import 'components/title';
+@import 'components/item';
