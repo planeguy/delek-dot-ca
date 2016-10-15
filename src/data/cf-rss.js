@@ -40,7 +40,7 @@ function mapItems(itemElems){
         let ie = itemElems[i];
         items.push(new Item(
             {
-                pubDate:getElementNodeValue(ie.getElementsByTagNameNS(rssNS,'pubDate')[0]),
+                pubDate:new Date(getElementNodeValue(ie.getElementsByTagNameNS(rssNS,'pubDate')[0])||new Date()),
                 description:getElementNodeValue(ie.getElementsByTagNameNS(rssNS,'description')[0]),
                 link:getElementNodeValue(ie.getElementsByTagNameNS(rssNS,'link')[0]),
                 guid:getElementNodeValue(ie.getElementsByTagNameNS(rssNS,'guid')[0]),
@@ -52,6 +52,9 @@ function mapItems(itemElems){
             })
         );
     }
+    items.sort((l,r)=>{
+        return l.pubDate > r.pubdate;
+    });
     return items;
 }
 
