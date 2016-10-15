@@ -1,5 +1,5 @@
-import ClusterfriendSite from '../app/ClusterfriendSite';
-import './clusterfriend-channel.tag!';
+import ClusterfriendSite from 'src/app/ClusterfriendSite';
+import './clusterfriend-channel/clusterfriend-channel.tag!';
 
 <clusterfriend-app>
     <clusterfriend-channel channel="{state.channels[opts.feed]}" state="{state}"></clusterfriend-channel>

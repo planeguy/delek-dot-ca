@@ -1,0 +1,18 @@
+.brutal-image {
+    margin:0;
+    width:100vw;
+    max-height:100vh;
+    & .container {
+        max-height:100vh;
+        background-attachment: fixed;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: top center;
+        position: relative;
+    }
+    & .image {
+        visibility:hidden;
+        width:100%;
+        height:auto;
+    }
+}

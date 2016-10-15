@@ -25,7 +25,7 @@ function copyassetsto(dest){
 }
 
 function cssfromsass(dest){
-    gulp.src(['./scss/delek-dot-org.scss'])
+    gulp.src(['./src/main.scss'])
     .pipe(sass())
     .pipe(gulp.dest(dest));
 }
@@ -38,8 +38,8 @@ gulp.task('dev', ['dev:assets','dev:code', 'dev:sass']);
 
 gulp.task('watch',['dev'],function () {
     gulp.watch(['./assets/**'],['dev:assets']);
-    gulp.watch(['./src/**'],['dev:code']);
-    gulp.watch(['./scss/**'],['dev:sass']);
+    gulp.watch(['./src/**/*.js', './src/**/*.tag'],['dev:code']);
+    gulp.watch(['./src/**/*.scss'],['dev:sass']);
 });
 
 
