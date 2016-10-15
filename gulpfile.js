@@ -18,19 +18,12 @@ function build(dest, options){
     });
 }
 
-function copyassetsto(dest){
+function copyassetsto(dest, target){
     return gulp.src([
-        './assets/**'
+        './assets/common/**',
+        './assets/' + (target||'dev') + '/**'
     ]).pipe(gulp.dest(dest));
 }
-
-
-function copydevassetsto(dest){
-    return gulp.src([
-        './dev-assets/**'
-    ]).pipe(gulp.dest(dest));
-}
-
 
 function cssfromsass(dest){
     gulp.src(['./src/main.scss'])
@@ -38,10 +31,14 @@ function cssfromsass(dest){
     .pipe(gulp.dest(dest));
 }
 
-gulp.task('dev:assets',['dev:dev-assets'],function(){ return copyassetsto('dev'); });
-gulp.task('dev:dev-assets',[],function(){ return copydevassetsto('dev'); });
+function copysystemjs(dest){
+    return gulp.src('jspm_packages/system.js')
+    .pipe(gulp.dest(dest));
+}
+gulp.task('dev:assets',[],function(){ return copyassetsto('dev'); });
 gulp.task('dev:sass',[], function(){ return cssfromsass('dev');});
-gulp.task('dev:code',[], function(){ return build('./dev', {minify: false, sourceMaps:true}); });
+gulp.task('dev:install-systemjs',[],function(){ return copysystemjs('dev');});
+gulp.task('dev:code',['dev:install-systemjs'], function(){ return build('./dev', {minify: false, sourceMaps:true}); });
 
 gulp.task('dev', ['dev:assets','dev:code', 'dev:sass']);
 
@@ -52,6 +49,8 @@ gulp.task('watch',['dev'],function () {
 });
 
 
-gulp.task('dist:assets',[],function(){ return copyassetsto('dist');});
-gulp.task('dist:code',[], function(){ return build('./dist'); })
-gulp.task('dist', ['dist:assets','dist:code'] );
+gulp.task('dist:assets',[],function(){ return copyassetsto('dist', 'dist');});
+gulp.task('dist:install-systemjs',[],function(){ return copysystemjs('dist');});
+gulp.task('dist:code',['dist:install-systemjs'], function(){ return build('./dist'); });
+gulp.task('dist:sass',[], function(){ return cssfromsass('dist');});
+gulp.task('dist', ['dist:assets','dist:code', 'dist:sass'] );

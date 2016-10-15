@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:cf="http://delek.org/schemas/clusterfriend/"
+	>
+
+<channel>
+	<title>DELEK DOT ORG</title>
+	<atom:link href="http://delek.org/feed.xml" rel="self" type="application/rss+xml" />
+	<link>http://delek.org</link>
+	<description>Delek Turner</description>
+	<language>en-US</language>
+	<cf:home ishome="true"></cf:home>
+	<item>
+		<link>http://delek.org/index.html#1</link>
+		<pubDate>Fri, 14 Oct 2016 05:16:23 +0000</pubDate>
+		<guid isPermaLink="true">http://delek.org/index.html#1</guid>		
+		<description>My new web page is a most BRUTAL of pages</description>
+		</item>
+	</channel>
+</rss>

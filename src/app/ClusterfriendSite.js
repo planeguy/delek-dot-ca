@@ -26,7 +26,7 @@ export default class ClusterfriendSite {
     }
     
     loadFeed(){
-        ajax(this.feedurl).errorOn((xhr)=>(xhr.status>399)).get()
+        ajax(this.feedurl).header('Cache-Control','NO-CACHE').errorOn((xhr)=>(xhr.status>399)).get()
         .then((xhr)=>{
             let cf = cfFrom(xhr.response, this.feedurl);
             this.store.dispatch({
