@@ -114,6 +114,22 @@ function elementFromJSProp(xml, obj, prop, ns){
     return e;
 }
 
+function rssitemFrom(jsitem){
+    let i = xml.createElement('item');
+    i.appendChild(elementFromJSProp(xml,jsitem,'pubDate'));
+    i.appendChild(elementFromJSProp(xml,jsitem,'description'));
+    i.appendChild(elementFromJSProp(xml,jsitem,'link'));
+    i.appendChild(elementFromJSProp(xml,jsitem,'guid'));
+    i.appendChild(elementFromJSProp(xml,jsitem,'enclosure'));
+    i.appendChild(elementFromJSProp(xml,jsitem,'about', cfNS));
+    i.appendChild(elementFromJSProp(xml,jsitem,'re', cfNS));
+    i.appendChild(elementFromJSProp(xml,jsitem,'image', cfNS));
+    i.appendChild(elementFromJSProp(xml,jsitem,'feel', cfNS));
+    return i;
+}
+
+export function rssItemFrom(jsItem) { return rssItemFrom(jsItem);};
+
 export function rssFrom(channel){
     let xml = document.implementation.createDocument(rssNS, 'rss');
     let ch = xml.createElement('channel');
@@ -134,17 +150,7 @@ export function rssFrom(channel){
     }
 
     channel.items.forEach((item)=>{
-        let i = xml.createElement('item');
-        i.appendChild(elementFromJSProp(xml,item,'pubDate'));
-        i.appendChild(elementFromJSProp(xml,item,'description'));
-        i.appendChild(elementFromJSProp(xml,item,'link'));
-        i.appendChild(elementFromJSProp(xml,item,'guid'));
-        i.appendChild(elementFromJSProp(xml,item,'enclosure'));
-        i.appendChild(elementFromJSProp(xml,item,'about', cfNS));
-        i.appendChild(elementFromJSProp(xml,item,'re', cfNS));
-        i.appendChild(elementFromJSProp(xml,item,'image', cfNS));
-        i.appendChild(elementFromJSProp(xml,item,'feel', cfNS));
-        ch.appendChild(i);
+        ch.appendChild(rssitemFrom(item));
     });
     xml.firstChild.appendChild(ch); //firstChild is an "rss" tag
     var serializer = new XMLSerializer();
