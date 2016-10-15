@@ -24,13 +24,22 @@ function copyassetsto(dest){
     ]).pipe(gulp.dest(dest));
 }
 
+
+function copydevassetsto(dest){
+    return gulp.src([
+        './dev-assets/**'
+    ]).pipe(gulp.dest(dest));
+}
+
+
 function cssfromsass(dest){
     gulp.src(['./src/main.scss'])
     .pipe(sass())
     .pipe(gulp.dest(dest));
 }
 
-gulp.task('dev:assets',[],function(){ return copyassetsto('dev'); });
+gulp.task('dev:assets',['dev:dev-assets'],function(){ return copyassetsto('dev'); });
+gulp.task('dev:dev-assets',[],function(){ return copydevassetsto('dev'); });
 gulp.task('dev:sass',[], function(){ return cssfromsass('dev');});
 gulp.task('dev:code',[], function(){ return build('./dev', {minify: false, sourceMaps:true}); });
 
