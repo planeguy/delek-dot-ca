@@ -46,7 +46,7 @@ gulp.task('dev:code',[], function(){ return build('./dev', {minify: false, sourc
 gulp.task('dev', ['dev:assets','dev:code', 'dev:sass']);
 
 gulp.task('watch',['dev'],function () {
-    gulp.watch(['./assets/**'],['dev:assets']);
+    gulp.watch(['./assets/**','./dev-assets/**'],['dev:assets']);
     gulp.watch(['./src/**/*.js', './src/**/*.tag'],['dev:code']);
     gulp.watch(['./src/**/*.scss'],['dev:sass']);
 });
