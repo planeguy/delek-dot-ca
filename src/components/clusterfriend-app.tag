@@ -2,7 +2,7 @@ import ClusterfriendSite from 'src/app/ClusterfriendSite';
 import './clusterfriend-channel/clusterfriend-channel.tag!';
 
 <clusterfriend-app>
-    <clusterfriend-channel channel="{state.channels[opts.feed]}" state="{state}"></clusterfriend-channel>
+    <clusterfriend-channel channel="{state.channels[feed]}" items="{state.items}" selecteditem="{state.selectedItem}"></clusterfriend-channel>
     <script>
         this.onSubscriptionUpdate = (state) => {
             this.state = state;

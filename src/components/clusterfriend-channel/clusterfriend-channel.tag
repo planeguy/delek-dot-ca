@@ -1,10 +1,15 @@
 import '../clusterfriend-item/clusterfriend-item.tag!';
 
 <clusterfriend-channel>
-    <div each="{selecteditem in (!!opts.state.selectedItem.guid?[opts.state.selectedItem.guid]:[])}">
-        <clusterfriend-item item="{parent.opts.state.items[selecteditem]}" state="{parent.opts.state}"></clusterfriend-item>
+    <!-- if an item is selected --> 
+    <div if="{!!opts.selecteditem && !!opts.selecteditem.guid}">
+        <clusterfriend-item item="{opts.items[opts.selecteditem.guid]}"></clusterfriend-item>
     </div>
-    <div each="{item in (!!opts.state.selectedItem.guid?[]:opts.channel.items)}">
-        <clusterfriend-item item="{parent.opts.state.items[item]}" state="{parent.opts.state}"></clusterfriend-item>
+
+    <!-- if an item is NOT selected -->
+    <div each="{item in (!!opts.selecteditem.guid?[]:opts.channel.items)}">
+        <clusterfriend-item item="{parent.opts.items[item]}"></clusterfriend-item>
     </div>
+
+    <script>
 </clusterfriend-channel>
