@@ -19,27 +19,37 @@ export default class ClusterfriendSite {
         this.store = createStore(clusterfriend);
         
         let s = spec || {};
-        this.feedurl = s.feedurl || './feed.xml';
+        this.feedurl = s.feedurl || 'feed.xml';
         if(!!s.subscription) this.store.subscribe(()=>{
             s.subscription(this.store.getState())
         });
     }
     
     loadFeed(){
-        ajax(this.feedurl).header('Cache-Control','NO-CACHE').errorOn((xhr)=>(xhr.status>399)).get()
+        console.log('loading ' + this.feedurl);
+        ajax('./'+this.feedurl).header('Cache-Control','NO-CACHE').errorOn((xhr)=>(xhr.status>399)).get()
         .then((xhr)=>{
             let cf = cfFrom(xhr.response, this.feedurl);
             this.store.dispatch({
                 type:'receive channel',
                 channel: cf
             });
-
-            console.log(rssFrom(cf));
-            
-            // this.store.dispatch({
-            //     type:'select item',
-            //     guid: 'http://chancedixon.ca/?p=173'
-            // });
         });
-    }   
+    }
+
+    selectItemById(id){
+        console.log(id);
+        console.log('selecting '+ (location.origin|| (location.origin = location.protocol + "//" + location.host)) + "/#/" + this.feedurl+'/'+id);
+        this.store.dispatch({
+            type:'select item',
+            guid: (location.origin|| (location.origin = location.protocol + "//" + location.host)) + "/#/" + this.feedurl+'/'+id
+        });
+    }
+
+    selectItemByGuid(guid){
+        this.store.dispatch({
+            type:'select item',
+            guid: guid
+        });
+    }
 }

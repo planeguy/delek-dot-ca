@@ -13,9 +13,8 @@
 	<link>http://delek.org</link>
 	<description>Delek Turner</description>
 	<language>en-US</language>
-	<cf:home ishome="true"></cf:home>
 	<item>
-		<link>http://delek.org/#/feed.1.xml/1</link>
+		<link>http://delek.org/index.html#1</link>
 		<pubDate>Fri, 14 Oct 2016 05:16:23 +0000</pubDate>
 		<guid isPermaLink="true">http://delek.org/#/feed.1.xml/1</guid>
 		<description>My new web page is a most BRUTAL of pages</description>
