@@ -32,8 +32,10 @@ function cssfromsass(dest){
 }
 
 function copysystemjs(dest){
-    return gulp.src('jspm_packages/system.js')
-    .pipe(gulp.dest(dest));
+    return gulp.src([
+        'jspm_packages/system.js',
+        'jspm.config.js'
+    ]).pipe(gulp.dest(dest));
 }
 gulp.task('dev:assets',[],function(){ return copyassetsto('dev'); });
 gulp.task('dev:sass',[], function(){ return cssfromsass('dev');});
