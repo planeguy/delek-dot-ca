@@ -10,7 +10,7 @@ function build(dest, options){
     .then(function(){
         return builder.buildStatic(
             'src/main.js',
-            dest + '/main.js',
+            'builds/' + dest + '/main.js',
             Object.assign({
                 minify: true,
                 sourceMaps: false
@@ -23,7 +23,7 @@ function copyassetsto(dest, target){
     return gulp.src([
         './assets/common/**',
         './assets/' + (target||'dev') + '/**'
-    ]).pipe(gulp.dest(dest));
+    ]).pipe(gulp.dest('builds/'+ dest));
 }
 
 function cssfromsass(dest, options){
@@ -36,8 +36,7 @@ function cssfromsass(dest, options){
     
     if(!!o.minify) g = g.pipe(cleancss());
     
-
-    return g.pipe(gulp.dest(dest));
+    return g.pipe(gulp.dest('builds/'+ dest));
     
 }
 
@@ -45,12 +44,13 @@ function copysystemjs(dest){
     return gulp.src([
         'jspm_packages/system.js',
         'jspm.config.js'
-    ]).pipe(gulp.dest(dest));
+    ]).pipe(gulp.dest('builds/'+ dest));
 }
+
 gulp.task('dev:assets',[],function(){ return copyassetsto('dev'); });
 gulp.task('dev:sass',[], function(){ return cssfromsass('dev', {minify:false});});
 gulp.task('dev:install-systemjs',[],function(){ return copysystemjs('dev');});
-gulp.task('dev:code',['dev:install-systemjs'], function(){ return build('./dev', {minify: false, sourceMaps:true}); });
+gulp.task('dev:code',['dev:install-systemjs'], function(){ return build('dev', {minify: false, sourceMaps:true}); });
 
 gulp.task('dev', ['dev:assets','dev:code', 'dev:sass']);
 
@@ -63,6 +63,6 @@ gulp.task('watch',['dev'],function () {
 
 gulp.task('dist:assets',[],function(){ return copyassetsto('dist', 'dist');});
 gulp.task('dist:install-systemjs',[],function(){ return copysystemjs('dist');});
-gulp.task('dist:code',['dist:install-systemjs'], function(){ return build('./dist'); });
+gulp.task('dist:code',['dist:install-systemjs'], function(){ return build('dist'); });
 gulp.task('dist:sass',[], function(){ return cssfromsass('dist');});
 gulp.task('dist', ['dist:assets','dist:code', 'dist:sass'] );
