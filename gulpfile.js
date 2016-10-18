@@ -20,8 +20,8 @@ function build(dest, options){
 
 function copyassetsto(dest, target){
     return gulp.src([
-        './assets/common/**',
-        './assets/' + (target||'dev') + '/**'
+        '.src/assets/common/**',
+        '.src/assets/' + (target||'dev') + '/**'
     ]).pipe(gulp.dest(dest));
 }
 
