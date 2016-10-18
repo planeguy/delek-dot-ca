@@ -1,3 +1,4 @@
+import AjaxFeedLoader from 'src/app/feed-loaders/AjaxFeedLoader';
 import ClusterfriendSite from 'src/app/ClusterfriendSite';
 import './clusterfriend-channel/clusterfriend-channel.tag!';
 
@@ -33,14 +34,11 @@ import './clusterfriend-channel/clusterfriend-channel.tag!';
                 this.feed = this.opts.feed;
                 this.id = undefined;
             }
-            console.log(this.feed);
-            console.log(this.id);
-            console.log('------');
         }
 
         let load = (feed) => {
             this.site = new ClusterfriendSite({
-                feedurl: this.feed,
+                loader: new AjaxFeedLoader({feed: this.feed}),
                 subscription: this.onSubscriptionUpdate
             });
             this.site.loadFeed();
