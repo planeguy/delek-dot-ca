@@ -1,6 +1,7 @@
 var Builder = require('jspm').Builder;
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var cleancss = require('gulp-clean-css');
 require('./object.assign.js');
 
 function build(dest, options){
@@ -25,10 +26,19 @@ function copyassetsto(dest, target){
     ]).pipe(gulp.dest(dest));
 }
 
-function cssfromsass(dest){
-    gulp.src(['./src/main.scss'])
-    .pipe(sass())
-    .pipe(gulp.dest(dest));
+function cssfromsass(dest, options){
+    var o = Object.assign({
+        minify: true,
+        sourceMaps:false
+    }, (options || {}));
+    var g = gulp.src(['./src/main.scss'])
+    .pipe(sass());
+    
+    if(!!o.minify) g = g.pipe(cleancss());
+    
+
+    return g.pipe(gulp.dest(dest));
+    
 }
 
 function copysystemjs(dest){
@@ -38,7 +48,7 @@ function copysystemjs(dest){
     ]).pipe(gulp.dest(dest));
 }
 gulp.task('dev:assets',[],function(){ return copyassetsto('dev'); });
-gulp.task('dev:sass',[], function(){ return cssfromsass('dev');});
+gulp.task('dev:sass',[], function(){ return cssfromsass('dev', {minify:false});});
 gulp.task('dev:install-systemjs',[],function(){ return copysystemjs('dev');});
 gulp.task('dev:code',['dev:install-systemjs'], function(){ return build('./dev', {minify: false, sourceMaps:true}); });
 
