@@ -1,4 +1,4 @@
-import AjaxFeedLoader from 'src/app/feed-loaders/AjaxFeedLoader';
+import AjaxFeedLoader from 'src/app/data/feed-loaders/AjaxFeedLoader';
 import ClusterfriendSite from 'src/app/ClusterfriendSite';
 import './clusterfriend-channel/clusterfriend-channel.tag!';
 

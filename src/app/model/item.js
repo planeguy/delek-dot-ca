@@ -5,7 +5,6 @@ export default class Item {
         this.link = spec.link;
         this.guid = spec.guid;
         this.enclosure = spec.enclosure;
-        this.comments = spec.comments;
         
         //clusterfriend-specific
         this.image = spec.image;

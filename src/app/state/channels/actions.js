@@ -1,4 +1,4 @@
-import Channel from 'src/model/channel';
+import Channel from '../model/channel';
 
 
 function receiveChannelFromAjax(xhr){

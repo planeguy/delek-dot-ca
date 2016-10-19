@@ -1,8 +1,8 @@
 import {createStore, combineReducers } from 'redux';
 
-import channels from '../state/channels/reducer';
-import items from '../state/items/reducer';
-import selectedItem from '../state/selected-item/reducer';
+import channels from 'state/channels/reducer';
+import items from 'state/items/reducer';
+import selectedItem from 'state/selected-item/reducer';
 
 const clusterfriend = combineReducers({
     channels,
