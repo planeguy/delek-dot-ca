@@ -35,7 +35,7 @@ export default class ClusterfriendSite {
     selectItemById(id){
         this.store.dispatch({
             type:'select item',
-            guid: makeItemId(this.loader.base, this.loader.feed ,id)
+            guid: makeItemId(location, this.loader.base, this.loader.feed ,id)
         });
     }
 
