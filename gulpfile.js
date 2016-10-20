@@ -21,9 +21,9 @@ function build(dest, options){
 
 function copyassetsto(dest, target){
     return gulp.src([
-        './assets/common/**',
-        './assets/' + (target||'dev') + '/**'
-    ]).pipe(gulp.dest('builds/'+ dest));
+        '.src/assets/common/**',
+        '.src/assets/' + (target||'dev') + '/**'
+    ]).pipe(gulp.dest(dest));
 }
 
 function cssfromsass(dest, options){
@@ -42,7 +42,7 @@ function cssfromsass(dest, options){
 
 gulp.task('dev:assets',[],function(){ return copyassetsto('dev'); });
 gulp.task('dev:sass',[], function(){ return cssfromsass('dev');});
-gulp.task('dev:code',[], function(){ return build('./dev', {minify: false, sourceMaps:true}); });
+gulp.task('dev:code',[], function(){ return build('dev', {minify: false, sourceMaps:true}); });
 
 gulp.task('dev', ['dev:assets','dev:code', 'dev:sass']);
 
@@ -54,6 +54,6 @@ gulp.task('watch',['dev'],function () {
 
 
 gulp.task('dist:assets',[],function(){ return copyassetsto('dist', 'dist');});
-gulp.task('dist:code',[], function(){ return build('./dist'); });
+gulp.task('dist:code',[], function(){ return build('dist'); });
 gulp.task('dist:sass',[], function(){ return cssfromsass('dist');});
 gulp.task('dist', ['dist:assets','dist:code', 'dist:sass'] );
