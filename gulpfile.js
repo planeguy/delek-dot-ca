@@ -21,9 +21,9 @@ function build(dest, options){
 
 function copyassetsto(dest, target){
     return gulp.src([
-        '.src/assets/common/**',
-        '.src/assets/' + (target||'dev') + '/**'
-    ]).pipe(gulp.dest(dest));
+        'src/assets/common/**',
+        'src/assets/' + (target||'dev') + '/**'
+    ]).pipe(gulp.dest('builds/'+ dest));
 }
 
 function cssfromsass(dest, options){
