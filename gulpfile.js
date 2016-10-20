@@ -21,9 +21,9 @@ function build(dest, options){
 
 function copyassetsto(dest, target){
     return gulp.src([
-        './assets/common/**',
-        './assets/' + (target||'dev') + '/**'
-    ]).pipe(gulp.dest('builds/'+ dest));
+        '.src/assets/common/**',
+        '.src/assets/' + (target||'dev') + '/**'
+    ]).pipe(gulp.dest(dest));
 }
 
 function cssfromsass(dest, options){
@@ -46,7 +46,6 @@ function copysystemjs(dest){
         'jspm.config.js'
     ]).pipe(gulp.dest('builds/'+ dest));
 }
-
 gulp.task('dev:assets',[],function(){ return copyassetsto('dev'); });
 gulp.task('dev:sass',[], function(){ return cssfromsass('dev', {minify:false});});
 gulp.task('dev:install-systemjs',[],function(){ return copysystemjs('dev');});
