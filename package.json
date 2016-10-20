@@ -3,6 +3,8 @@
     "name": "app",
     "main": "main.js",
     "dependencies": {
+      "bluebird": "npm:bluebird@^3.4.6",
+      "object.assign": "npm:object.assign@^4.0.4",
       "redux": "npm:redux@^3.6.0",
       "riot": "npm:riot@^2.6.3",
       "tag": "npm:systemjs-riot@^1.4.2"
@@ -46,6 +48,16 @@
       "zlib": "github:jspm/nodelibs-zlib@^0.2.0-alpha"
     },
     "overrides": {
+      "npm:bluebird@3.4.6": {
+        "meta": {
+          "js/browser/bluebird.js": {
+            "format": "global"
+          },
+          "js/browser/bluebird.min.js": {
+            "format": "global"
+          }
+        }
+      },
       "npm:browserify-zlib@0.1.4": {
         "dependencies": {
           "readable-stream": "^2.0.2",

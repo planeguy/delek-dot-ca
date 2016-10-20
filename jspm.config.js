@@ -21,8 +21,8 @@ SystemJS.config({
           "loader": "plugin-babel"
         },
         "*.tag": {
-          "format":"esm",
-          "loader":"tag"
+          "format": "esm",
+          "loader": "tag"
         }
       }
     }
@@ -38,6 +38,7 @@ SystemJS.config({
   map: {
     "assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
     "bcrypt-pbkdf": "npm:bcrypt-pbkdf@1.0.0",
+    "bluebird": "npm:bluebird@3.4.6",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
     "child_process": "github:jspm/nodelibs-child_process@0.2.0-alpha",
     "cluster": "github:jspm/nodelibs-cluster@0.2.0-alpha",
@@ -55,6 +56,7 @@ SystemJS.config({
     "jsbn": "npm:jsbn@0.1.0",
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
     "net": "github:jspm/nodelibs-net@0.2.0-alpha",
+    "object.assign": "npm:object.assign@4.0.4",
     "os": "github:jspm/nodelibs-os@0.2.0-alpha",
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
@@ -921,6 +923,19 @@ SystemJS.config({
         "xtend": "npm:xtend@4.0.1",
         "to-arraybuffer": "npm:to-arraybuffer@1.0.1",
         "builtin-status-codes": "npm:builtin-status-codes@2.0.0"
+      }
+    },
+    "npm:object.assign@4.0.4": {
+      "map": {
+        "define-properties": "npm:define-properties@1.1.2",
+        "object-keys": "npm:object-keys@1.0.11",
+        "function-bind": "npm:function-bind@1.1.0"
+      }
+    },
+    "npm:define-properties@1.1.2": {
+      "map": {
+        "object-keys": "npm:object-keys@1.0.11",
+        "foreach": "npm:foreach@2.0.5"
       }
     }
   }
