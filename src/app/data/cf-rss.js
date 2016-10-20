@@ -82,11 +82,7 @@ export function cfFrom(rss, url){
     
     let channelElement = xml.getElementsByTagNameNS(rssNS,'channel')[0];
     let itemElements = xml.getElementsByTagNameNS(rssNS,'item');
-    
-    getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'id')[0]); 
-    getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'id')[0]) || url;
-    getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'id')[0]) || url || getElementNodeValue(channelElement.getElementsByTagNameNS(rssNS,'link')[0]);
-    
+        
     let channelSpec = {
         title: getElementNodeValue(channelElement.getElementsByTagNameNS(rssNS,'title')[0]),
         description: getElementNodeValue(channelElement.getElementsByTagNameNS(rssNS,'description')[0]),
