@@ -4,6 +4,8 @@ import channels from 'src/app/state/channels/reducer';
 import items from 'src/app/state/items/reducer';
 import selectedItem from 'src/app/state/selected-item/reducer';
 
+import {makeItemId} from 'src/app/clusterfriend-common';
+
 const clusterfriend = combineReducers({
     channels,
     items,
@@ -33,7 +35,7 @@ export default class ClusterfriendSite {
     selectItemById(id){
         this.store.dispatch({
             type:'select item',
-            guid: (location.origin|| (location.origin = location.protocol + "//" + location.host)) + "/#/" + this.loader.base + this.loader.feed +'/'+id
+            guid: makeItemId(this.loader.base, this.loader.feed ,id)
         });
     }
 
