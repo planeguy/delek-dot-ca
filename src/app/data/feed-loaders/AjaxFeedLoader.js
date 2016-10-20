@@ -1,5 +1,5 @@
 import ajax from 'src/vendor/ajaxpoop';
-import {cfFrom} from 'src/data/cf-rss';
+import {cfFrom} from 'src/app/data/cf-rss';
 
 export default class AjaxFeedLoader{
     constructor(spec){
