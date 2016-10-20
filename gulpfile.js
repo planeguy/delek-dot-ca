@@ -1,6 +1,7 @@
 var Builder = require('jspm').Builder;
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var cleancss = require('gulp-clean-css');
 require('./object.assign.js');
 
 function build(dest, options){
@@ -9,7 +10,7 @@ function build(dest, options){
     .then(function(){
         return builder.buildStatic(
             'src/main.js',
-            dest + '/main.js',
+            'builds/' + dest + '/main.js',
             Object.assign({
                 minify: true,
                 sourceMaps: false
@@ -22,13 +23,21 @@ function copyassetsto(dest, target){
     return gulp.src([
         './assets/common/**',
         './assets/' + (target||'dev') + '/**'
-    ]).pipe(gulp.dest(dest));
+    ]).pipe(gulp.dest('builds/'+ dest));
 }
 
-function cssfromsass(dest){
-    gulp.src(['./src/main.scss'])
-    .pipe(sass())
-    .pipe(gulp.dest(dest));
+function cssfromsass(dest, options){
+    var o = Object.assign({
+        minify: true,
+        sourceMaps:false
+    }, (options || {}));
+    var g = gulp.src(['./src/main.scss'])
+    .pipe(sass());
+    
+    if(!!o.minify) g = g.pipe(cleancss());
+    
+    return g.pipe(gulp.dest('builds/'+ dest));
+    
 }
 
 gulp.task('dev:assets',[],function(){ return copyassetsto('dev'); });
