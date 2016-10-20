@@ -25,7 +25,7 @@ function getImage(imageElement){
 }
 function getEnclosedImage(enclosureElement){
     let enclosure = getEnclosure(enclosureElement);
-    if(!!enclosure && !!enclosure.type && enclosure.type.startsWith('image/')) return enclosure.url;
+    if(!!enclosure && !!enclosure.type && enclosure.type.indexOf('image/')==0) return enclosure.url;
 }
 
 //because it isn't an array for some reason
