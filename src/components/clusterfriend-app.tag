@@ -22,9 +22,9 @@ import './clusterfriend-channel/clusterfriend-channel.tag!';
 
         let load = (feed) => {
             this.site = new ClusterfriendSite({
-                loader: new AjaxFeedLoader({feed: this.feed}),
-                subscription: this.onSubscriptionUpdate
+                loader: new AjaxFeedLoader({feed: this.feed})
             });
+            this.site.subscribe(this.onSubscriptionUpdate);
             this.site.loadFeed();
         }
 

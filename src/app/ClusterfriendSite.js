@@ -18,8 +18,11 @@ export default class ClusterfriendSite {
         
         let s = spec || {};
         this.loader = s.loader || {};
-        if(!!s.subscription) this.store.subscribe(()=>{
-            s.subscription(this.store.getState())
+    }
+
+    subscribe(fn){
+        this.store.subscribe(()=>{
+            fn(this.store.getState());
         });
     }
     
