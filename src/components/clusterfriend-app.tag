@@ -1,5 +1,7 @@
 import AjaxFeedLoader from 'src/app/data/feed-loaders/AjaxFeedLoader';
 import ClusterfriendSite from 'src/app/ClusterfriendSite';
+import {parseRoute} from 'src/app/clusterfriend-common';
+
 import './clusterfriend-channel/clusterfriend-channel.tag!';
 
 <clusterfriend-app>
@@ -13,27 +15,9 @@ import './clusterfriend-channel/clusterfriend-channel.tag!';
 
         let route = ()=>{
             let h = location.hash
-            if(!!h){
-                //remove the '#'
-                h=h.substring(1)
-                ;
-                while(h[0]=='/') h=h.substring(1);
-
-                let firstSlashIdx = h.indexOf('/');
-                if (firstSlashIdx > 0){
-                    // if there is a '/' then the # is in the format feed/id
-                    this.feed = h.substring(0, firstSlashIdx);
-                    this.id = h.substring(firstSlashIdx+1);
-                }
-                else {
-                    //if there is no '/' the hash is just the feed name 
-                    this.feed = h;
-                    this.id = undefined;
-                }
-            } else {
-                this.feed = this.opts.feed;
-                this.id = undefined;
-            }
+            let parsed = parseRoute(h);
+            this.feed = parsed.feed || this.opts.feed;
+            this.id = parsed.id;
         }
 
         let load = (feed) => {

@@ -4,7 +4,8 @@ export function makeItemId(loc, base, feed, id){
     return (loc.origin|| (loc.origin = loc.protocol + "//" + loc.host)) + "/#/" + base + feed +'/'+ id;
 }
 
-export function parsePostInfo(hash, base){
+export function parseRoute(hash, base){
+    if(!hash) return {};
     //remove the '#'
     let h=hash.substring(1);
 
