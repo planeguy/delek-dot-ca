@@ -10,9 +10,4 @@ import '../clusterfriend-item/clusterfriend-item.tag!';
     <div each="{item in (!!opts.selecteditem.guid?[]:opts.channel.items)}">
         <clusterfriend-item item="{parent.opts.items[item]}"></clusterfriend-item>
     </div>
-
-    <script>
-        this.on('update',()=>{
-            console.log(this.opts.channel);
-        })
 </clusterfriend-channel>

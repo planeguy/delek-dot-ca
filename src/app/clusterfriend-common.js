@@ -1,6 +1,6 @@
 
 
-export function makeItemId(loc, base, feed, id){
+export function makeItemId(loc=document.location, base='', feed='feed.xml', id){
     return (loc.origin|| (loc.origin = loc.protocol + "//" + loc.host)) + "/#/" + base + feed +'/'+ id;
 }
 

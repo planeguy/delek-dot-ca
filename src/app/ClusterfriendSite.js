@@ -4,7 +4,7 @@ import channels from 'src/app/state/channels/reducer';
 import items from 'src/app/state/items/reducer';
 import selectedItem from 'src/app/state/selected-item/reducer';
 
-import {makeItemId} from 'src/app/clusterfriend-common';
+import {makeItemId, parseRoute} from 'src/app/clusterfriend-common';
 
 const clusterfriend = combineReducers({
     channels,
@@ -17,11 +17,11 @@ export default class ClusterfriendSite {
         this.store = createStore(clusterfriend);
         
         let s = spec || {};
-        this.loader = s.loader || {};
+        this.loader = s.loader || ((i)=>{});
         
-        this.loadFeed();
+        this.loadFeed(parseRoute(document.location.hash));
         window.addEventListener('popstate', function() {
-            this.loadFeed();
+            this.loadFeed(parseRoute(document.location.hash));
         });
     }
 
@@ -31,12 +31,20 @@ export default class ClusterfriendSite {
         });
     }
     
-    loadFeed(){
-        this.loader.load().then((channel)=>{
+    loadFeed(i){
+        this.loader(i).then((channel)=>{
             this.store.dispatch({
                 type:'receive channel',
                 channel
             });
+        });
+        if(!!i.id) this.selectItemByFeedInfo(i);
+    }
+
+    selectItemByFeedInfo(i){
+        this.store.dispatch({
+            type:'select item',
+            guid: makeItemId(document.location, i.base, i.feed, i.id)
         });
     }
 

@@ -6,11 +6,11 @@ assign.shim();
 
 
 import ClusterfriendSite from 'src/app/ClusterfriendSite';
-import AjaxFeedLoader from 'src/app/data/feed-loaders/AjaxFeedLoader';
+import ajaxFeedLoader from 'src/app/data/feed-loaders/AjaxFeedLoader';
 
 
 riot.mount('clusterfriend-app', {
     site: new ClusterfriendSite({
-        loader: new AjaxFeedLoader()
+        loader: ajaxFeedLoader
     })
 });
