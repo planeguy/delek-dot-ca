@@ -12,4 +12,7 @@ import '../clusterfriend-item/clusterfriend-item.tag!';
     </div>
 
     <script>
+        this.on('update',()=>{
+            console.log(this.opts.channel);
+        })
 </clusterfriend-channel>

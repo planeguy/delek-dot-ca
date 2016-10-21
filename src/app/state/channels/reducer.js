@@ -19,7 +19,7 @@ export default function channels(state = {}, action){
     switch(action.type){
         case 'receive channel':
             return Object.assign({},state,
-                flatten([onlyItemIds(action.channel)],(c)=>c.id));
+                {channel:onlyItemIds(action.channel)});
         case 'request channel':
             return Object.assign({},state,
                 flatten([{id: action.id, requested:true }],(c)=>c.id));

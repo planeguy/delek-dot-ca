@@ -4,4 +4,13 @@ import 'bluebird';
 import assign from 'object.assign';
 assign.shim();
 
-riot.mount('*');
+
+import ClusterfriendSite from 'src/app/ClusterfriendSite';
+import AjaxFeedLoader from 'src/app/data/feed-loaders/AjaxFeedLoader';
+
+
+riot.mount('clusterfriend-app', {
+    site: new ClusterfriendSite({
+        loader: new AjaxFeedLoader()
+    })
+});

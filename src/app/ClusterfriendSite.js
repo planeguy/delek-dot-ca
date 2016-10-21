@@ -18,6 +18,11 @@ export default class ClusterfriendSite {
         
         let s = spec || {};
         this.loader = s.loader || {};
+        
+        this.loadFeed();
+        window.addEventListener('popstate', function() {
+            this.loadFeed();
+        });
     }
 
     subscribe(fn){
