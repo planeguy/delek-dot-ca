@@ -1,7 +1,9 @@
 import './clusterfriend-channel/clusterfriend-channel.tag!';
 
 <clusterfriend-app>
-    <clusterfriend-channel channel="{state.channels.channel}" items="{state.items}" selecteditem="{state.selectedItem}"></clusterfriend-channel>
+    <div each="{f in state.site.channels}"> 
+        <clusterfriend-channel channel="{parent.state.channels[f]}" items="{parent.state.items}" selecteditem="{parent.state.selectedItem}"></clusterfriend-channel>
+    </div>
     <script>
         this.site = this.opts.site;
 

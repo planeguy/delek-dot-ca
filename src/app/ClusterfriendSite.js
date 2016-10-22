@@ -3,13 +3,15 @@ import {createStore, combineReducers } from 'redux';
 import channels from 'src/app/state/channels/reducer';
 import items from 'src/app/state/items/reducer';
 import selectedItem from 'src/app/state/selected-item/reducer';
+import site from 'src/app/state/site/reducer';
 
 import {makeItemId, parseRoute} from 'src/app/clusterfriend-common';
 
 const clusterfriend = combineReducers({
     channels,
     items,
-    selectedItem
+    selectedItem,
+    site
 });
 
 export default class ClusterfriendSite {
@@ -55,5 +57,10 @@ export default class ClusterfriendSite {
             type:'select item',
             guid: guid
         });
+    }
+
+    loadNext(base=''){
+        let channels=this.store.getState().channels;
+
     }
 }
