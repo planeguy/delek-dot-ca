@@ -90,7 +90,8 @@ export function cfFrom(rss, url){
         image: getImage(channelElement.getElementsByTagNameNS(rssNS,'image')[0]),
         items: mapItems(itemElements),
         id: getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'id')[0]) || url || getElementNodeValue(channelElement.getElementsByTagNameNS(rssNS,'link')[0]), 
-        home: getHome(channelElement.getElementsByTagNameNS(cfNS,'home')[0])
+        home: getHome(channelElement.getElementsByTagNameNS(cfNS,'home')[0]),
+        next: getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'next')[0])
     }
     
     return new Channel(channelSpec);
@@ -140,7 +141,8 @@ export function rssFrom(channel){
         })(channel.home));
     }
 
-    channel.items.forEach((item)=>{
+    //add items unless it's a home channel
+    if(!channel.home || !channel.home.ishome) channel.items.forEach((item)=>{
         ch.appendChild(rssitemFrom(item));
     });
     xml.firstChild.appendChild(ch); //firstChild is an "rss" tag
