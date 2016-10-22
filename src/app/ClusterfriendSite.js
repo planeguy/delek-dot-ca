@@ -17,11 +17,11 @@ export default class ClusterfriendSite {
         this.store = createStore(clusterfriend);
         
         let s = spec || {};
-        this.loader = s.loader || ((i)=>{});
+        this.loader = s.loader || ((b,f)=>{});
         
-        this.loadFeed(parseRoute(document.location.hash));
+        this.open(document.location.hash);
         window.addEventListener('popstate', function() {
-            this.loadFeed(parseRoute(document.location.hash));
+            this.open(document.location.hash);
         });
     }
 
@@ -31,28 +31,23 @@ export default class ClusterfriendSite {
         });
     }
     
-    loadFeed(i){
-        this.loader(i).then((channel)=>{
+    loadFeed(base='',feed='feed.xml'){
+        this.loader(base,feed).then((channel)=>{
             this.store.dispatch({
                 type:'receive channel',
                 channel
             });
         });
-        if(!!i.id) this.selectItemByFeedInfo(i);
     }
 
-    selectItemByFeedInfo(i){
-        this.store.dispatch({
-            type:'select item',
-            guid: makeItemId(document.location, i.base, i.feed, i.id)
-        });
+    open(route){
+        let feedInfo = parseRoute(route);
+        this.loadFeed(feedInfo.base,feedInfo.feed);
+        if(!!feedInfo.id) this.selectItemById(feedInfo.base,feedInfo.feed,feedInfo.id);
     }
 
-    selectItemById(id){
-        this.store.dispatch({
-            type:'select item',
-            guid: makeItemId(location, this.loader.base, this.loader.feed ,id)
-        });
+    selectItemById(base='',feed='feed.xml',id){
+        this.selectItemByGuid(makeItemId(location, base, feed ,id));
     }
 
     selectItemByGuid(guid){
