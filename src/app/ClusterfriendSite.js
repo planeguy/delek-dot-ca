@@ -62,5 +62,7 @@ export default class ClusterfriendSite {
     loadNext(base=''){
         let channels=this.store.getState().channels;
 
+        let state = this.store.getState();
+        if(state.site.nextChannel) this.loadFeed(base,state.site.nextChannel);
     }
 }
