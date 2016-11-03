@@ -33,7 +33,7 @@ export default class ClusterfriendSite {
         });
     }
     
-    loadFeed(base='',id='feed.xml'){
+    loadFeed(base='',id='feed'){
         this.loader(base,id).then((feed)=>{
             this.store.dispatch({
                 type:'receive feed',
@@ -48,7 +48,7 @@ export default class ClusterfriendSite {
         if(!!feedInfo.id) this.selectItemById(feedInfo.base,feedInfo.feed,feedInfo.id);
     }
 
-    selectItemById(base='',feed='feed.xml',id){
+    selectItemById(base='',feed='feed',id){
         this.selectItemByGuid(makeItemId(location, base, feed ,id));
     }
 
