@@ -1,20 +1,20 @@
 const dflt = {
-    channels:[]
+    feeds:[]
 };
 export default function site(state = dflt, action){
     switch(action.type){
-        case 'receive channel':
+        case 'receive feed':
             return Object.assign({},state,
             {
-                channels: ([]
-                    .concat(state.channels))
-                    .concat([action.channel.id]),
-                'end-of-channels': (!action.channel.next),
-                nextChannel: action.channel.next,
-                'channel-requested': false
+                feeds: ([]
+                    .concat(state.feeds))
+                    .concat([action.channel.guid]),
+                'end-of-feeds': (!action.channel.next),
+                nextFeed: action.channel.next,
+                'feed-requested': false
             });
-        case 'request channel':
-            return Object.assign({},state,{'channel-requested':true});
+        case 'request feed':
+            return Object.assign({},state,{'feed-requested':true});
         default: return state;
     }
 }

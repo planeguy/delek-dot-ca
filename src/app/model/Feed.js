@@ -1,16 +1,15 @@
 import Item from './item';
 
-export default class Channel {
+export default class Feed {
     constructor(spec){
+        this.guid = spec.guid;
         this.title = spec.title;
         this.description = spec.description;
-        this.link = spec.link;
         this.image = spec.image;
         
         this.items = spec.items;
         
         //clusterfriend-specific
-        this.id = spec.id;
         this.home = spec.home;
         this.next = spec.next;
     }

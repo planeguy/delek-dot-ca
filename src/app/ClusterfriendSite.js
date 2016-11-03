@@ -1,6 +1,6 @@
 import {createStore, combineReducers } from 'redux';
 
-import channels from 'src/app/state/channels/reducer';
+import feeds from 'src/app/state/feeds/reducer';
 import items from 'src/app/state/items/reducer';
 import selectedItem from 'src/app/state/selected-item/reducer';
 import site from 'src/app/state/site/reducer';
@@ -8,7 +8,7 @@ import site from 'src/app/state/site/reducer';
 import {makeItemId, parseRoute} from 'src/app/clusterfriend-common';
 
 const clusterfriend = combineReducers({
-    channels,
+    feeds,
     items,
     selectedItem,
     site
@@ -33,11 +33,11 @@ export default class ClusterfriendSite {
         });
     }
     
-    loadFeed(base='',feed='feed.xml'){
-        this.loader(base,feed).then((channel)=>{
+    loadFeed(base='',id='feed.xml'){
+        this.loader(base,id).then((feed)=>{
             this.store.dispatch({
-                type:'receive channel',
-                channel
+                type:'receive feed',
+                feed
             });
         });
     }
@@ -60,9 +60,7 @@ export default class ClusterfriendSite {
     }
 
     loadNext(base=''){
-        let channels=this.store.getState().channels;
-
         let state = this.store.getState();
-        if(state.site.nextChannel) this.loadFeed(base,state.site.nextChannel);
+        if(state.site.nextFeed) this.loadFeed(base,state.site.nextFeed);
     }
 }

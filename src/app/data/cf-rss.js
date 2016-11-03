@@ -33,7 +33,7 @@ function mapItems(itemElems){
     let items = [];
     for(let i=0;i<itemElems.length;i++){
         let ie = itemElems[i];
-        items.push(new Item(
+        items.push(
             {
                 pubDate:new Date(getElementNodeValue(ie.getElementsByTagNameNS(rssNS,'pubDate')[0])||new Date()),
                 description:getElementNodeValue(ie.getElementsByTagNameNS(rssNS,'description')[0]),
@@ -44,7 +44,7 @@ function mapItems(itemElems){
                 about:getElementNodeValue(ie.getElementsByTagNameNS(cfNS,'about')[0]),
                 re:getElementNodeValue(ie.getElementsByTagNameNS(cfNS,'re')[0]),
                 feel:getElementNodeValue(ie.getElementsByTagNameNS(cfNS,'feel')[0])
-            })
+            }
         );
     }
     items.sort((l,r)=>{
@@ -93,8 +93,8 @@ export function cfFrom(rss, url){
         home: getHome(channelElement.getElementsByTagNameNS(cfNS,'home')[0]),
         next: getElementNodeValue(channelElement.getElementsByTagNameNS(cfNS,'next')[0])
     }
-    
-    return new Channel(channelSpec);
+    return channelSpec;
+    //return new Channel(channelSpec);
 }
 
 function elementFromJSProp(xml, obj, prop, ns){
