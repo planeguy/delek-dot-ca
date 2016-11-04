@@ -4,10 +4,10 @@ function onlyItemIds(feed){
     return Object.assign({}, feed,
         {
             items: feed.items
-                .map((i)=>({guid:i.guid,pubDate:i.pubDate}))
+                .map((i)=>({guid:i.guid,published:i.published}))
                 .sort((l,r)=>{
-                    if(Date.parse(l.pubDate) > Date.parse(r.pubDate)) return -1;
-                    if(Date.parse(l.pubDate) < Date.parse(r.pubDate)) return 1;
+                    if(Date.parse(l.published) > Date.parse(r.published)) return -1;
+                    if(Date.parse(l.published) < Date.parse(r.published)) return 1;
                     return 0;
                 })
                 .map((i)=>i.guid)
