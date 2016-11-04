@@ -89,7 +89,7 @@
           "test.js"
         ]
       },
-      "npm:lodash@4.16.4": {
+      "npm:lodash@4.16.6": {
         "map": {
           "buffer": "@empty",
           "process": "@empty"
@@ -122,4 +122,4 @@
     "gulp-sass": "^2.3.2",
     "jspm": "^0.17.0-beta.29"
   }
-}
+}
