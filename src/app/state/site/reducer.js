@@ -6,11 +6,9 @@ export default function site(state = dflt, action){
         case 'receive feed':
             return Object.assign({},state,
             {
-                feeds: ([]
-                    .concat(state.feeds))
-                    .concat([action.channel.guid]),
-                'end-of-feeds': (!action.channel.next),
-                nextFeed: action.channel.next,
+                feeds: [...state.feeds,action.feed.guid],
+                'end-of-feeds': (!action.feed.next),
+                nextFeed: action.feed.next,
                 'feed-requested': false
             });
         case 'request feed':

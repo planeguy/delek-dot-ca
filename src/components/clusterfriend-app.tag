@@ -1,4 +1,4 @@
-import './clusterfriend-channel/clusterfriend-channel.tag!';
+import './clusterfriend-feed/clusterfriend-feed.tag!';
 
 <clusterfriend-app>
     <style>
@@ -6,13 +6,13 @@ import './clusterfriend-channel/clusterfriend-channel.tag!';
             height:33vh;
         }
     </style>
-    <div each="{f in state.site.channels}"> 
-        <clusterfriend-channel channel="{parent.state.channels[f]}" items="{parent.state.items}" selecteditem="{parent.state.selectedItem}"></clusterfriend-channel>
+    <div each="{f in state.site.feeds}"> 
+        <clusterfriend-feed feed="{parent.state.feeds[f]}" items="{parent.state.items}" selecteditem="{parent.state.selectedItem}"></clusterfriend-feed>
     </div>
-    <div class="tag-loader" if="{!state.site['end-of-channels']}">
+    <div class="tag-loader" if="{!state.site['end-of-feeds']}">
         WAIT...
     </div>
-    <strong class="eol" if="{state.site['end-of-channels']}">END OF LINE.</strong>
+    <strong class="eol" if="{state.site['end-of-feeds']}">END OF LINE.</strong>
     <script>
         this.site = this.opts.site;
         this.state = {};
@@ -25,7 +25,7 @@ import './clusterfriend-channel/clusterfriend-channel.tag!';
         }
 
         this.checkForLoadNext =(e)=>{
-            if(!!this.state.site['end-of-channels'] || this.state.site['channel-requested']) return;
+            if(!this.state.site || !!this.state.site['end-of-feeds'] || this.state.site['feed-requested']) return;
             if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight){
                 this.site.loadNext();
             }
