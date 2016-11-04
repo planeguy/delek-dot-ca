@@ -7,7 +7,7 @@ import './clusterfriend-feed/clusterfriend-feed.tag!';
         }
     </style>
     <div each="{f in state.site.feeds}"> 
-        <clusterfriend-feed feed="{parent.state.feeds[f]}" items="{parent.state.items}" selecteditem="{parent.state.selectedItem}"></clusterfriend-feed>
+        <clusterfriend-feed feed="{parent.state.feeds[f]}" items="{parent.state.items}" selecteditem="{parent.state.selectedItem}" base="{site.base}"></clusterfriend-feed>
     </div>
     <div class="tag-loader" if="{!state.site['end-of-feeds']}">
         WAIT...
@@ -18,7 +18,6 @@ import './clusterfriend-feed/clusterfriend-feed.tag!';
         this.state = {};
 
         this.onSubscriptionUpdate = (state) => {
-            console.log(state);
             this.state = state;
             this.update();
             this.checkForLoadNext();

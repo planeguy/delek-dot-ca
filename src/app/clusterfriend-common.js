@@ -1,31 +1,36 @@
+/*
 
+delek.org cf routes
 
-export function makeItemId(loc=document.location, base='', feed='feed.xml', id){
-    return (loc.origin|| (loc.origin = loc.protocol + "//" + loc.host)) + "/#/" + base + feed +'/'+ id;
+http://server/whatever/whatever/#/http://server/whatever/feed/item
+= base + '#/' + feed + '/' + item
+
+*/
+
+export function makeItemId(base='', feed='feed', item=''){
+    return base+'#/'+feed+'/'+item;
 }
 
-export function parseRoute(hash, base){
-    if(!hash) return {};
+export function cleanHash(hash){
+    if(!hash) return;
     //remove the '#'
     let h=hash.substring(1);
 
     //remove extra ///////
     while(h[0]=='/') h=h.substring(1);
-    //remove the base
-    if(!!base) h=h.substring(base.length);
-    
-    let firstSlashIdx = h.indexOf('/');
-    if (firstSlashIdx > 0){
-        // if there is a '/' then the # is in the format feed/id
-        return {
-            feed:h.substring(0, firstSlashIdx),
-            id: h.substring(firstSlashIdx+1)
-        }
-    }
-    else {
-        //if there is no '/' the hash is just the feed name
-        return {
-            feed:h
-        };
-    }
+    return h;
+}
+
+export function getFeedFromHash(hash){
+    let clean = cleanHash(hash);
+    if(!clean) return;
+    let parts = clean.split('/');
+    if (parts.length>1) parts.pop();
+    return parts.reduce((f,p)=>f+'/'+p);
+}
+
+export function getItemFromHash(hash){
+    let clean = cleanHash(hash);
+    if (!clean) return;
+    return clean.split('/').pop();
 }

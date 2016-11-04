@@ -11,6 +11,7 @@ import loader from 'src/app/data/feed-loaders/AjaxJSONFeedLoader';
 
 riot.mount('clusterfriend-app', {
     site: new ClusterfriendSite({
-        loader: loader
+        loader: loader,
+        base:'http://127.0.0.1:8080'
     })
 });

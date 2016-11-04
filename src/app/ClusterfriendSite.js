@@ -5,7 +5,7 @@ import items from 'src/app/state/items/reducer';
 import selectedItem from 'src/app/state/selected-item/reducer';
 import site from 'src/app/state/site/reducer';
 
-import {makeItemId, parseRoute} from 'src/app/clusterfriend-common';
+import {cleanHash, getFeedFromHash} from 'src/app/clusterfriend-common';
 
 const clusterfriend = combineReducers({
     feeds,
@@ -20,11 +20,17 @@ export default class ClusterfriendSite {
         
         let s = spec || {};
         this.loader = s.loader || ((b,f)=>{});
+
+        this.base = spec.base + (spec.base[spec.base.length-1]=='/'?'':'/') || this.here();
         
         this.open(document.location.hash);
         window.addEventListener('popstate', function() {
             this.open(document.location.hash);
         });
+    }
+
+    here(){
+        return window.location.protocol+'//'+window.location.host+'/'+window.location.pathname;
     }
 
     subscribe(fn){
@@ -33,8 +39,9 @@ export default class ClusterfriendSite {
         });
     }
     
-    loadFeed(base='',id='feed'){
-        this.loader(base,id).then((feed)=>{
+    loadFeed(feedGuid=this.base+'feed'){
+        console.log(this.base);
+        this.loader(feedGuid).then((feed)=>{
             this.store.dispatch({
                 type:'receive feed',
                 feed
@@ -42,14 +49,11 @@ export default class ClusterfriendSite {
         });
     }
 
-    open(route){
-        let feedInfo = parseRoute(route);
-        this.loadFeed(feedInfo.base,feedInfo.feed);
-        if(!!feedInfo.id) this.selectItemById(feedInfo.base,feedInfo.feed,feedInfo.id);
-    }
-
-    selectItemById(base='',feed='feed',id){
-        this.selectItemByGuid(makeItemId(location, base, feed ,id));
+    open(hash){
+        let f = getFeedFromHash(hash);
+        this.loadFeed(f);
+        let clean = cleanHash(hash);
+        if(!!clean) this.selectItemByGuid(clean);
     }
 
     selectItemByGuid(guid){
@@ -59,8 +63,8 @@ export default class ClusterfriendSite {
         });
     }
 
-    loadNext(base=''){
+    loadNext(){
         let state = this.store.getState();
-        if(state.site.nextFeed) this.loadFeed(base,state.site.nextFeed);
+        if(state.site.nextFeed) this.loadFeed(state.site.nextFeed);
     }
 }

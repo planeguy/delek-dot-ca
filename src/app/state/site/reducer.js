@@ -4,6 +4,7 @@ const dflt = {
 export default function site(state = dflt, action){
     switch(action.type){
         case 'receive feed':
+        console.log('WHOA ' + action.feed.next);
             return Object.assign({},state,
             {
                 feeds: [...state.feeds,action.feed.guid],
