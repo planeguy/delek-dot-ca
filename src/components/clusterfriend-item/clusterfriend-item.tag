@@ -7,7 +7,7 @@ import RColor from 'src/vendor/rcolor-esm';
         <div if="{opts.item.image}">
             <brutal-image imagesrc="{opts.item.image}" backgroundcolor="{imagecolor}"></brutal-image>
         </div>
-        <div><small class="date">{opts.item.pubDate}</small> <small><a class="permalink" href="{opts.item.guid}">permalink</a></small></div>
+        <div><small class="date">{opts.item.pubDate}</small> <small><a class="permalink" href="{opts.base+'#'+opts.item.guid}">permalink</a></small></div>
     </article>
     <script>
         this.imagecolor = (new RColor()).get(true);

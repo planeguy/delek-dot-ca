@@ -1,13 +1,17 @@
 import {createStore, combineReducers } from 'redux';
 
-import channels from 'src/app/state/channels/reducer';
+import feeds from 'src/app/state/feeds/reducer';
 import items from 'src/app/state/items/reducer';
 import selectedItem from 'src/app/state/selected-item/reducer';
+import site from 'src/app/state/site/reducer';
+
+import {cleanHash, getFeedFromHash} from 'src/app/clusterfriend-common';
 
 const clusterfriend = combineReducers({
-    channels,
+    feeds,
     items,
-    selectedItem
+    selectedItem,
+    site
 });
 
 export default class ClusterfriendSite {
@@ -15,26 +19,41 @@ export default class ClusterfriendSite {
         this.store = createStore(clusterfriend);
         
         let s = spec || {};
-        this.loader = s.loader || {};
-        if(!!s.subscription) this.store.subscribe(()=>{
-            s.subscription(this.store.getState())
+        this.loader = s.loader || ((b,f)=>{});
+
+        this.base = spec.base + (spec.base[spec.base.length-1]=='/'?'':'/') || this.here();
+        
+        this.open(document.location.hash);
+        window.addEventListener('popstate', function() {
+            this.open(document.location.hash);
+        });
+    }
+
+    here(){
+        return window.location.protocol+'//'+window.location.host+'/'+window.location.pathname;
+    }
+
+    subscribe(fn){
+        this.store.subscribe(()=>{
+            fn(this.store.getState());
         });
     }
     
-    loadFeed(){
-        this.loader.load().then((channel)=>{
+    loadFeed(feedGuid=this.base+'feed'){
+        console.log(this.base);
+        this.loader(feedGuid).then((feed)=>{
             this.store.dispatch({
-                type:'receive channel',
-                channel
+                type:'receive feed',
+                feed
             });
         });
     }
 
-    selectItemById(id){
-        this.store.dispatch({
-            type:'select item',
-            guid: (location.origin|| (location.origin = location.protocol + "//" + location.host)) + "/#/" + this.loader.base + this.loader.feed +'/'+id
-        });
+    open(hash){
+        let f = getFeedFromHash(hash);
+        this.loadFeed(f);
+        let clean = cleanHash(hash);
+        if(!!clean) this.selectItemByGuid(clean);
     }
 
     selectItemByGuid(guid){
@@ -42,5 +61,10 @@ export default class ClusterfriendSite {
             type:'select item',
             guid: guid
         });
+    }
+
+    loadNext(){
+        let state = this.store.getState();
+        if(state.site.nextFeed) this.loadFeed(state.site.nextFeed);
     }
 }

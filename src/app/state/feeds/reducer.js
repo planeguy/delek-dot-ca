@@ -1,9 +1,9 @@
 import flatten from '../flatten';
 
-function onlyItemIds(channel){
-    return Object.assign({}, channel,
+function onlyItemIds(feed){
+    return Object.assign({}, feed,
         {
-            items: channel.items
+            items: feed.items
                 .map((i)=>({guid:i.guid,pubDate:i.pubDate}))
                 .sort((l,r)=>{
                     if(Date.parse(l.pubDate) > Date.parse(r.pubDate)) return -1;
@@ -15,17 +15,17 @@ function onlyItemIds(channel){
     );
 }
 
-export default function channels(state = {}, action){
+export default function feeds(state = {}, action){
     switch(action.type){
-        case 'receive channel':
+        case 'receive feed':
             return Object.assign({},state,
-                flatten([onlyItemIds(action.channel)],(c)=>c.id));
-        case 'request channel':
+                flatten([onlyItemIds(action.feed)],(c)=>c.guid));
+        case 'request feed':
             return Object.assign({},state,
-                flatten([{id: action.id, requested:true }],(c)=>c.id));
-        case 'save channel':
+                flatten([{id: action.guid, requested:true }],(c)=>c.guid));
+        case 'save feed':
             return Object.assign({},state,
-                flatten([{id: action.id, saving:true }],(c)=>c.id));
+                flatten([{id: action.guid, saving:true }],(c)=>c.guid));
         default: return state;
     }
 }

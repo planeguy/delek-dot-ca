@@ -1,65 +1,41 @@
-import AjaxFeedLoader from 'src/app/data/feed-loaders/AjaxFeedLoader';
-import ClusterfriendSite from 'src/app/ClusterfriendSite';
-import './clusterfriend-channel/clusterfriend-channel.tag!';
+import './clusterfriend-feed/clusterfriend-feed.tag!';
 
 <clusterfriend-app>
-    <clusterfriend-channel channel="{state.channels[feed]}" items="{state.items}" selecteditem="{state.selectedItem}"></clusterfriend-channel>
+    <style>
+        .tag-loader{
+            height:33vh;
+        }
+    </style>
+    <div each="{f in state.site.feeds}"> 
+        <clusterfriend-feed feed="{parent.state.feeds[f]}" items="{parent.state.items}" selecteditem="{parent.state.selectedItem}" base="{site.base}"></clusterfriend-feed>
+    </div>
+    <div class="tag-loader" if="{!state.site['end-of-feeds']}">
+        WAIT...
+    </div>
+    <strong class="eol" if="{state.site['end-of-feeds']}">END OF LINE.</strong>
     <script>
+        this.site = this.opts.site;
+        this.state = {};
+
         this.onSubscriptionUpdate = (state) => {
             this.state = state;
             this.update();
+            this.checkForLoadNext();
         }
 
-
-        let route = ()=>{
-            let h = location.hash
-            if(!!h){
-                //remove the '#'
-                h=h.substring(1)
-                ;
-                while(h[0]=='/') h=h.substring(1);
-
-                let firstSlashIdx = h.indexOf('/');
-                if (firstSlashIdx > 0){
-                    // if there is a '/' then the # is in the format feed/id
-                    this.feed = h.substring(0, firstSlashIdx);
-                    this.id = h.substring(firstSlashIdx+1);
-                }
-                else {
-                    //if there is no '/' the hash is just the feed name 
-                    this.feed = h;
-                    this.id = undefined;
-                }
-            } else {
-                this.feed = this.opts.feed;
-                this.id = undefined;
+        this.checkForLoadNext =(e)=>{
+            if(!this.state.site || !!this.state.site['end-of-feeds'] || this.state.site['feed-requested']) return;
+            if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight){
+                this.site.loadNext();
             }
         }
 
-        let load = (feed) => {
-            this.site = new ClusterfriendSite({
-                loader: new AjaxFeedLoader({feed: this.feed}),
-                subscription: this.onSubscriptionUpdate
-            });
-            this.site.loadFeed();
-        }
-
-        let select = (id)=>{
-            this.site.selectItemById(id);
-        }
-
-        let page = ()=>{
-            route();
-            load(this.feed);
-            if(!!this.id) select(this.id);
-        }
-
         this.on('mount',()=>{
-            page();
-            window.addEventListener('popstate', function() {
-                page();
-            });
-        })
-        
+            this.site.subscribe(this.onSubscriptionUpdate);
+            this.checkForLoadNext();
+            document.addEventListener('scroll',this.checkForLoadNext);
+            document.addEventListener('resize',this.checkForLoadNext);
+        });
+
     </script>
 </clusterfriend-app>
