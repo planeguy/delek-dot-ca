@@ -1,9 +1,9 @@
 .brutal-image {
     margin:0;
     width:100vw;
-    height:100vh;
+    height:110vh;
     & .container {
-        height:100vh;
+        height:110vh;
         background-attachment: fixed;
         background-size: auto 100vh;
         background-repeat: no-repeat;
@@ -14,5 +14,7 @@
         visibility:hidden;
         width:auto;
         height:100vh;
+        margin-top:5vh;
+        margin-bottom: 5vh;
     }
 }
