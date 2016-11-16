@@ -2,8 +2,7 @@ import '../brutal-image/brutal-image.tag!';
 import RColor from 'src/vendor/rcolor-esm';
 <clusterfriend-item class="clusterfriend-item">
     <article>
-        <div class="title" if="{opts.item.title}">{opts.item.title}</div>
-        <div class="desc" if="{opts.item.description}">{opts.item.description}</div>
+        <div class="text" if="{opts.item.text}">{opts.item.text}</div>
         <div if="{picture}">
             <brutal-image imagesrc="{picture}" backgroundcolor="{imagecolor}"></brutal-image>
         </div>

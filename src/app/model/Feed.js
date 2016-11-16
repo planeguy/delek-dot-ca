@@ -2,15 +2,16 @@ import Item from './Item';
 
 export default class Feed {
     constructor(spec){
-        this.guid = spec.guid;
-        this.title = spec.title;
-        this.description = spec.description;
-        this.image = spec.image;
+        let s = spec||{};
+        this.guid = s.guid;
+        this.title = s.title;
+        this.description = s.description;
+        this.image = s.image;
         
-        this.items = spec.items;
+        this.items = s.items;
         
         //clusterfriend-specific
-        this.home = spec.home;
-        this.next = spec.next;
+        this.home = s.home;
+        this.next = s.next;
     }
 };

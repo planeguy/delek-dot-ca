@@ -1,13 +1,15 @@
 export default class Item {
     constructor(spec){
-        this.guid = spec.guid;
-        this.published = spec.published;
-        this.description = spec.description;
-        this.enclosure = spec.enclosure;
+        let s = spec||{};
+        
+        this.guid = s.guid;
+        this.published = s.published;
+        this.text = s.text;
+        this.enclosure = s.enclosure;
         
         //clusterfriend-specific
-        this.about = spec.about;
-        this.re = spec.re;
-        this.feel = spec.feel;
+        this.about = s.about;
+        this.reply = s.reply;
+        this.feels = s.feels;
     }
 };
