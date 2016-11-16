@@ -12,7 +12,7 @@ import './clusterfriend-feed/clusterfriend-feed.tag!';
     <div class="tag-loader" if="{!state.site['end-of-feeds']}">
         WAIT...
     </div>
-    <strong class="eol" if="{state.site['end-of-feeds']}">END OF LINE.</strong>
+    <strong class="eoi" if="{state.site['end-of-feeds']}">END OF ITEMS</strong>
     <script>
         this.site = this.opts.site;
         this.state = {};
@@ -25,7 +25,7 @@ import './clusterfriend-feed/clusterfriend-feed.tag!';
 
         this.checkForLoadNext =(e)=>{
             if(!this.state.site || !!this.state.site['end-of-feeds'] || this.state.site['feed-requested']) return;
-            if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight){
+            if ((window.innerHeight + window.scrollY + 50) >= document.body.scrollHeight){
                 this.site.loadNext();
             }
         }
