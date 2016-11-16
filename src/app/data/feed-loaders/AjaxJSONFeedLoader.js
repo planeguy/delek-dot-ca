@@ -8,3 +8,7 @@ export default function load(feed='feed'){
         return cf;
     });
 };
+
+export function save(saveapi, cf){
+    return ajax(saveapi).errorOn((xhr)=>(xhr.status>399)).post(cf);
+}
