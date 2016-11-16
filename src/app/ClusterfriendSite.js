@@ -21,8 +21,9 @@ export default class ClusterfriendSite {
         let s = spec || {};
         this.loader = s.loader || ((b,f)=>{});
 
-        this.base = spec.base + (spec.base[spec.base.length-1]=='/'?'':'/') || this.here();
-        
+        this.base = s.base || this.here();
+        if (this.base[this.base.length-1]!='/') this.base += '/';
+
         this.open(document.location.hash);
         window.addEventListener('popstate', function() {
             this.open(document.location.hash);
@@ -30,7 +31,7 @@ export default class ClusterfriendSite {
     }
 
     here(){
-        return window.location.protocol+'//'+window.location.host+'/'+window.location.pathname;
+        return window.location.protocol+'//'+window.location.host+window.location.pathname;
     }
 
     subscribe(fn){
@@ -40,7 +41,7 @@ export default class ClusterfriendSite {
     }
     
     loadFeed(feedGuid=this.base+'feed'){
-        console.log(this.base);
+        console.log(feedGuid);
         this.loader(feedGuid).then((feed)=>{
             this.store.dispatch({
                 type:'receive feed',
