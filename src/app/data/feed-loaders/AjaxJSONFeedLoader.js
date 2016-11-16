@@ -1,5 +1,5 @@
 import ajax from 'src/vendor/ajaxpoop';
-import {cfFrom} from 'src/app/data/json-rss';
+import {cfFrom} from 'src/app/data/json-cf';
 
 export default function load(feed='feed'){
     return ajax(feed).header('Cache-Control','NO-CACHE').errorOn((xhr)=>(xhr.status>399)).get()
