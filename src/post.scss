@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin:0;
+    padding:0;
+}
+
+@import 'scss/settings';
+
+@import 'scss/type';
+@import 'scss/title';
+@import 'scss/item';
+
+@import 'components/post-item/post-item';

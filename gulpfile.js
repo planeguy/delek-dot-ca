@@ -4,13 +4,13 @@ var sass = require('gulp-sass');
 var cleancss = require('gulp-clean-css');
 require('./object.assign.js');
 
-function build(dest, options){
+function build(app, dest, options){
     var builder = new Builder();
     return builder.loadConfig('jspm.config.js')
     .then(function(){
         return builder.buildStatic(
-            'src/main.js',
-            'builds/' + dest + '/main.js',
+            'src/'+app+'.js',
+            'builds/' + dest + '/'+app+'.js',
             Object.assign({
                 minify: true,
                 sourceMaps: false
@@ -26,12 +26,12 @@ function copyassetsto(dest, target){
     ]).pipe(gulp.dest('builds/'+ dest));
 }
 
-function cssfromsass(dest, options){
+function cssfromsass(app, dest, options){
     var o = Object.assign({
         minify: true,
         sourceMaps:false
     }, (options || {}));
-    var g = gulp.src(['./src/main.scss'])
+    var g = gulp.src(['./src/'+app+'.scss'])
     .pipe(sass());
     
     if(!!o.minify) g = g.pipe(cleancss());
@@ -41,19 +41,23 @@ function cssfromsass(dest, options){
 }
 
 gulp.task('dev:assets',[],function(){ return copyassetsto('dev'); });
-gulp.task('dev:sass',[], function(){ return cssfromsass('dev');});
-gulp.task('dev:code',[], function(){ return build('dev', {minify: false, sourceMaps:true}); });
+gulp.task('dev:main:sass',[], function(){ return cssfromsass('main','dev');});
+gulp.task('dev:main:code',[], function(){ return build('main','dev', {minify: false, sourceMaps:true}); });
+gulp.task('dev:post:sass',[], function(){ return cssfromsass('post','dev');});
+gulp.task('dev:post:code',[], function(){ return build('post','dev', {minify: false, sourceMaps:true}); });
 
-gulp.task('dev', ['dev:assets','dev:code', 'dev:sass']);
+gulp.task('dev', ['dev:assets','dev:main:code','dev:main:sass','dev:post:code','dev:post:sass']);
 
 gulp.task('watch',['dev'],function () {
     gulp.watch(['./src/assets/common/**','./src/assets/dev/**'],['dev:assets']);
-    gulp.watch(['./src/**/*.js', './src/**/*.tag'],['dev:code']);
-    gulp.watch(['./src/**/*.scss'],['dev:sass']);
+    gulp.watch(['./src/**/*.js', './src/**/*.tag'],['dev:main:code','dev:post:code']);
+    gulp.watch(['./src/**/*.scss'],['dev:main:sass','dev:post:sass']);
 });
 
 
 gulp.task('dist:assets',[],function(){ return copyassetsto('dist', 'dist');});
-gulp.task('dist:code',[], function(){ return build('dist'); });
-gulp.task('dist:sass',[], function(){ return cssfromsass('dist');});
-gulp.task('dist', ['dist:assets','dist:code', 'dist:sass'] );
+gulp.task('dist:main:sass',[], function(){ return cssfromsass('main','dist');});
+gulp.task('dist:main:code',[], function(){ return build('main','dist', {minify: false, sourceMaps:true}); });
+gulp.task('dist:post:sass',[], function(){ return cssfromsass('post','dist');});
+gulp.task('dist:post:code',[], function(){ return build('post','dist', {minify: false, sourceMaps:true}); });
+gulp.task('dist', ['dist:assets','dist:main:code','dist:main:sass','dist:post:code','dist:post:sass']);
