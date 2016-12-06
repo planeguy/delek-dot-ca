@@ -49,13 +49,8 @@ export default class ClusterfriendPoster{
     }
 
     post(item){
-        console.log('this (in post)');
-        console.log(this);
-        console.log('this.getFeed (in post)');
-        console.log(this.getFeed);
         return this.getFeed(this.home)
         .then((f)=>this.getFeed(f.next))
         .then((f)=>this.addItemToFeed(item,f));
     }
-
 }

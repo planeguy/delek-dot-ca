@@ -1,4 +1,6 @@
 import Item from 'src/app/model/Item';
+import ajax from 'src/vendor/ajaxpoop';
+import loadImage from 'src/vendor/load-image';
 
 <post-item>
 <div class="post-item">
@@ -10,14 +12,17 @@ import Item from 'src/app/model/Item';
     <input type="url" id="reply" oninput="{oninputtext}"/>
 
     <div class="post-item__picture">
-        <label for="choosePicture">
-            <span>GALLERY PHOTO</span>
-            <input id="choosePicutre" type="file" accept="image/*" onchange="{onchangepicture}"/>
-        </label>
-        <label for="takePicture">
-            <span>NEW PHOTO</span>
-            <input id="takePicture" type="file" accept="image/*" onchange="{onchangepicture}" capture/><br/>
-        </label>
+        <div class="post-item__picture__select">
+            <label for="choosePicture">
+                <span>GALLERY PHOTO</span>
+                <input id="choosePicutre" type="file" accept="image/*" onchange="{onchangepicture}"/>
+            </label>
+            <label for="takePicture">
+                <span>NEW PHOTO</span>
+                <input id="takePicture" type="file" accept="image/*" onchange="{onchangepicture}" capture/><br/>
+            </label>
+        </div>
+        <img src="{picture}" class="post-item__picture__image"/>
     </div>
 
     <label for="feels">FEELS</label>
@@ -33,16 +38,42 @@ import Item from 'src/app/model/Item';
 <script>
     this.item = new Item();
     this.picture = null;
+    this.picturefile = null;
 
     this.oninputtext = (e)=>{
         this.item[e.currentTarget.id]=e.value;
     };
     this.onchangepicture = (e)=>{
+        this.picturefile = e.currentTarget.files[0]; 
+        loadImage(e.currentTarget.files[0])
+        .then((data)=>{
+            this.picture=data;
+            this.update();
+        }).catch((err)=>{
+            this.picture=undefined;
+            this.picturefile = undefined;
+            this.update();
+        });
+    }
 
+    function newid(){
+        return 2;
     }
 
     this.postitem = (e)=>{
-        this.opts.poster.post(this.item).bind(this.opts.poster);
+        ajax(this.opts.imagepath+'/'+newid()).header('Content-Type',this.picturefile.type).post(this.picturefile)
+        .then((xhr)=>{
+            let i=xhr.getResponseHeader('Location');
+            if(!!i) {
+                this.item.enclosure={
+                    type:this.picturefile.type,
+                    url:i
+                }
+            }
+            return this.opts.poster.post(this.item).bind(this.opts.poster); 
+        }).then((feed)=>{
+            console.log('posted');
+        });
     }
 </script>
 
