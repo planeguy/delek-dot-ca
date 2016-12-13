@@ -1,10 +1,10 @@
 export default class ClusterfriendPoster{
     constructor(s){
         let spec = s ||{};
-        this.base = spec.base;
-        this.home = spec.home;
-        this.load = spec.loader;
-        this.save = spec.saver;
+        this.feedsBase = spec.feedsBase;
+        this.photosBase = spec.photosBase;
+        (new Promise((r,j)=>{r(spec.loader);})).then((l)=>{this.load=l;});
+        (new Promise((r,j)=>{r(spec.saver);})).then((s)=>{this.save=s;});
         this.cached={};
     }
 
@@ -34,7 +34,7 @@ export default class ClusterfriendPoster{
     addItemToFeed(item, feed){
         if(feed.items.length >= MAX_ITEMS){
             let f = new Feed(Object.assign({},feed,{
-                guid: this.base + this.newid(),
+                guid: this.feedsBase + this.newid(),
                 next:feed.guid,
                 items:[]
             }));
@@ -46,6 +46,10 @@ export default class ClusterfriendPoster{
         if (!item.posted) item.posted = new Date();
         feed.items.unshift(item);
         return this.saveFeed(feed);
+    }
+
+    uploadPicture(file){
+        return
     }
 
     post(item){

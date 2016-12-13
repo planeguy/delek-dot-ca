@@ -60,18 +60,34 @@ import loadImage from 'src/vendor/load-image';
         return 2;
     }
 
-    this.postitem = (e)=>{
+    function postPicture(){
+        if(!this.picturefile) return;
         ajax(this.opts.imagepath+'/'+newid()).header('Content-Type',this.picturefile.type).post(this.picturefile)
         .then((xhr)=>{
             let i=xhr.getResponseHeader('Location');
             if(!!i) {
-                this.item.enclosure={
+                return item.enclosure={
                     type:this.picturefile.type,
                     url:i
                 }
             }
-            return this.opts.poster.post(this.item).bind(this.opts.poster); 
-        }).then((feed)=>{
+        });
+    }
+
+    function setItemEnclosure(e){
+        this.item.enclosure=e;
+        return this.item;
+    }
+
+    function postItem(i){
+        return this.opts.poster.post(this.item).bind(this.opts.poster);
+    }
+
+    this.postitem = (e)=>{
+        postPicture()
+        .then(setItemEnclosure)
+        .then(postItem)
+        .then((feed)=>{
             console.log('posted');
         });
     }
