@@ -8,18 +8,16 @@ assign.shim();
 import ClusterfriendPoster from 'src/app/ClusterfriendPoster';
 import loader from 'src/app/data/feed-loaders/AjaxJSONFeedLoader';
 import Saver from 'src/app/data/feed-savers/AjaxJSONFeedSaver';
+import getOAuth2Token from 'src/vendor/getOAuth2Token';
 
-var p = new ClusterfriendPoster({
+riot.mount('post-item', {
+    poster: new ClusterfriendPoster({
         base: window.location.protocol+'//'+window.location.host+window.location.pathname,
-        home: window.location.protocol+'//'+window.location.host+window.location.pathname+'feed',
         loader: loader,
         saver: (new Saver({
-            url: 'http://127.0.0.1:1337/',
-            tokens:'http://127.0.0.1:1337/token',
-            auth:'ZGVsZWs6dGVzdA=='
+            url: 'http://127.0.0.1:1337/'.anchor,
+            token: getOAuth2Token('http://127.0.0.1:1337/token', 'ZGVsZWs6dGVzdA==')
         })).save,
-    });
-riot.mount('post-item', {
-    poster: p,
+    }),
     imagepath: 'http://127.0.0.1:1337/photos'
 });
