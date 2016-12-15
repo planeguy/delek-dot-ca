@@ -1,6 +1,6 @@
-import Item from 'src/app/model/Item';
-import ajax from 'src/vendor/ajaxpoop';
-import loadImage from 'src/vendor/load-image';
+import Item from '../../app/model/Item';
+import ajax from '../../vendor/ajaxpoop';
+import loadImage from '../../vendor/load-image';
 
 <post-item>
 <div class="post-item">

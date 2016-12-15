@@ -1,6 +1,6 @@
-import ajax from 'src/vendor/ajaxpoop';
-import getOAuth2Token from 'src/vendor/getOAuth2Token';
-import {cfFrom} from 'src/app/data/json-cf';
+import ajax from '../../../vendor/ajaxpoop';
+import getOAuth2Token from '../../../vendor/getOAuth2Token';
+import {cfFrom} from '../json-cf';
 
 export default class AjaxJSONFeedSaver{
     constructor(s){

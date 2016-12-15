@@ -1,14 +1,13 @@
-import riot from 'riot';
-import 'src/components/post-item/post-item.tag!';
+import './components/post-item/post-item.tag';
 import 'bluebird';
 import assign from 'object.assign';
 assign.shim();
 
 
-import ClusterfriendPoster from 'src/app/ClusterfriendPoster';
-import loader from 'src/app/data/feed-loaders/AjaxJSONFeedLoader';
-import Saver from 'src/app/data/feed-savers/AjaxJSONFeedSaver';
-import getOAuth2Token from 'src/vendor/getOAuth2Token';
+import ClusterfriendPoster from './app/ClusterfriendPoster';
+import loader from './app/data/feed-loaders/AjaxJSONFeedLoader';
+import Saver from './app/data/feed-savers/AjaxJSONFeedSaver';
+import getOAuth2Token from './vendor/getOAuth2Token';
 
 riot.mount('post-item', {
     poster: new ClusterfriendPoster({

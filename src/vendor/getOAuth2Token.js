@@ -1,4 +1,4 @@
-import ajax from 'src/vendor/ajaxpoop';
+import ajax from './ajaxpoop';
 
 export default function getOAuth2Token(tokenurl,auth){
     return ajax(tokenurl)

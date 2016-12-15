@@ -2,10 +2,13 @@ var path = require('path')
 var webpack = require('webpack');
 
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    main: './src/main.js',
+    post: './src/post.js'
+  },
   output: {
-    path: __dirname,
-    filename: 'builds/dist/main.js'
+    path: __dirname + '/builds/dist',
+    filename: '[name].js'
   },
   plugins: [
     new webpack.ProvidePlugin({
