@@ -1,4 +1,4 @@
-import '../clusterfriend-item/clusterfriend-item.tag!';
+import '../clusterfriend-item/clusterfriend-item.tag';
 
 <clusterfriend-feed>
     <!-- if an item is selected --> 

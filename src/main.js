@@ -1,16 +1,16 @@
-import riot from 'riot';
-import 'src/components/clusterfriend-app.tag!';
+//import riot from 'riot'; //don't include riot it magically appears when using the loaders
+import './components/clusterfriend-app.tag';
+
 import 'bluebird';
 import assign from 'object.assign';
 assign.shim();
 
 
-import ClusterfriendSite from 'src/app/ClusterfriendSite';
-import loader from 'src/app/data/feed-loaders/AjaxJSONFeedLoader';
+import ClusterfriendSite from './app/ClusterfriendSite';
+import loader from './app/data/feed-loaders/AjaxJSONFeedLoader';
 
-
-riot.mount('clusterfriend-app', {
+document.addEventListener('DOMContentLoaded', () => riot.mount('clusterfriend-app', {
     site: new ClusterfriendSite({
         loader: loader
     })
-});
+}));
