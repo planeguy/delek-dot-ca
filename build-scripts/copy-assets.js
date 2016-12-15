@@ -1,0 +1,1 @@
+require('./copystuf')(['src/assets/common/**'],'builds/dist').then(()=>true);

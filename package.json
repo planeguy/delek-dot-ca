@@ -9,11 +9,23 @@
     "babel-core": "^6.20.0",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
+    "clean-css": "^3.4.22",
     "node-sass": "^4.0.0",
     "riotjs-loader": "^3.0.0",
+    "uglify-js": "^2.7.5",
+    "vinyl-fs": "^2.4.4",
     "webpack": "beta"
   },
   "scripts": {
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "uglify-js": "uglifyjs -o builds/dist/main.js builds/dist/main.js",
+    "js": "yarn run webpack && yarn run uglify-js",
+    "sass": "node-sass --include-path src/scss src/main.scss builds/dist/main.css",
+    "clean-css": "cleancss -o builds/dist/main.css builds/dist/main.css",
+    "css": "yarn run sass && yarn run clean-css",
+    "assets": "node build-scripts/copy-assets",
+    "copy-dev":"node build-scripts/copy-dev",
+    "build":"yarn run js && yarn run css && yarn run assets",
+    "dev":"yarn run build && yarn run copy-dev"
   }
 }
