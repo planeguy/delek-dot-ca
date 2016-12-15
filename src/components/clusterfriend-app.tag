@@ -1,4 +1,4 @@
-import './clusterfriend-feed/clusterfriend-feed.tag!';
+import './clusterfriend-feed/clusterfriend-feed.tag';
 
 <clusterfriend-app>
     <style>

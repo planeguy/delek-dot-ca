@@ -1,11 +1,11 @@
 import {createStore, combineReducers } from 'redux';
 
-import feeds from 'src/app/state/feeds/reducer';
-import items from 'src/app/state/items/reducer';
-import selectedItem from 'src/app/state/selected-item/reducer';
-import site from 'src/app/state/site/reducer';
+import feeds from './state/feeds/reducer';
+import items from './state/items/reducer';
+import selectedItem from './state/selected-item/reducer';
+import site from './state/site/reducer';
 
-import {cleanHash, getFeedFromHash} from 'src/app/clusterfriend-common';
+import {cleanHash, getFeedFromHash} from './clusterfriend-common';
 
 const clusterfriend = combineReducers({
     feeds,
