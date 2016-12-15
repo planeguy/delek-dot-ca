@@ -1,5 +1,5 @@
-import '../brutal-image/brutal-image.tag!';
-import RColor from 'src/vendor/rcolor-esm';
+import '../brutal-image/brutal-image.tag';
+import RColor from '../../vendor/rcolor-esm';
 <clusterfriend-item class="clusterfriend-item">
     <article>
         <div class="text" if="{opts.item.text}">{opts.item.text}</div>
