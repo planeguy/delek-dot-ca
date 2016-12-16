@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack');
+var CommonsPlugin = new require("webpack/lib/optimize/CommonsChunkPlugin")
 
 module.exports = {
   entry: {
@@ -13,6 +14,10 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({
       riot: 'riot'
+    }),
+    new CommonsPlugin({
+      minChunks: 2,
+      name: "common"
     })
   ],
   module:{
