@@ -1,6 +1,6 @@
 const vfs = require('vinyl-fs');
 
-module.exports=function copyFiles(glob, dest, base) {
+module.exports = function copyFiles(glob, dest, base) {
   return new Promise((resolve, reject) => {
     // the base is important, if not set it will put all 
     // files directly in the 'dest' folder

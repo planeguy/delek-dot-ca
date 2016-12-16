@@ -20,7 +20,6 @@
     "webpack": "webpack",
     "main-uglify": "uglifyjs -o builds/dist/main.js builds/dist/main.js",
     "post-uglify": "uglifyjs -o builds/dist/post.js builds/dist/post.js",
-    "js": "yarn run webpack && yarn run main-uglify && yarn run post-uglify",
     "main-sass": "node-sass --include-path src/scss src/main.scss builds/dist/main.css",
     "main-cleancss": "cleancss -o builds/dist/main.css builds/dist/main.css",
     "main-css":"yarn run main-sass && yarn run main-cleancss",
@@ -28,9 +27,7 @@
     "post-cleancss": "cleancss -o builds/dist/post.css builds/dist/post.css",
     "post-css":"yarn run post-sass && yarn run post-cleancss",
     "css":"yarn run main-css & yarn run post-css",
-    "assets": "node build-scripts/copy-assets",
-    "copy-dev":"node build-scripts/copy-dev",
-    "build":"yarn run js & yarn run css & yarn run assets",
-    "dev":"yarn run build && yarn run copy-dev"
+    "dev":"yarn run webpack && yarn run main-sass && yarn run post-sass && node build-scripts/copy-assets builds/dev && node build-scripts/copy-dev builds/dev",
+    "build":"yarn run webpack && yarn run main-css && yarn run post-css && node build-scripts/copy-assets builds/dist && node build-scripts/copy-dev builds/dist"
   }
 }

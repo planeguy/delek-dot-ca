@@ -1,1 +1,1 @@
-require('./copystuf')(['src/assets/common/**'],'builds/dist').then(()=>true);
+require('./copystuf')(['src/assets/common/**'],process.argv[2]).then(()=>true);
