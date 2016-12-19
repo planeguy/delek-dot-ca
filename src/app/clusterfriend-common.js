@@ -1,9 +1,10 @@
 /*
-
 delek.org cf routes
 
-http://server/whatever/whatever/#/http://server/whatever/feed/item
-= base + '#/' + feed + '/' + item
+http://website-server/whatever/whatever/#/http://server/whatever/feed#item
+= base + '#/' + feed + '#' + item
+
+Algorithmically, to load a feed from the item url, we should only need to load the item url (since it is the feed url + # itemid)
 
 */
 

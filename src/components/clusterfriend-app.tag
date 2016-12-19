@@ -7,10 +7,7 @@ import './clusterfriend-feed/clusterfriend-feed.tag';
         }
     </style>
     <div each="{f in state.site.feeds}"> 
-        <clusterfriend-feed feed="{parent.state.feeds[f]}" items="{parent.state.items}" selecteditem="{parent.state.selectedItem}" base="{site.base}"></clusterfriend-feed>
-    </div>
-    <div class="tag-loader" if="{!state.site['end-of-feeds']}">
-        WAIT...
+        <clusterfriend-feed feed="{parent.state.feeds[f]}" items="{parent.state.items}" selecteditem="{parent.state.selectedItem}"></clusterfriend-feed>
     </div>
     <strong class="eoi" if="{state.site['end-of-feeds']}">END OF ITEMS</strong>
     <script>
@@ -20,21 +17,10 @@ import './clusterfriend-feed/clusterfriend-feed.tag';
         this.onSubscriptionUpdate = (state) => {
             this.state = state;
             this.update();
-            this.checkForLoadNext();
-        }
-
-        this.checkForLoadNext =(e)=>{
-            if(!this.state.site || !!this.state.site['end-of-feeds'] || this.state.site['feed-requested']) return;
-            if ((window.innerHeight + window.scrollY + 50) >= document.body.scrollHeight){
-                this.site.loadNext();
-            }
         }
 
         this.on('mount',()=>{
             this.site.subscribe(this.onSubscriptionUpdate);
-            this.checkForLoadNext();
-            document.addEventListener('scroll',this.checkForLoadNext);
-            document.addEventListener('resize',this.checkForLoadNext);
         });
 
     </script>

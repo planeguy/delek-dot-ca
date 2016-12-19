@@ -21,8 +21,7 @@ export default class ClusterfriendSite {
         let s = spec || {};
         this.loader = s.loader || ((b,f)=>{});
 
-        this.base = s.base || this.here();
-        if (this.base[this.base.length-1]!='/') this.base += '/';
+        this.feed = s.feed || this.here()+'/feed';
 
         this.open(document.location.hash);
         window.addEventListener('popstate', function() {
@@ -40,9 +39,9 @@ export default class ClusterfriendSite {
         });
     }
     
-    loadFeed(feedGuid=this.base+'feed'){
-        console.log(feedGuid);
-        this.loader(feedGuid).then((feed)=>{
+    loadFeed(feedUrl=this.feed){
+        console.log(feedUrl);
+        this.loader(feedUrl).then((feed)=>{
             this.store.dispatch({
                 type:'receive feed',
                 feed
@@ -51,21 +50,15 @@ export default class ClusterfriendSite {
     }
 
     open(hash){
-        let f = getFeedFromHash(hash);
+        let f = cleanHash(hash);
         this.loadFeed(f);
-        let clean = cleanHash(hash);
-        if(!!clean) this.selectItemByGuid(clean);
+        if(!!f) this.selectItemByUrl(f);
     }
 
-    selectItemByGuid(guid){
+    selectItemByUrl(url){
         this.store.dispatch({
             type:'select item',
-            guid: guid
+            url
         });
-    }
-
-    loadNext(){
-        let state = this.store.getState();
-        if(state.site.nextFeed) this.loadFeed(state.site.nextFeed);
     }
 }
