@@ -19,15 +19,13 @@
   "scripts": {
     "dev:webpack":"webpack --config webpack.config.dev.js",
     "dev:main-sass": "node-sass --include-path src/scss src/main.scss builds/dev/main.css",
-    "dev:post-sass": "node-sass --include-path src/scss src/post.scss builds/dev/post.css",
     "dev:copy-assets": "node build-scripts/copy-assets builds/dev && node build-scripts/copy-assets-dev builds/dev",
 
     "dist:webpack":"webpack --config webpack.config.dist.js -p",
     "dist:main-sass": "node-sass --include-path src/scss src/main.scss builds/dist/main.css && cleancss -o builds/dist/main.css builds/dist/main.css",
-    "dist:post-sass": "node-sass --include-path src/scss src/post.scss builds/dist/post.css && cleancss -o builds/dist/post.css builds/dist/post.css",
     "dist:copy-assets": "node build-scripts/copy-assets builds/dist",
 
-    "dev":"yarn run dev:webpack && yarn run dev:main-sass && yarn run dev:post-sass && yarn run dev:copy-assets",
-    "dist":"yarn run dist:webpack && yarn run dist:main-sass && yarn run dist:post-sass && yarn run dist:copy-assets"
+    "dev":"yarn run dev:webpack && yarn run dev:main-sass && yarn run dev:copy-assets",
+    "dist":"yarn run dist:webpack && yarn run dist:main-sass && yarn run dist:copy-assets"
   }
 }

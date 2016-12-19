@@ -8,10 +8,6 @@ Algorithmically, to load a feed from the item url, we should only need to load t
 
 */
 
-export function makeItemId(base='', feed='feed', item=''){
-    return base+'#/'+feed+'/'+item;
-}
-
 export function cleanHash(hash){
     if(!hash) return;
     //remove the '#'
@@ -28,10 +24,4 @@ export function getFeedFromHash(hash){
     let parts = clean.split('/');
     if (parts.length>1) parts.pop();
     return parts.reduce((f,p)=>f+'/'+p);
-}
-
-export function getItemFromHash(hash){
-    let clean = cleanHash(hash);
-    if (!clean) return;
-    return clean.split('/').pop();
 }

@@ -4,8 +4,7 @@ var CommonsPlugin = new require("webpack/lib/optimize/CommonsChunkPlugin")
 
 module.exports = {
   entry: {
-    main: './src/main.js',
-    post: './src/post.js'
+    main: './src/main.js'
   },
   output: {
     path: __dirname + '/builds/dev',

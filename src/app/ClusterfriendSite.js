@@ -21,7 +21,7 @@ export default class ClusterfriendSite {
         let s = spec || {};
         this.loader = s.loader || ((b,f)=>{});
 
-        this.feed = s.feed || this.here()+'/feed';
+        this.feed = s.feed || this.here()+'feed';
 
         this.open(document.location.hash);
         window.addEventListener('popstate', function() {
@@ -30,7 +30,7 @@ export default class ClusterfriendSite {
     }
 
     here(){
-        return window.location.protocol+'//'+window.location.host+window.location.pathname;
+        return window.location.protocol+'/'+window.location.host+window.location.pathname;
     }
 
     subscribe(fn){
