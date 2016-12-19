@@ -7,7 +7,7 @@ export default function site(state = dflt, action){
         console.log('WHOA ' + action.feed.next);
             return Object.assign({},state,
             {
-                feeds: [...state.feeds,action.feed.guid],
+                feeds: [...state.feeds,action.feed.url],
                 'end-of-feeds': (!action.feed.next),
                 nextFeed: action.feed.next,
                 'feed-requested': false
