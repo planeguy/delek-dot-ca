@@ -1,15 +1,23 @@
 var path = require('path')
 var webpack = require('webpack');
+var CommonsPlugin = new require("webpack/lib/optimize/CommonsChunkPlugin")
 
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    main: './src/main.js',
+    post: './src/post.js'
+  },
   output: {
-    path: __dirname,
-    filename: 'builds/dist/main.js'
+    path: __dirname + '/builds/dist',
+    filename: '[name].js'
   },
   plugins: [
     new webpack.ProvidePlugin({
       riot: 'riot'
+    }),
+    new CommonsPlugin({
+      minChunks: 2,
+      name: "common"
     })
   ],
   module:{
