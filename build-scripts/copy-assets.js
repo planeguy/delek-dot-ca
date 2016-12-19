@@ -1,1 +1,1 @@
-require('./copystuf')(['src/assets/common/**'],process.argv[2]).then(()=>true);
+require('./copystuf')(['src/assets/common/**'],process.argv[2]).then(()=>console.log('assets copied to ' + process.argv[2])).catch((err)=>console.log(err));

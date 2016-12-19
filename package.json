@@ -17,17 +17,17 @@
     "webpack": "beta"
   },
   "scripts": {
-    "webpack": "webpack",
-    "main-uglify": "uglifyjs -o builds/dist/main.js builds/dist/main.js",
-    "post-uglify": "uglifyjs -o builds/dist/post.js builds/dist/post.js",
-    "main-sass": "node-sass --include-path src/scss src/main.scss builds/dist/main.css",
-    "main-cleancss": "cleancss -o builds/dist/main.css builds/dist/main.css",
-    "main-css":"yarn run main-sass && yarn run main-cleancss",
-    "post-sass": "node-sass --include-path src/scss src/post.scss builds/dist/post.css",
-    "post-cleancss": "cleancss -o builds/dist/post.css builds/dist/post.css",
-    "post-css":"yarn run post-sass && yarn run post-cleancss",
-    "css":"yarn run main-css & yarn run post-css",
-    "dev":"yarn run webpack && yarn run main-sass && yarn run post-sass && node build-scripts/copy-assets builds/dev && node build-scripts/copy-dev builds/dev",
-    "build":"yarn run webpack && yarn run main-css && yarn run post-css && node build-scripts/copy-assets builds/dist && node build-scripts/copy-dev builds/dist"
+    "dev:webpack":"webpack --config webpack.config.dev.js",
+    "dev:main-sass": "node-sass --include-path src/scss src/main.scss builds/dev/main.css",
+    "dev:post-sass": "node-sass --include-path src/scss src/post.scss builds/dev/post.css",
+    "dev:copy-assets": "node build-scripts/copy-assets builds/dev && node build-scripts/copy-assets-dev builds/dev",
+
+    "dist:webpack":"webpack --config webpack.config.dist.js -p",
+    "dist:main-sass": "node-sass --include-path src/scss src/main.scss builds/dist/main.css && cleancss -o builds/dist/main.css builds/dist/main.css",
+    "dist:post-sass": "node-sass --include-path src/scss src/post.scss builds/dist/post.css && cleancss -o builds/dist/post.css builds/dist/post.css",
+    "dist:copy-assets": "node build-scripts/copy-assets builds/dist",
+
+    "dev":"yarn run dev:webpack && yarn run dev:main-sass && yarn run dev:post-sass && yarn run dev:copy-assets",
+    "dist":"yarn run dist:webpack && yarn run dist:main-sass && yarn run dist:post-sass && yarn run dist:copy-assets"
   }
 }

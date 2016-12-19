@@ -41,6 +41,9 @@ export default class ClusterfriendSite {
     
     loadFeed(feedUrl=this.feed){
         console.log(feedUrl);
+        this.store.dispatch({
+            type:'request feed'
+        });
         this.loader(feedUrl).then((feed)=>{
             this.store.dispatch({
                 type:'receive feed',

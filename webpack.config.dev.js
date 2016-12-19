@@ -8,7 +8,7 @@ module.exports = {
     post: './src/post.js'
   },
   output: {
-    path: __dirname + '/builds/dist',
+    path: __dirname + '/builds/dev',
     filename: '[name].js'
   },
   plugins: [
