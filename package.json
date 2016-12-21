@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "bluebird": "^3.4.6",
-    "moment": "^2.17.1",
+    "date-duration": "^1.0.0",
     "object.assign": "^4.0.4",
     "redux": "^3.6.0",
     "riot": "^3.0.4"

@@ -1,10 +1,10 @@
-import moment from 'moment';
+import Duration from 'date-duration';
 
 // get on your horse and ride
 export default class FeedStore {
     constructor(loadOptions, saveOptions){
-        (new Promise((s,j)=>s(loadOptions))).then((o)=>(this.loadOptions=o));
-        (new Promise((s,j)=>s(saveOptions))).then((o)=>(this.saveOptions=o));
+        this.loadOptions=loadOptions;
+        this.saveOptions=saveOptions;
     }
     load(){
         return new Promise((s,j)=>s(new Feed({
@@ -12,7 +12,7 @@ export default class FeedStore {
             name: 'De Fault',
             description: 'The greatest two words in social media',
             'items-management':{
-                ttl: moment.duration('P2W')
+                ttl: Duration('P2W')
             }
         })));
     }
