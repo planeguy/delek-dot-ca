@@ -3,8 +3,8 @@ import ajax from '../../../vendor/ajaxpoop';
 import {cfFrom} from '../../data/json-cf';
 
 export default class AjaxDriver extends FeedDriver {
-    constructor(s){
-        super(s);
+    constructor(loadOptions, saveOptions){
+        super(loadOptions, saveOptions);
     }
     load(){
         return ajax(this.loadOptions['feed'])

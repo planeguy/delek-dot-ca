@@ -2,10 +2,9 @@ import moment from 'moment';
 
 // get on your horse and ride
 export default class FeedStore {
-    constructor(s){
-        let spec = s || {}
-        this.loadOptions=spec.loadOptions;
-        this.saveOptions=spec.saveOptions;
+    constructor(loadOptions, saveOptions){
+        (new Promise((s,j)=>s(loadOptions))).then((o)=>(this.loadOptions=o));
+        (new Promise((s,j)=>s(saveOptions))).then((o)=>(this.saveOptions=o));
     }
     load(){
         return new Promise((s,j)=>s(new Feed({
