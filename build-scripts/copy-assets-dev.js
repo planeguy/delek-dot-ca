@@ -1,0 +1,1 @@
+require('./copystuf')(['src/assets/dev/**'],process.argv[2]).then(()=>true).catch((err)=>console.log(err));
