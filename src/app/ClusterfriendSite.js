@@ -19,13 +19,11 @@ export default class ClusterfriendSite {
         this.store = createStore(clusterfriend);
         
         let s = spec || {};
-        this.loader = s.loader || ((b,f)=>{});
+        this.driver = s.driver;
 
-        this.feed = s.feed || this.here()+'feed';
-
-        this.open(document.location.hash);
+        load(cleanHash(document.location.hash));
         window.addEventListener('popstate', function() {
-            this.open(document.location.hash);
+            load(cleanHash(document.location.hash));
         });
     }
 
@@ -39,29 +37,19 @@ export default class ClusterfriendSite {
         });
     }
     
-    loadFeed(feedUrl=this.feed){
-        console.log(feedUrl);
+    load(selectedItemUrl){
         this.store.dispatch({
             type:'request feed'
         });
-        this.loader(feedUrl).then((feed)=>{
+        this.driver.load().then((feed)=>{
             this.store.dispatch({
                 type:'receive feed',
                 feed
             });
-        });
-    }
-
-    open(hash){
-        let f = cleanHash(hash);
-        this.loadFeed(f);
-        if(!!f) this.selectItemByUrl(f);
-    }
-
-    selectItemByUrl(url){
-        this.store.dispatch({
-            type:'select item',
-            url
+            this.store.dispatch({
+                type:'select item',
+                url: selectedItemUrl
+            });
         });
     }
 }
