@@ -41,6 +41,12 @@ class Req{
     r(method, data){
         return new Promise((resolve,rejext)=>{
             let x  = new XMLHttpRequest();
+            if(!this.heads['Accept']){
+                //json is king unless you say so
+                this.heads['Accept']='application/json';
+                x.overrideMimeType('application/json');
+                x.responseType = 'json';
+            }
             x.open(method,this.url,true);
 
             //only care when we're done the other events can suck it

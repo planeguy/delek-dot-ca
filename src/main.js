@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded',
     () => riot.mount('clusterfriend-app', {
         site: new ClusterfriendSite({
             driver: new Driver({
-                feed: 'http://127.0.0.1:8080/feed'
+                feed: settings.feedurl
             })
         })
     })
