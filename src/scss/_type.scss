@@ -9,3 +9,7 @@
 html {
     @extend .base-type;
 }
+
+.even-smaller {
+    font-size: 0.5em;
+}
