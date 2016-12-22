@@ -20,12 +20,6 @@ export default function feeds(state = {}, action){
         case 'receive feed':
             return Object.assign({},state,
                 flatten([onlyItemIds(action.feed)],(c)=>c.url));
-        case 'request feed':
-            return Object.assign({},state,
-                flatten([{id: action.url, requested:true }],(c)=>c.url));
-        case 'save feed':
-            return Object.assign({},state,
-                flatten([{id: action.url, saving:true }],(c)=>c.url));
         default: return state;
     }
 }
