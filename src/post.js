@@ -1,7 +1,6 @@
 //import riot from 'riot'; //don't include riot it magically appears when using the loaders
 import './components/post-item/post-item.tag';
 
-import 'bluebird';
 import assign from 'object.assign';
 assign.shim();
 

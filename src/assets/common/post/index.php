@@ -41,6 +41,7 @@ try {
         <post-item formaction=""></post-item>
 
         <script src="post-settings.js"></script>
+        <script src="../bluebird.core.min.js"></script>
         <script src="../common.js"></script>
         <script src="../post.js"></script>
     </body>
