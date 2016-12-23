@@ -9,12 +9,12 @@
         background-repeat: no-repeat;
         background-position: top center;
         position: relative;
+        overflow: hidden;
     }
     & .image {
         visibility:hidden;
         width:auto;
-        height:100vh;
-        margin-top:-5vh;
-        margin-bottom: -5vh;
+        height:90vh;
+        margin: auto 0;
     }
 }
