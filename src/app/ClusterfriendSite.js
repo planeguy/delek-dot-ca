@@ -31,9 +31,6 @@ export default class ClusterfriendSite {
     }
     
     load(driver, selectedItemUrl){
-        this.store.dispatch({
-            type:'request feed'
-        });
         driver.load().then((feed)=>{
             this.store.dispatch({
                 type:'receive feed',

@@ -9,3 +9,11 @@
 html {
     @extend .base-type;
 }
+
+small {
+    font-size: 0.5em;
+}
+
+.even-smaller {
+    font-size: 0.5em;
+}

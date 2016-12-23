@@ -5,7 +5,7 @@ export default class Feed {
         let s = spec||{};
         this.url = s.url;
         this.name = s.name;
-        this['items-management']=s['items-management'];
+        this['items-management'] = s['items-management'] || {};
         this.description = s.description;
 
         this.image = s.image;
