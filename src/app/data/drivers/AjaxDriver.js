@@ -11,6 +11,7 @@ export default class AjaxDriver extends FeedDriver {
     load(){
         return ajax(this.current)
         .errorOn((xhr)=>(xhr.status>399))
+        .header('Cache-Control','no-cache')
         .get()
         .then((xhr)=>{
             let cf = cfFrom(xhr.response);
