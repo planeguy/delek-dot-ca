@@ -13,13 +13,15 @@ try {
             throw new RuntimeException('Failed to save feed.');
         }
 
-        // save uploaded picture
-        if(!move_uploaded_file (
-            $_FILES['itemphoto'] ['tmp_name'],
-            "../photos/{$_FILES['itemphoto'] ['name']}"
-        )) {
-            http_response_code(500);
-            throw new RuntimeException('Failed to move uploaded file.');
+        if(isset($_FILES['itemphoto'])){
+            // save uploaded picture if set
+            if(!move_uploaded_file (
+                $_FILES['itemphoto'] ['tmp_name'],
+                "../photos/{$_FILES['itemphoto'] ['name']}"
+            )) {
+                http_response_code(500);
+                throw new RuntimeException('Failed to move uploaded file.');
+            }
         }
 
         // redirect to form again

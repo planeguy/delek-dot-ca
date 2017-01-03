@@ -33,9 +33,9 @@ import Duration from 'date-duration';
                 <label for="text">FEELS</label><br/>
                 <input name="feels" id="feels" type="text" oninput="{onInput}"/>
             </div>
-            <div class="wide-load">
+            <div onclick="{onSelectPhoto}" class="looks-clickable wide-load">
                 <label for="text">PHOTO</label><br/>
-                <img src="{photo}"  onclick="{onSelectPhoto}" class="photo"/>
+                <img src="{photo}" class="photo"/>
             </div>
             <input type="file" accept="image/*" name="itemphoto" id="itemphoto" ref="itemphoto" style="display:none" />
             <div><input type="submit" value="POST" /></div>

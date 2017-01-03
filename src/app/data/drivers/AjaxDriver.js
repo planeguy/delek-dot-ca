@@ -7,10 +7,12 @@ export default class AjaxDriver extends FeedDriver {
         super(loadOptions, saveOptions);
         this.current = this.loadOptions['feed'];
         this.next;
+        this.maxage=this.loadOptions.maxage||3600; //an hour
     }
     load(){
         return ajax(this.current)
         .errorOn((xhr)=>(xhr.status>399))
+        .header('Cache-Control','max-age='+this.maxage)
         .get()
         .then((xhr)=>{
             let cf = cfFrom(xhr.response);
