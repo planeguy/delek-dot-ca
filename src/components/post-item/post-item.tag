@@ -11,28 +11,31 @@ import Duration from 'date-duration';
             min-width:10mm;
             min-height:10mm;
         }
+        .wide-load>* {
+            width:100%;
+        }
     </style>
     <div class="editor">
         <form action="{opts.formaction}" method="POST" enctype="multipart/form-data">
-            <div>
+            <div class="wide-load">
                 <label for="text">TEXT</label><br/>
                 <input name="text" id="text" type="text" oninput="{onInput}"/>
             </div>
-            <div>
+            <div class="wide-load">
                 <label for="text">ABOUT</label><br/>
                 <input name="about" id="about" type="url" oninput="{onInput}"/>
             </div>
-            <div>
+            <div class="wide-load">
                 <label for="text">REPLY</label><br/>
                 <input name="reply" id="reply" type="url" oninput="{onInput}"/>
             </div>
-            <div>
+            <div class="wide-load">
                 <label for="text">FEELS</label><br/>
                 <input name="feels" id="feels" type="text" oninput="{onInput}"/>
             </div>
-            <div>
+            <div class="wide-load">
                 <label for="text">PHOTO</label><br/>
-                <img src="{photo}" onclick="{onSelectPhoto}" class="photo"/>
+                <img src="{photo}"  onclick="{onSelectPhoto}" class="photo"/>
             </div>
             <input type="file" accept="image/*" name="itemphoto" id="itemphoto" ref="itemphoto" style="display:none" />
             <div><input type="submit" value="POST" /></div>
