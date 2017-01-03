@@ -13,16 +13,29 @@ try {
             throw new RuntimeException('Failed to save feed.');
         }
 
-        if(isset($_FILES['itemphoto'])){
-            // save uploaded picture if set
-            if(!move_uploaded_file (
-                $_FILES['itemphoto'] ['tmp_name'],
-                "../photos/{$_FILES['itemphoto'] ['name']}"
-            )) {
-                http_response_code(500);
-                throw new RuntimeException('Failed to move uploaded file.');
-            }
+        //save the file if uploaded
+        switch($_FILES['itemphoto']['error']){
+            case UPLOAD_ERR_OK:
+                if(!move_uploaded_file (
+                    $_FILES['itemphoto'] ['tmp_name'],
+                    "../photos/{$_FILES['itemphoto'] ['name']}"
+                )){
+                    http_response_code(500);
+                    throw new RuntimeException('Failed to move uploaded file.');
+                }
+                break;
+            case UPLOAD_ERR_NO_FILE:
+                //that's ok, we are allowed to send no file
+                break;
+            case UPLOAD_ERR_INI_SIZE:
+            case UPLOAD_ERR_FORM_SIZE:
+                http_response_code(400);
+                throw new RuntimeException('Exceeded filesize limit.');
+            default:
+                http_response_code(400);
+                throw new RuntimeException('Unknown errors.');
         }
+        
 
         // redirect to form again
         header(sprintf('Location: %s', $url));
