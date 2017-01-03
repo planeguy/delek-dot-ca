@@ -1,9 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Heebo:700');
-
 .base-type {
     font: 100%/1.5;
-    font-family: 'Heebo', sans-serif;
     font-size: 2em;
+
+    font-family: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.02em;
 }
 
 html {
