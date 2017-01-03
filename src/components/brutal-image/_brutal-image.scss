@@ -5,11 +5,14 @@
     & .container {
         height:90vh;
         background-attachment: fixed;
-        background-size: auto 100vh;
         background-repeat: no-repeat;
         background-position: top center;
         position: relative;
         overflow: hidden;
+        background-size: auto 90vh;
+        @supports (background-attachment: fixed){
+            background-size: auto 100vh;
+        }
     }
     & .image {
         visibility:hidden;
