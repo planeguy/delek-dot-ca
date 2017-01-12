@@ -1,4 +1,7 @@
 .clusterfriend-item {
+    & .about { 
+        text-transform: uppercase;
+    }
     & .permalink{
         font-family: monospace;
     }

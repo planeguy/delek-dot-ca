@@ -4,7 +4,7 @@ import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 
 <clusterfriend-item class="clusterfriend-item">
     <article>
-        <div class="text" if="{opts.item.text}">{opts.item.text}</div>
+        <span if="{opts.item.text}">{opts.item.text} </span><a if="{opts.item.about}" href="{opts.item.about}" class="about">{opts.item.about}</a>
         <div if="{picture}">
             <brutal-image imagesrc="{picture}" backgroundcolor="{imagecolor}"></brutal-image>
         </div>
