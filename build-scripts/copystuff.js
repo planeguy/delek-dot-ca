@@ -1,6 +1,6 @@
 const vfs = require('vinyl-fs');
 
-module.exports = function copyFiles(glob, dest, base) {
+function copystuff(glob, dest, base) {
   return new Promise((resolve, reject) => {
     // the base is important, if not set it will put all 
     // files directly in the 'dest' folder
@@ -15,3 +15,7 @@ module.exports = function copyFiles(glob, dest, base) {
     });
   });
 }
+
+//--output denotes output folder, everything else is assumed a glob to source files
+var a = require('minimist')(process.argv.slice(2),{alias:{output:['out','o']}});
+copystuff(a._, (a.output||'.')).then(()=>true).catch((err)=>console.log(err));

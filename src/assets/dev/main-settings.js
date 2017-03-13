@@ -1,3 +1,3 @@
 var settings = {
-    feedurl:'http://127.0.0.1:8080/feed'
+    feedurl:'http://127.0.0.1:4000/feed'
 }

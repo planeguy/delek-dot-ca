@@ -1,4 +1,4 @@
-//import riot from 'riot'; //don't include riot it magically appears when using the loaders
+import riot from 'riot';
 import './components/clusterfriend-app.tag';
 
 import assign from 'object.assign';
