@@ -1,6 +1,16 @@
 import FeedDriver from '../FeedDriver';
-import ajax from '../../../vendor/ajaxpoop';
 import {cfFrom} from '../../data/json-cf';
+import fetch from 'unfetch';
+
+function checkResponseStauts(r){
+    if (response.ok) {
+        return response;
+    } else {
+        var error = new Error(response.statusText);
+        error.response = response;
+        return Promise.reject(error);
+    }
+}
 
 export default class AjaxDriver extends FeedDriver {
     constructor(loadOptions, saveOptions){
@@ -9,16 +19,29 @@ export default class AjaxDriver extends FeedDriver {
         this.next;
         this.maxage=this.loadOptions.maxage||3600; //an hour
     }
+    checkResponseStauts(r){
+        if (response.ok) {
+            return response;
+        } else {
+            var error = new Error(response.statusText);
+            error.response = response;
+            return Promise.reject(error);
+        }
+    }
+    gotJSON(json){
+        let cf = cfFrom(json);
+        if (!!cf['items-management']['paged']) this.next = cf['items-management']['paged']['prev'];
+        return cf;
+    }
     load(){
-        return ajax(this.current)
-        .errorOn((xhr)=>(xhr.status>399))
-        .header('Cache-Control','max-age='+this.maxage)
-        .get()
-        .then((xhr)=>{
-            let cf = cfFrom(xhr.response);
-            if (!!cf['items-management']['paged']) this.next = cf['items-management']['paged']['prev'];
-            return cf;
-        });
+        return fetch(this.current,{
+            headers:{
+                'Cache-Control':'max-age='+this.maxage
+            },
+            credentials: 'include'
+        }).then(this.checkResponseStatus)
+        .then(r=>r.json())
+        .then(this.gotJSON);
     }
     loadNext(){
         if (!this.next) return (new Promise((s,j)=>j(new Error('No next feed'))));
