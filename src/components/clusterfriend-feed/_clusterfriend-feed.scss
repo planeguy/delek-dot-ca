@@ -1,0 +1,7 @@
+.clusterfriend-feed{
+
+    //because the container of a brutal-image is smaller than the image, allow a little overscroll to see the top of the last image
+    & .brutal-image-end-buffer{
+        height:10vh;
+    }
+}
