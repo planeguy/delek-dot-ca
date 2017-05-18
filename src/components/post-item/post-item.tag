@@ -56,12 +56,7 @@ import Duration from 'date-duration';
         this.updateItem = ()=>{
             let now = new Date();
             this.feed.items = this.feed.items.filter(
-                (i)=>{
-                console.log(new Date(i['ephemeral-expiry']));
-                console.log(now);
-                console.log(new Date(i['ephemeral-expiry'])>=now);
-                return (i===this.item || new Date(i['ephemeral-expiry'])>=now);
-                }
+                (i)=> (i===this.item || new Date(i['ephemeral-expiry'])>=now);
             );
             this.item.published=now;
             if(!!this.feed['items-management'].ephemeral) {
