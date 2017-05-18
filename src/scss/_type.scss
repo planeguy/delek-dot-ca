@@ -1,6 +1,7 @@
 .base-type {
     font: 100%/1.5;
     font-size: 2em;
+    word-break: break-all;
 
     font-family: monospace;//, "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
