@@ -2,6 +2,7 @@
   "dependencies": {
     "date-duration": "^1.0.0",
     "date-fns": "^1.21.1",
+    "moment": "^2.18.1",
     "object.assign": "^4.0.4",
     "redux": "^3.6.0",
     "riot": "^3.0.4",
@@ -33,7 +34,7 @@
     "start": "concurrently -k \"yarn run watch:dev:css\" \"yarn run watch:dev:js\" \"yarn run watch:dev:assets\" \"yarn run serve:dev\"",
     "dist:js": "webpack --config webpack.config.dist.js -p",
     "dist:css": "node-sass --include-path src/scss src/main.scss builds/dist/main.css && cleancss -o builds/dist/main.css builds/dist/main.css",
-    "dist:assets": "node build-scripts/copystuff src/assets/** -o builds/dist",
+    "dist:assets": "node build-scripts/copystuff src/assets/common/** -o builds/dist && node build-scripts/copystuff src/assets/dist/** -o builds/dist",
     "dist": "yarn run dist:js && yarn run dist:css && yarn run dist:assets"
   }
 }
