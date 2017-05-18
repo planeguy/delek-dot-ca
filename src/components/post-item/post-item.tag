@@ -2,7 +2,7 @@ import Item from '../../app/model/Item';
 import Feed from '../../app/model/Feed';
 import {newid} from '../../app/clusterfriend-common';
 import loadImage from '../../vendor/load-image';
-import Duration from 'date-duration';
+import moment from 'moment';
 
 <post-item>
     <style>
@@ -52,20 +52,24 @@ import Duration from 'date-duration';
         });
         this.feed.items.unshift(this.item);
 
+        this.trims = {
+            ephemeral: function trimEphemeralFeed(feed,exceptions=[],date){
+                feed.items = feed.items.filter((i)=>exceptions.indexOf(i)>=0||new Date(i['ephemeral-expiry'])>=date);
+            },
+            rolling: function trimRollingFeed(feed,exceptions=[]){
+                feed.items.sort((l,r)=>l.published<=r.published);
+                feed.items = feed.items.slice(0,feed['items-management'].rolling['page-size']||25);
+            }
+        };
+
         //when stuff changes update the feed text
         this.updateItem = ()=>{
             let now = new Date();
-            this.feed.items = this.feed.items.filter(
-                (i)=>{
-                console.log(new Date(i['ephemeral-expiry']));
-                console.log(now);
-                console.log(new Date(i['ephemeral-expiry'])>=now);
-                return (i===this.item || new Date(i['ephemeral-expiry'])>=now);
-                }
-            );
+            this.trims[Object.getOwnPropertyNames(this.feed['items-management'])[0]](this.feed,[this.item],now);
             this.item.published=now;
             if(!!this.feed['items-management'].ephemeral) {
-                this.item['ephemeral-expiry']=Duration(this.feed['items-management'].ephemeral.ttl||'P3W').addTo(now);
+                debugger;
+                this.item['ephemeral-expiry']=moment(now).add(moment.duration(this.feed['items-management'].ephemeral.ttl||'P3W')).toDate();
             }
             this.refs.feedtext.value=JSON.stringify(this.feed);
         }

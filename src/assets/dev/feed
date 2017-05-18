@@ -2,7 +2,7 @@
 	"url":"http://127.0.0.1:4000/feed",
 	"name":"DELEK DOT ORG",
 	"description":"Delek Turner",
-	"items-management":{"ephemeral":{"ttl":"P3W"}},
+	"items-management":{"rolling":{"page-size":"50"}},
 	"language":"en-US",
 	"items":[
 		{
