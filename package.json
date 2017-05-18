@@ -28,7 +28,7 @@
     "dev:css": "node-sass --include-path src/scss src/main.scss builds/dev/main.css",
     "dev:assets": "node build-scripts/copystuff src/assets/common/** -o builds/dev && node build-scripts/copystuff src/assets/dev/** -o builds/dev",
     "watch:dev:js": "onchange \"src/**/*.js\" \"src/**/*.tag\" \"!src/assets/**\" -i -- yarn run dev:js",
-    "watch:dev:css": "onchange \"src/scss/**\" -i -- yarn run dev:css",
+    "watch:dev:css": "onchange \"src/**/*.scss\" -i -- yarn run dev:css",
     "watch:dev:assets": "onchange \"src/assets/**\" -i -- yarn run dev:assets",
     "serve:dev": "browser-sync start --port 4000 --cors --server \"builds/dev\" --files \"builds/dev\"",
     "start": "concurrently -k \"yarn run watch:dev:css\" \"yarn run watch:dev:js\" \"yarn run watch:dev:assets\" \"yarn run serve:dev\"",
