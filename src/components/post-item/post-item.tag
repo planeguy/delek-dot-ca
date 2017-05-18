@@ -67,7 +67,7 @@ import moment from 'moment';
             let now = new Date();
             this.trims[Object.getOwnPropertyNames(this.feed['items-management'])[0]](this.feed,[this.item],now);
             this.item.published=now;
-            this.item['ephemeral-expiry']=moment(now).add(moment.duration(this.feed['items-management'].ephemeral.ttl||'P90D')).toDate();
+            this.item['ephemeral-expiry']=moment(now).add(moment.duration((this.feed['items-management'].ephemeral?this.feed['items-management'].ephemeral.ttl:'P90D'))).toDate();
             this.refs.feedtext.value=JSON.stringify(this.feed);
         }
 
