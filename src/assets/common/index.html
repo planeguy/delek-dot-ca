@@ -7,17 +7,25 @@
         <link rel="stylesheet" href="main.css"/>
     </head>
     <body>
-        <h1 class="dummy title">DELEK DOT ORG</h1>
         <h1 class="fixed title">DELEK DOT ORG</h1>
 
         <clusterfriend-app></clusterfriend-app>
 
-        <div class="dummy footer">visit the bbs <a href="telnet://stripittoride.net:9000">stripittoride.net:9000</a></div>
-        <div class="fixed footer">visit the bbs <a href="telnet://stripittoride.net:9000">stripittoride.net:9000</a></div>
+        <div class="fixed footer">
+            <span>visit the bbs <a href="telnet://stripittoride.net:9000">stripittoride.net:9000</a></span>
+            <span> || </span>
+            <span>see even worse code <a href="https://github.com/planeguy">github</a></span>
+        </div>
 
         <script src="main-settings.js"></script>
         <script src="bluebird.core.min.js"></script>
         <script src="common.js"></script>
         <script src="main.js"></script>
+        <script src="copydom.js"></script>
+        <script>
+            copydom(document.querySelector('.title'), 'dummy title');
+            copydom(document.querySelector('.footer'), 'dummy footer');
+        </script>
+
     </body>
 </html>
