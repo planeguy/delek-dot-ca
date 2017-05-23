@@ -11,6 +11,5 @@ import '../clusterfriend-item/clusterfriend-item.tag';
             <clusterfriend-item item="{parent.opts.items[item]}"></clusterfriend-item>
             <div class="">&nbsp;</div>
         </div>
-        <div class="brutal-image-end-buffer">&nbsp;</div>
     </div>
 </clusterfriend-feed>
