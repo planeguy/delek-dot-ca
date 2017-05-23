@@ -1,6 +1,10 @@
 .footer{
-    background: transparent;
+    font-size: 0.5em;
+    display:flex;
+    flex-wrap: wrap;
+    
     &.fixed {
+        background: white;
         position:fixed;
         bottom:0;
         left:0;
