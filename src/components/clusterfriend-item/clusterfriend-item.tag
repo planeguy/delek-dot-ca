@@ -4,11 +4,14 @@ import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 
 <clusterfriend-item class="clusterfriend-item">
     <article>
-        <span if="{opts.item.text}">{opts.item.text} </span><a if="{opts.item.about}" href="{opts.item.about}" class="about">{opts.item.about}</a>
+        <span if="{opts.item.text}" class="text">{opts.item.text}</span>
+        <a if="{opts.item.about}" href="{opts.item.about}" class="about">{opts.item.about}</a>
         <div if="{picture}">
             <brutal-image imagesrc="{picture}" backgroundcolor="{imagecolor}"></brutal-image>
         </div>
-        <div><small class="date">{opts.item.published}</small> <small><a class="permalink" href="{here+'#'+opts.item.url}">link</a> <span class="even-smaller">technically expires {expires}</span></small></div>
+        <div>
+            <small class="date">{opts.item.published}</small> <small><a class="permalink" href="{here+'#'+opts.item.url}">link</a> <span class="even-smaller">technically expires {expires}</span></small>
+        </div>
     </article>
     <script>
         this.imagecolor = (new RColor()).get(true);
