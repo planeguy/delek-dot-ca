@@ -10,9 +10,10 @@
     margin-bottom: -0.1em;
     margin-top: -0.1em;
     margin-left: -0.1em;
-    background: transparent;
+    color:white;
 
     &.fixed{
+        background: transparent;
         z-index: 250;
         position:fixed;
         left:0;
@@ -20,6 +21,7 @@
     }
 
     &.dummy {
+        background: black;
         color: transparent;
     }
 }
