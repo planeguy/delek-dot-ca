@@ -1,9 +1,8 @@
 .base-type {
     font: 100%/1.5;
     font-size: 2em;
-    word-break: break-all;
 
-    font-family: monospace;//, "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
+    font-family: /*"Helvetica Neue", "Calibri Light", Roboto,*/ Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: 0.02em;
@@ -19,4 +18,8 @@ small {
 
 .even-smaller {
     font-size: 0.5em;
+}
+
+a {
+    font-family: monospace;
 }
