@@ -28,7 +28,7 @@
 		{
 			"url":"http://127.0.0.1:4000/feed#2",
 			"published":"Fri, 14 Oct 2016 14:30:00 +0000",
-			"text":"A squarer image",
+			"text":"A squarer image with much more text so much so that it should take up a lot of space. Let's see if I've only made it this ugly on the real internet or just this one.",
 			"about":"http://google.com",
 			"enclosure":{"url":"http://lorempixel.com/300/300", "type":"image/jpeg"},
 			"ephemeral-expiry":"Fri, 28 Oct 2016 14:30:00 +0000"
