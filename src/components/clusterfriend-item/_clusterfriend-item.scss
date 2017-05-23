@@ -1,8 +1,9 @@
 .clusterfriend-item {
+    & > article{
+        display:flex;
+        flex-direction: column;
+    }
     & .about { 
         text-transform: uppercase;
-    }
-    & .permalink{
-        font-family: monospace;
     }
 }

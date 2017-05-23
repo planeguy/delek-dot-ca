@@ -34,7 +34,7 @@ export default class AjaxDriver extends FeedDriver {
         return cf;
     }
     load(){
-        return fetch(this.current,{
+        return fetch(this.current+'?cachebuster='+(new Date()).valueOf().toString(),{
             headers:{
                 'Cache-Control':'max-age='+this.maxage
             },

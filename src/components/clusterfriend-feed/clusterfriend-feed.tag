@@ -7,10 +7,9 @@ import '../clusterfriend-item/clusterfriend-item.tag';
     </div>
     <!-- if an item is NOT selected -->
     <div if="{!opts.selecteditem || !opts.selecteditem.url}">
-        <div each="{item in opts.feed.items}">
+        <div each="{item in opts.feed.items}" class="item">
             <clusterfriend-item item="{parent.opts.items[item]}"></clusterfriend-item>
-            <div class="">&nbsp;</div>
+            <hr/>
         </div>
-        <div class="brutal-image-end-buffer">&nbsp;</div>
     </div>
 </clusterfriend-feed>
