@@ -5,8 +5,7 @@ var UglifyJsPlugin = new require("webpack/lib/optimize/UglifyJsPlugin");
 
 module.exports = {
   entry: {
-    main: './src/main.js',
-    post: './src/post.js'
+    index: './src/index.js'
   },
   output: {
     path: __dirname + '/builds/dist',
@@ -20,6 +19,7 @@ module.exports = {
       minChunks: 2,
       name: "common"
     }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.UglifyJsPlugin()
   ],
   module:{

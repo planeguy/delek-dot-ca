@@ -4,7 +4,7 @@ import './components/feed-app.tag';
 
 document.addEventListener('DOMContentLoaded', 
     () => {
-        riot.mount('edit-app', {
+        riot.mount('feed-app', {
             feed: new Feed()
         });
     }

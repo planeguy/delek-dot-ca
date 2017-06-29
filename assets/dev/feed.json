@@ -1,0 +1,28 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "DELEK DOT ORG",
+    "home_page_url": "https://delek.org/",
+    "feed_url": "https://delek.org.org/feed.json",
+    "items": [
+        {
+            "id": "2",
+            "content_text": "This is a second item. I hope to add more text to make it more urf blurf uuuuuuuuuuuuuuuuuuuuuuuu",
+            "url": "https://delek.org/#/2",
+            "date_published":"2017-07-28T14:04:00-05:00"
+
+        },
+        {
+            "id": "1",
+            "content_text": "Hello, world!",
+            "url": "https://delek.org/#/1",
+            "date_published":"2017-07-27T14:04:00-05:00"
+        },
+        {
+            "id": "3",
+            "content_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur porta sem nibh. Ut euismod purus a quam sodales, at mollis tortor volutpat. Fusce in ornare arcu. In sodales erat accumsan, egestas purus et, eleifend risus. Morbi auctor nunc non metus hendrerit luctus. Vivamus dolor mi, convallis eu lorem sit amet, hendrerit efficitur diam. Nulla ultricies pellentesque neque a tristique. Maecenas blandit diam ac porttitor posuere. Sed in pharetra tortor. Integer et purus nisl. Phasellus scelerisque nisi in mauris semper, sed egestas leo elementum. Phasellus gravida placerat neque, sit amet auctor ipsum viverra in. Proin vestibulum mauris vel iaculis lacinia. Vivamus id posuere odio, id malesuada erat. Nam faucibus mattis urna, eu aliquam erat efficitur sed. Nunc at ante tortor. Morbi rutrum varius libero, quis scelerisque lacus lacinia vel. Fusce non ex libero. Nunc sapien ante, tempus non viverra eget, tincidunt ut turpis. Quisque eu molestie tellus. Fusce pharetra dignissim sem. Praesent tincidunt dui ut nisl pretium vulputate. Nullam ultricies arcu sed lorem venenatis consequat. Praesent sagittis mollis turpis, vitae fringilla tortor consequat et. Vestibulum vestibulum tortor condimentum ante porta, sit amet ornare libero eleifend. Nulla facilisi. Fusce orci metus, lacinia at leo in, tristique elementum massa. Praesent at tortor diam. Curabitur vitae sem egestas, porttitor massa eget, tempor nibh. Praesent rutrum quam a tincidunt semper. Vestibulum eget rhoncus risus. Etiam vel eleifend lacus. Sed suscipit blandit magna, a vulputate risus euismod at. Suspendisse id lectus vel augue tempor egestas. Integer quam tortor, dapibus et eleifend id, efficitur eu enim. Integer id dignissim ex. Pellentesque at odio elit. Aliquam efficitur justo hendrerit posuere ullamcorper. Aliquam lacinia tortor bibendum, cursus metus ultrices, molestie nibh. Nunc bibendum quam non tortor tempor porta. Sed ac ornare massa, at ullamcorper elit. Curabitur faucibus nulla quis placerat volutpat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam id vulputate mi. Nulla aliquam augue id nisi maximus aliquet. Curabitur hendrerit, nisi non ullamcorper auctor, lacus eros finibus arcu, vel volutpat dolor lacus id diam. In mattis sed lacus sit amet elementum. Curabitur dictum, arcu sit amet imperdiet tristique, diam leo cursus leo, sed tristique mi ante vitae sapien. Sed a auctor massa. Duis tincidunt vel mauris suscipit fringilla. Proin in nibh vestibulum nibh rutrum lacinia ac a purus. Cras a augue vel ipsum faucibus efficitur ac et nisl. Nunc facilisis faucibus est, quis laoreet elit egestas luctus. Ut rutrum interdum felis, eget scelerisque tellus vestibulum a. Nunc bibendum luctus dignissim. Vivamus placerat, risus id pellentesque malesuada, est nulla hendrerit massa, eu posuere mi metus at mauris. Phasellus volutpat varius sem a pretium. Nunc at orci mauris. Duis tincidunt hendrerit velit vitae mollis. Cras molestie metus purus. Pellentesque non nibh ac dui scelerisque congue. Phasellus placerat metus imperdiet nisi tincidunt, at sagittis lectus viverra. Donec pulvinar, nisl sed pretium imperdiet, velit ipsum malesuada ipsum, vel tempor leo nulla non orci. Nunc purus arcu, posuere non dictum vel, vehicula at massa. Nunc eu dictum eros. Ut varius, nisl et placerat venenatis, mauris augue porta velit, eget iaculis urna odio id tellus.",
+            "url": "https://delek.org/#/3",
+            "date_published":"2017-07-29T14:04:00-05:00"
+        }
+
+    ]
+}
