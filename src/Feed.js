@@ -4,11 +4,11 @@ import flatten from './flatten.js';
 import route from 'riot-route';
 
 export default class Feed{
-    constructor(options={}){
+    constructor(url){
         
-        this.url = options.url||'feed.json';
+        this.url = url||'feed.json';
+        
         this.selecteditem = cleanHash(document.location.hash);
-        this.feed={};
         this.items={};
 
         this.subscriptions={};

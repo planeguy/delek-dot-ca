@@ -5,7 +5,8 @@ var UglifyJsPlugin = new require("webpack/lib/optimize/UglifyJsPlugin");
 
 module.exports = {
   entry: {
-    index: './src/index.js'
+    index: './src/index.js',
+    post:'./src/post.js'
   },
   output: {
     path: __dirname + '/builds/dist',

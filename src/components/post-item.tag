@@ -1,12 +1,16 @@
-import newid from '../../vendor/newid.js';
-import loadImage from '../../vendor/load-image.js';
+import newid from '../vendor/newid.js';
+import loadImage from '../vendor/load-image.js';
 
 <post-item>
     <style>
+        .photo-list {
+            display:flex;
+            flex-flow:row wrap;
+        }
         .photo {
-            border:solid blue 2px;
-            min-width:10mm;
-            min-height:10mm;
+            max-height:60vh;
+            width:auto;
+            flex: 0 0 auto;
         }
         .wide-load>* {
             width:100%;
@@ -18,15 +22,10 @@ import loadImage from '../../vendor/load-image.js';
                 <label for="text">TEXT</label><br/>
                 <input name="content_text" id="content_text" type="text" oninput="{onInput}"/>
             </div>
-            <div onclick="{onSelectPhoto}" class="looks-clickable wide-load">
-                ADD PHOTO
+            <input type="file" multiple="multiple" accept="image/*" name="itemphoto" id="itemphoto" ref="itemphoto" />
+            <div class="photo-list">
+                <img each="{photo in photos}" src="{photo}" class="photo"/>
             </div>
-            <img each="" src="{photo}" class="photo"/>
-            <div onclick="{onSelectPhoto}" class="looks-clickable wide-load">
-                <label for="text">PHOTO</label><br/>
-                <img src="{photo}" class="photo"/>
-            </div>
-            <input type="file" accept="image/*" name="itemphoto" id="itemphoto" ref="itemphoto" style="display:none" />
             <div><input type="submit" value="POST" /></div>
             <textarea name="feedtext" id="feedtext" ref="feedtext" rows="10" cols="40" ></textarea>
             <div><input type="reset" value="RESET" /></div>
@@ -35,13 +34,12 @@ import loadImage from '../../vendor/load-image.js';
     <script>
         //set up new item at top of feed
         let itemid = newid();
-        this.feed=this.opts.feed.feed;
+        this.feed=this.opts.feed;
         this.item={
             id:itemid,
             url:this.opts.permaurl+'/#/'+itemid,
             content_text:'',
-            attachments:[],
-            '_items-management':{type:'ephemeral-rolling','max-items':25}
+            attachments:[]
         }
         this.feed.items.unshift(this.item);
         this.photos=[];
@@ -61,30 +59,31 @@ import loadImage from '../../vendor/load-image.js';
 
         this.onSelectPhoto = (e)=>this.refs.itemphoto.click();
 
+        this.addPhoto=(photoFile)=>{
+            let purl = this.opts.photosurl+'/'+photoFile.name;
+            loadImage(photoFile).then((p)=>{
+                this.photos=[...this.photos, p];
+                this.update();
+                console.log('photo loaded');
+                console.log(this.photos);
+                console.log(p);
+            }).catch(err=>console.log(err));
+            this.item.attachments.push({
+                url:purl,
+                type:photoFile.type
+            });
+        }
+
         this.on('mount',()=>{
             this.updateItem();
-            this.refs.itemphoto.addEventListener('change',(e)=>{
-                this.item.attachments=e.currentTarget.files.map(f=>(
-                    {
-                        url:this.opts.photosurl+'/'+f.name,
-                        type:f.type
-                    })
-                );
-                e.currentTarget.files.forEach((f)=>{
-                    let purl = this.opts.photosurl+'/'+f.name;
-                    if(this.items.attachments.filter(a=>a.url==purl).length===0){
-                        loadImage(f).then((p)=>{
-                            this.photos.push[p];
-                        });
-                        this.item.attachments.push({
-                            url:purl,
-                            type:f.type
-                        });
-                    }
-                });
+            this.refs.itemphoto.addEventListener('change',((e)=>{
+                this.item.attachments=[];
+                this.photos=[];
+                for(let i=0;i<e.currentTarget.files.length;i++){
+                    this.addPhoto(e.currentTarget.files[i]);
+                }
                 this.updateItem();
-                this.update();
-            });
+            }).bind(this));
         });
     </script>
 </post-item>

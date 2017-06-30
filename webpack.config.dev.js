@@ -1,12 +1,11 @@
 var path = require('path')
 var webpack = require('webpack');
 var CommonsPlugin = new require("webpack/lib/optimize/CommonsChunkPlugin")
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
     index: './src/index.js',
-    'post/post':'./src/post.js'
+    post:'./src/post.js'
   },
   output: {
     path: __dirname + '/builds/dev',
@@ -20,8 +19,7 @@ module.exports = {
       minChunks: 2,
       name: "common"
     }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new ExtractTextPlugin('styles.css')
+    new webpack.optimize.ModuleConcatenationPlugin()
   ],
   module:{
     loaders:[

@@ -30,10 +30,11 @@
     "dev:js": "webpack --config webpack.config.dev.js",
     "dev:copy": "node build-tools/copystuff ./assets/dist/** -o ./builds/dev && node build-tools/copystuff ./assets/dev/** -o ./builds/dev",
     "dev:serve": "browser-sync start --port 4000 --cors --server \"builds/dev\" --files \"builds/dev\"",
-    "dev:js:watch":"onchange \"src/**.js\" \"src/**.tag\" -i -- yarn dev:js",
+    "dev:js:watch":"onchange \"src/**/*.js\" \"src/**/*.tag\" -i -- yarn dev:js",
     "dev:copy:watch":"onchange \"assets/**\" -i -- yarn dev:copy",
     "start":"concurrently -k \"yarn dev:js:watch\" \"yarn dev:copy:watch\" \"yarn dev:serve\"",
     "dist:js": "webpack --config webpack.config.dist.js",
-    "dist:copy": "node build-tools/copystuff ./assets/dist/** -o ./builds/dist"
+    "dist:copy": "node build-tools/copystuff ./assets/dist/** -o ./builds/dist",
+    "dist":"yarn dist:js && yarn dist:copy"
   }
 }
