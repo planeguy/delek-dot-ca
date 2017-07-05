@@ -6,7 +6,7 @@ import RColor from '../vendor/rcolor-esm.js';
     <style>
         .feed-item{
             margin:0;
-            padding:2em;
+            padding:1em;
         }
         .feed-item .metadata{
             font-size:small;
@@ -20,8 +20,8 @@ import RColor from '../vendor/rcolor-esm.js';
         </div>
     </article>
     <script>
-        this.backgroundColor=(new RColor()).get(true);
-        this.textColor=Color(this.backgroundColor).light()?'black':'white';
+        this.backgroundColor=Color((new RColor()).get(true)).saturate(0.5);
+        this.textColor=Color(this.backgroundColor).darken(0.25).dark()?'#fff':'#292f33';
 
         this.init=()=>{
             //images

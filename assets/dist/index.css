@@ -1,6 +1,6 @@
 body {
-    background-color:black;
-    color:gray;
+    background-color:#ddd;
+    color:#292f33;
 }
 *>* {
     margin:0;
@@ -14,10 +14,10 @@ body {
     word-break: keep-all;
     overflow: hidden;
     line-height: 1em;
-    margin-bottom: 0;
+    margin-bottom: -0.1em;
     margin-top: -0.1em;
     margin-left: -0.1em;
 }
-.footer{
+.footer {
     text-align: center;
 }
