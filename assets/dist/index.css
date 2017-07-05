@@ -1,6 +1,7 @@
 body {
     background-color:#ddd;
     color:#292f33;
+    font-family:sans-serif;
 }
 *>* {
     margin:0;
@@ -20,4 +21,10 @@ body {
 }
 .footer {
     text-align: center;
+    padding: 2em;
+}
+
+.footer .stuff-box{
+    border: double black 2vmin;
+    padding: 2em;
 }
