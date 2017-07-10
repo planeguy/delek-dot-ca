@@ -4,7 +4,7 @@ var CommonsPlugin = new require("webpack/lib/optimize/CommonsChunkPlugin")
 
 module.exports = {
   entry: {
-    main: './src/main.js',
+    index: './src/index.js',
     post:'./src/post.js'
   },
   output: {
@@ -18,7 +18,8 @@ module.exports = {
     new CommonsPlugin({
       minChunks: 2,
       name: "common"
-    })
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin()
   ],
   module:{
     loaders:[
