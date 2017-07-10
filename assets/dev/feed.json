@@ -8,7 +8,17 @@
             "id": "2",
             "content_text": "This is a second item. I hope to add more text to make it more urf blurf uuuuuuuuuuuuuuuuuuuuuuuu",
             "url": "https://delek.org/#/2",
-            "date_published":"2017-07-28T14:04:00-05:00"
+            "date_published":"2017-07-28T14:04:00-05:00",
+            "attachments":[
+                {
+                    "url": "http://lorempixel.com/400/200/food/",
+                    "mime_type": "image/jpg"
+                },
+                {
+                    "url": "http://lorempixel.com/200/450/city/",
+                    "mime_type": "image/jpg"
+                }
+            ]
 
         },
         {
