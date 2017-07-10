@@ -58,21 +58,24 @@ export default class Feed{
         this.feed=feed;
         this.items=flatten(feed.items);
         this.itemsorder=[...feed.items].sort(this.sortItems).map(i=>i.id);
-        if(this.subscriptions['updated']!=undefined) this.subscriptions['updated'].forEach(s=>s());
+        this.publish('updated');
     }
 
     onSelected(itemid){
         this.selecteditem=itemid;
-        if(this.subscriptions['updated']!=undefined) this.subscriptions['updated'].forEach(s=>s());
+        this.publish('updated');
     }
 
     onWhoops(err){
         this.whoops=true;
-        if(this.subscriptions['whoops']!=undefined) this.subscriptions['whoops'].forEach(s=>s(err));
+        this.publish('whoops');
     }
 
     subscribe(ev,fn){
         if(this.subscriptions[ev]===undefined) this.subscriptions[ev]=[];
         this.subscriptions[ev].push(fn);
+    }
+    publish(ev){
+        if(this.subscriptions[ev]!=undefined) this.subscriptions[ev].forEach(s=>s());
     }
 }
