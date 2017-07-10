@@ -22,7 +22,7 @@ import loadImage from '../vendor/load-image.js';
                 <label for="text">TEXT</label><br/>
                 <input name="content_text" id="content_text" type="text" oninput="{onInput}"/>
             </div>
-            <input type="file" multiple="multiple" accept="image/*" name="itemphoto" id="itemphoto" ref="itemphoto" />
+            <input type="file" multiple="multiple" accept="image/*" name="itemphoto[]" id="itemphoto" ref="itemphoto" />
             <div class="photo-list">
                 <img each="{photo in photos}" src="{photo}" class="photo"/>
             </div>

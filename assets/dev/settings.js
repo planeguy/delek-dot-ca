@@ -1,4 +1,4 @@
 var settings = {
-    photosurl:'photos',
+    photosurl:'../photos',
     permaurl:'http://localhost:4000'
 }
