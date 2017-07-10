@@ -30,7 +30,7 @@ import RColor from '../vendor/rcolor-esm.js';
 
         this.init=()=>{
             //images
-            this.images=(this.opts.item.attachments||[]).filter(a=>a.mime_type=='image'||a.mime_type.indexOf('image/')===0);
+            this.images=(this.opts.item.attachments||[]).filter(a=>a.mime_type!=undefined &&(a.mime_type=='image'||a.mime_type.indexOf('image/')===0));
             if(this.opts.item.image!=undefined) this.images.unshift(this.opts.item.image);
 
             //permalink
