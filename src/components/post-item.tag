@@ -42,6 +42,12 @@ import loadImage from '../vendor/load-image.js';
             attachments:[]
         }
         this.feed.items.unshift(this.item);
+
+        let maxitems=25;
+        if(this.feed['_ephemeral_items']!=undefined && this.feed['_ephemeral_items']['max_items']!=undefined) maxitems = this.feed['_ephemeral_items']['max_items'];
+        if (this.feed.items.length>maxitems){
+            this.feed.items.slice(0,maxitems-1)
+        }
         this.photos=[];
 
         //when stuff changes update the feed text
@@ -70,7 +76,7 @@ import loadImage from '../vendor/load-image.js';
             }).catch(err=>console.log(err));
             this.item.attachments.push({
                 url:purl,
-                type:photoFile.type
+                mime_type:photoFile.type
             });
         }
 
