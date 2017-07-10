@@ -3,6 +3,7 @@
     <style>
         .item-image {
             margin:0;
+            padding:0;
             width:auto;
             height:90vh;
             background-attachment: fixed;
