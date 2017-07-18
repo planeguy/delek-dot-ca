@@ -70,6 +70,10 @@ import loadImage from '../vendor/load-image.js';
                         <img each="{photo in photos}" src="{photo}" class="photo"/>
                     </div>
                 </div>
+                <div class="wide-load">
+                    <label for="external_url">URL</label><br/>
+                    <input name="external_url" id="external_url" type="text" oninput="{onInput}"/>
+                </div>
                 <input type="submit" value="POST" />
             </div>
             <div class="raw-json">
@@ -85,7 +89,9 @@ import loadImage from '../vendor/load-image.js';
             id:itemid,
             url:this.opts.permaurl+'/#/'+itemid,
             content_text:'',
-            attachments:[]
+            external_url:'',
+            attachments:[],
+            tags:[]
         }
         this.feed.items.unshift(this.item);
 
