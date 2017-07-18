@@ -15,11 +15,18 @@ import RColor from '../vendor/rcolor-esm.js';
             text-align:right;
             border-top:dashed 0.5vmin;
         }
+        .feed-item .ext-url{
+            overflow:hidden;
+            white-space:nowrap;
+            text-overflow: ellipsis;
+            font-size:large;
+            width:90%;
+        }
     </style>
     <article class="feed-item" style="background-color:{backgroundColor};color:{textColor};">
         <item-text text="{opts.item.content_text}"></item-text>
         <item-image each="{image in images}" url="{image.url}"></item-image>
-        <div if="{opts.item.external_url!=undefined}" class="item-ext-url"><a href="{opts.item.external_url}">{opts.item.external_url}</a></div>
+        <div if="{opts.item.external_url!=undefined}" class="ext-url"><a style="color:{textColor};" href="{opts.item.external_url}">{opts.item.external_url}</a></div>
         <div class="metadata" style="border-color:{metadatabordercolor}">
             {opts.item.date_published} || <a style="color:{textColor};" href="{permalink}">{permalink}</a>
         </div>
