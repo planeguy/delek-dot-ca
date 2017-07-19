@@ -28,3 +28,20 @@ body {
     border: double black 2vmin;
     padding: 2em;
 }
+
+.field>label {
+    font-size:x-large;
+    font-weight:bold;
+    letter-spacing: -0.1em;
+}
+
+input[type=submit]{
+    background:darkgrey;
+    border:0.1em solid black;
+    color:white;
+    font-size:x-large;
+    font-weight:bold;
+    margin-top:1em;
+    padding:2em;
+    width:100%;
+}
