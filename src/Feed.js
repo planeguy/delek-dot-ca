@@ -1,25 +1,20 @@
 import fetch from 'unfetch';
-import cleanHash from './cleanHash.js';
 import flatten from './flatten.js';
-import route from 'riot-route';
 
 export default class Feed{
-    constructor(url){
+    constructor(url, selected){
         
         this.url = url||'feed.json';
-        
-        this.selecteditem = cleanHash(document.location.hash);
+
         this.items={};
+        this.selecteditem = selected;
 
         this.subscriptions={};
         this.subscribe('whoops',err=>console.log(err));
 
         this.load(this.url)
         .then(this.onLoaded.bind(this))
-        .catch(this.onWhoops.bind(this));
-
-        route(this.onSelected.bind(this));
-        route.start();
+        .catch(this.onWhoops.bind(this));        
     }
 
     checkResponseStauts(r){
