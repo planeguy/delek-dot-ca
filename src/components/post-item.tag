@@ -7,19 +7,12 @@ import loadImage from '../vendor/load-image.js';
             display:flex;
             flex-flow:row wrap;
         }
-        .photo {
-            max-height:60vh;
+        .photo-list .photo {
+            max-height:45vh;
             width:auto;
             flex: 0 0 auto;
         }
 
-        .wide-load {
-            flex: 1 1 auto;
-            align-self:stretch;
-        }
-        .wide-load>* {
-            width:100%;
-        }
         .post-edit {
             border:double 2vmin black;
             margin: 1em;
@@ -29,6 +22,14 @@ import loadImage from '../vendor/load-image.js';
             justify-content:center;
             align-items:center;
         }
+        .post-edit .field {
+            flex: 1 1 auto;
+            align-self:stretch;
+        }
+        .post-edit .field>* {
+            width:100%;
+        }
+
         .raw-json {
             display:flex;
             flex-flow:column;
@@ -38,16 +39,6 @@ import loadImage from '../vendor/load-image.js';
             margin: 1em;
             padding:0.25em;
         }
-        input[type=submit]{
-            background:darkgrey;
-            border:0.1em solid black;
-            color:white;
-            font-size:x-large;
-            font-weight:bold;
-            margin-top:1em;
-            padding:2em;
-            width:100%;
-        }
 
         @media screen and (orientation:landscape) {
             input[type=submit]{
@@ -56,31 +47,29 @@ import loadImage from '../vendor/load-image.js';
         }
 
     </style>
-    <div class="editor">
-        <form action="" method="POST" enctype="multipart/form-data">
-            <div class="post-edit">
-                <div class="wide-load">
-                    <label for="text">TEXT</label><br/>
-                    <input name="content_text" id="content_text" type="text" oninput="{onInput}"/>
-                </div>
-                <div class="wide-load">
-                    <label for="text">PICTURES</label><br/>
-                    <input type="file" multiple="multiple" accept="image/*" name="itemphoto[]" id="itemphoto" ref="itemphoto" />
-                    <div class="photo-list">
-                        <img each="{photo in photos}" src="{photo}" class="photo"/>
-                    </div>
-                </div>
-                <div class="wide-load">
-                    <label for="external_url">URL</label><br/>
-                    <input name="external_url" id="external_url" type="text" oninput="{onInput}"/>
-                </div>
-                <input type="submit" value="POST" />
+    <form action="" method="POST" enctype="multipart/form-data">
+        <div class="post-edit">
+            <div class="field">
+                <label for="text">TEXT</label>
+                <input name="content_text" id="content_text" type="text" oninput="{onInput}"/>
             </div>
-            <div class="raw-json">
-                <textarea name="feedtext" id="feedtext" ref="feedtext" rows="10" cols="40" ></textarea>
+            <div class="field">
+                <label for="text">PICTURES</label>
+                <input type="file" multiple="multiple" accept="image/*" name="itemphoto[]" id="itemphoto" ref="itemphoto" />
+                <div class="photo-list">
+                    <img each="{photo in photos}" src="{photo}" class="photo"/>
+                </div>
             </div>
-        </form>
-    </div>
+            <div class="field">
+                <label for="external_url">URL</label>
+                <input name="external_url" id="external_url" type="text" oninput="{onInput}"/>
+            </div>
+            <input type="submit" value="POST" />
+        </div>
+        <div class="raw-json">
+            <textarea name="feedtext" id="feedtext" ref="feedtext" rows="10" cols="40" ></textarea>
+        </div>
+    </form>
     <script>
         //set up new item at top of feed
         let itemid = newid();
