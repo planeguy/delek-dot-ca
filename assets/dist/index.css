@@ -45,3 +45,8 @@ input[type=submit]{
     padding:2em;
     width:100%;
 }
+@media screen and (orientation:landscape) {
+    input[type=submit]{
+        width: auto;
+    }
+}
