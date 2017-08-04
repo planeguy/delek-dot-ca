@@ -11,17 +11,28 @@ import newid from '../vendor/newid.js';
             margin: 1em;
             padding:0.25em;
         }
+        .item-editor {
+            border:double 2vmin black;
+            margin: 1em;
+            padding: 2em;
+        }
     </style>
-    <new-item
-        item="{item}"
-        photosurl="{opts.photosurl}"
-        permaurl="{opts.permaurl}"
-        updatefeed="{updateFeed}"
-    ></new-item>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <div class="item-editor">
+            <new-item
+                item="{item}"
+                photosurl="{opts.photosurl}"
+                permaurl="{opts.permaurl}"
+                updatefeed="{updateFeed}"
+            ></new-item>
 
-    <div class="raw-json">
-        <textarea name="feedtext" id="feedtext" ref="feedtext" rows="10" cols="40" ></textarea>
-    </div>
+            <input type="submit" value="POST" />
+        </div>
+
+        <div class="raw-json">
+            <textarea name="feedtext" id="feedtext" ref="feedtext" rows="10" cols="40" ></textarea>
+        </div>
+    </form>
     <script>
         this.opts.feed.subscribe('updated',this.update.bind(this));
 

@@ -3,9 +3,6 @@ import loadImage from '../vendor/load-image.js';
 <new-item>
     <style>
         .new-item {
-            border:double 2vmin black;
-            margin: 1em;
-            padding: 2em;
             display:flex;
             flex-flow:column;
             justify-content:center;
@@ -28,7 +25,7 @@ import loadImage from '../vendor/load-image.js';
             flex: 0 0 auto;
         }
     </style>
-    <form action="" method="POST" class="new-item" enctype="multipart/form-data">
+    <div class="new-item">
         <div class="field">
             <label for="text">TEXT</label>
             <input name="content_text" id="content_text" type="text" oninput="{onInput}"/>
@@ -44,8 +41,7 @@ import loadImage from '../vendor/load-image.js';
             <label for="external_url">URL</label>
             <input name="external_url" id="external_url" type="text" oninput="{onInput}"/>
         </div>
-        <input type="submit" value="POST" />
-    </form>
+    </div>
     <script>
         this.photos=[];
         this.updateItem=()=>{

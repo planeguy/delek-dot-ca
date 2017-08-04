@@ -37,12 +37,14 @@ try {
                     http_response_code(400);
                     throw new RuntimeException('Unknown errors.');
             }
-        }      
+        }
 
         // redirect to form again
+        /*
         header(sprintf('Location: %s', $url));
         printf('<a href="%s">Moved</a>.', htmlspecialchars($url));
         exit();
+        */
     }
 } catch (RuntimeException $e) {
     echo $e->getMessage();
