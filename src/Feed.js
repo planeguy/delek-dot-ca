@@ -33,9 +33,6 @@ export default class Feed{
 
     load(url){
         return fetch(url,{
-            headers:{
-                'Cache-Control':'max-age='+this.maxage
-            },
             credentials: 'include'
         }).then(this.checkResponseStatus)
         .then(r=>r.json());
