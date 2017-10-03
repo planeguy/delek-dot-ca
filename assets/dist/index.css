@@ -19,12 +19,14 @@ body {
     margin-top: -0.1em;
     margin-left: -0.1em;
 }
-.footer {
+.intro {
     text-align: center;
     padding: 2em;
+    position:sticky;
+    top:0;
 }
 
-.footer .stuff-box{
+.intro .stuff-box{
     border: double black 2vmin;
     padding: 2em;
 }
