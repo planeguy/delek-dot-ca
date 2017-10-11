@@ -13,7 +13,7 @@
             font-size:15vmin;
         }
     </style>
-    <span class="item-text {size}">{opts.text}</span>
+    <span class="item-text {size} e-content">{opts.text}</span>
     <script>
         function getSize(txt){
             if(txt===undefined) return 'no-text';

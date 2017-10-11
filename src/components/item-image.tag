@@ -21,6 +21,6 @@
         }
     </style>
     <div class="item-image" style="background-image:url({opts.url});background-color:transparent;">
-        <img class="image" src="{opts.url}" />
+        <img class="image u-photo" src="{opts.url}" />
     </div>
 </item-image>
