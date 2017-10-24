@@ -7,6 +7,8 @@ $file = '../feed.json';
 $postResult='';
 $tweetResult='';
 
+$TCOLength = getTCOLength();
+
 try {
     //if the form was submitted...
     if (isset($_POST['feedtext']))
@@ -67,7 +69,7 @@ try {
     <body>
         <?php echo $postResult ?>
         <?php echo $tweetResult ?>
-        <edit-app></edit-app>
+        <edit-app tcolength="<?php echo $TCOLength?>"></edit-app>
 
         <script src="../bluebird.core.min.js"></script>
         <script src="../common.js"></script>

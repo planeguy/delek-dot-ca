@@ -32,11 +32,14 @@ import tweetFromItem from '../tweetFromItem.js';
 
         <div class="raw-json">
             <textarea name="feedtext" id="feedtext" ref="feedtext" rows="10" cols="40" ></textarea>
-            <textarea name="tweet" id="tweet" ref="tweet" rows="10" cols="40" ></textarea>
+            <textarea name="tweet" id="tweet" ref="tweet" rows="2" cols="40" ></textarea>
+            Tweet length: <span ref="tweetlength"></span>
         </div>
     </form>
     <script>
         this.opts.feed.subscribe('updated',this.update.bind(this));
+
+        this.tcolength = (!!this.opts.tcolength?parseInt(this.opts.tcolength,10):0);
 
         this.feedInit=()=>{
             this.feed = this.opts.feed.feed;
@@ -63,7 +66,8 @@ import tweetFromItem from '../tweetFromItem.js';
         //when stuff changes update the feed text
         this.updateFeed = ()=>{
             this.refs.feedtext.value=JSON.stringify(this.feed);
-            this.refs.tweet.value=tweetFromItem(this.item);
+            this.refs.tweet.value=tweetFromItem(this.item, this.tcolength);
+            this.refs.tweetlength.innerHTML=this.refs.tweet.value.length;
         }
 
         this.on('update',this.feedInit);
