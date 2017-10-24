@@ -23,12 +23,12 @@ import RColor from '../vendor/rcolor-esm.js';
             width:90%;
         }
     </style>
-    <article class="feed-item" style="background-color:{backgroundColor};color:{textColor};">
+    <article class="feed-item h-entry" style="background-color:{backgroundColor};color:{textColor};">
         <item-text text="{opts.item.content_text}"></item-text>
         <item-image each="{image in images}" url="{image.url}"></item-image>
         <div if="{opts.item.external_url!=undefined}" class="ext-url"><a style="color:{textColor};" href="{opts.item.external_url}">{opts.item.external_url}</a></div>
         <div class="metadata" style="border-color:{metadatabordercolor}">
-            {opts.item.date_published} || <a style="color:{textColor};" href="{permalink}">{permalink}</a>
+            <time class="dt-published" datetime="{opts.item.date_published}">{opts.item.date_published}</time> || <a class="u-url" style="color:{textColor};" href="{permalink}">{permalink}</a>
         </div>
     </article>
     <script>

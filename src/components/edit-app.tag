@@ -1,5 +1,6 @@
 import './new-item.tag';
 import newid from '../vendor/newid.js';
+import tweetFromItem from '../tweetFromItem.js';
 <edit-app>
     <style>
         .raw-json {
@@ -31,6 +32,7 @@ import newid from '../vendor/newid.js';
 
         <div class="raw-json">
             <textarea name="feedtext" id="feedtext" ref="feedtext" rows="10" cols="40" ></textarea>
+            <textarea name="tweet" id="tweet" ref="tweet" rows="10" cols="40" ></textarea>
         </div>
     </form>
     <script>
@@ -61,6 +63,7 @@ import newid from '../vendor/newid.js';
         //when stuff changes update the feed text
         this.updateFeed = ()=>{
             this.refs.feedtext.value=JSON.stringify(this.feed);
+            this.refs.tweet.value=tweetFromItem(this.item);
         }
 
         this.on('update',this.feedInit);

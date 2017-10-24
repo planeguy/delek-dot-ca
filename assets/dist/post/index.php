@@ -1,7 +1,11 @@
 <?php
+
+require ('tweet.php');
 // configuration
 $url = 'http://delek.org/post/index.php';
 $file = '../feed.json';
+$postResult='';
+$tweetResult='';
 
 try {
     //if the form was submitted...
@@ -38,16 +42,18 @@ try {
                     throw new RuntimeException('Unknown errors.');
             }
         }
-
-        // redirect to form again
-        /*
-        header(sprintf('Location: %s', $url));
-        printf('<a href="%s">Moved</a>.', htmlspecialchars($url));
-        exit();
-        */
+        $postResult='POST SUCCESS';
     }
 } catch (RuntimeException $e) {
-    echo $e->getMessage();
+    $postResult=$e->getMessage();
+}
+
+try {
+    if (isset($_POST['tweet'])){
+        $tweetResult = "TWEET POSTED ".tweet($_POST['tweet'])->str_id;
+    }
+} catch (RuntimeException $e){
+    $tweetResult=$e->getMessage();
 }
 ?>
 <!DOCTYPE html>
@@ -59,6 +65,8 @@ try {
         <link rel="stylesheet" href="../index.css"/>
     </head>
     <body>
+        <?php echo $postResult ?>
+        <?php echo $tweetResult ?>
         <edit-app></edit-app>
 
         <script src="../bluebird.core.min.js"></script>
