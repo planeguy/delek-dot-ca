@@ -1,4 +1,6 @@
 <?php
+
+require ('tweet.php');
 // configuration
 $url = 'http://delek.org/post/index.php';
 $file = '../feed.json';
@@ -48,7 +50,7 @@ try {
 
 try {
     if (isset($_POST['tweet'])){
-        $tweetResult=tweet($_POST['tweet']);
+        $tweetResult = "TWEET POSTED ".tweet($_POST['tweet'])->str_id;
     }
 } catch (RuntimeException $e){
     $tweetResult=$e->getMessage();

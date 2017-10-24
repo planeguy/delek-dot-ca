@@ -1,6 +1,6 @@
 import './new-item.tag';
 import newid from '../vendor/newid.js';
-impot tweetFromItem from '../tweetFromItem.js';
+import tweetFromItem from '../tweetFromItem.js';
 <edit-app>
     <style>
         .raw-json {
