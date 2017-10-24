@@ -37,4 +37,16 @@ function tweet($tweet){
     $posted = $connection->post("statuses/update",["status"=>$tweet, "media_ids"=>uploadImagesToTwitter($connection)]);
     return $posted;
 }
+
+function getTCOLength(){
+    global $twitter_consumer_key, $twitter_consumer_secret, $twitter_access_token, $twitter_access_token_secret;    
+    $connection = new TwitterOAuth(
+        $twitter_consumer_key,
+        $twitter_consumer_secret,
+        $twitter_access_token,
+        $twitter_access_token_secret
+    );
+    $l = $connection->get('help/configuration')->short_url_length;
+    return $l;
+}
 ?>
