@@ -2,7 +2,6 @@
 
 require ('twitteroauth/autoload.php');
 use Abraham\TwitterOAuth\TwitterOAuth;
-require ('tweetsecrets.php');
 
 function uploadImagesToTwitter($connection){
     global $_FILES;

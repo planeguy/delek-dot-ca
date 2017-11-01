@@ -8,6 +8,7 @@
     tags:[]
 }
 */
+const TWEETMAX = 140;
 
 function concatenatedTweet(item){
     let intro=`I posted a thing: ${item.url} `;
@@ -17,10 +18,8 @@ function concatenatedTweet(item){
 function createTweet(item, exl, pl){
     let cl=item.content_text.length+2;
 
-    console.log(cl, exl, pl);
-    console.log((cl+pl>140),(cl+exl+pl>140));
-    if(cl+pl>140) return concatenatedTweet(item);
-    if(cl+exl+pl>140) return `${item.content_text} ${item.url}`.replace(/\s+/g,' ').trim();
+    if(cl+pl>TWEETMAX) return concatenatedTweet(item);
+    if(cl+exl+pl>TWEETMAX) return `${item.content_text} ${item.url}`.replace(/\s+/g,' ').trim();
     return `${item.content_text} ${item.external_url} ${item.url}`.replace(/\s+/g,' ').trim();
 }
 

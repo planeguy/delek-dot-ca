@@ -1,16 +1,26 @@
 import './new-item.tag';
 import newid from '../vendor/newid.js';
 import tweetFromItem from '../tweetFromItem.js';
+import peachFromItem from '../peachFromItem.js';
 <edit-app>
     <style>
-        .raw-json {
+        .previews{
             display:flex;
-            flex-flow:column;
-            justify-content:center;
-            align-items:stretch;
+            flex:row wrap;
             border: dashed .01em black;
             margin: 1em;
             padding:0.25em;
+        }
+        .previews>* {
+            box-sizing:border-box;
+            min-width:25%;
+            display:flex;
+            flex-flow:column;
+            justify-content:stretch;
+            align-items:stretch;
+        }
+        .previews > .half {
+            min-width:50%;
         }
         .item-editor {
             border:double 2vmin black;
@@ -30,10 +40,20 @@ import tweetFromItem from '../tweetFromItem.js';
             <input type="submit" value="POST" />
         </div>
 
-        <div class="raw-json">
-            <textarea name="feedtext" id="feedtext" ref="feedtext" rows="10" cols="40" ></textarea>
-            <textarea name="tweet" id="tweet" ref="tweet" rows="2" cols="40" ></textarea>
-            Tweet length: <span ref="tweetlength"></span>
+        <div class="previews">
+            <div class="half">
+                <textarea name="feedtext" id="feedtext" ref="feedtext" rows="10" cols="10" ></textarea>
+            </div>
+
+            <div>
+                <div><input type="checkbox" id="do-tweet" name="do-tweet" value="YES">TWEET</div>
+                <textarea name="tweet" id="tweet" ref="tweet" rows="5" cols="10" ></textarea>
+            </div>
+
+            <div>
+                <div><input type="checkbox" id="do-peach" name="do-peach" value="YES">PEACH</div>
+                <textarea name="peach" id="peach" ref="peach" rows="5" cols="10" ></textarea>
+            </div>
         </div>
     </form>
     <script>
@@ -65,9 +85,9 @@ import tweetFromItem from '../tweetFromItem.js';
 
         //when stuff changes update the feed text
         this.updateFeed = ()=>{
-            this.refs.feedtext.value=JSON.stringify(this.feed);
+            this.refs.feedtext.value=JSON.stringify(this.feed,null,'\t');
             this.refs.tweet.value=tweetFromItem(this.item, this.tcolength);
-            this.refs.tweetlength.innerHTML=this.refs.tweet.value.length;
+            this.refs.peach.value=peachFromItem(this.item);
         }
 
         this.on('update',this.feedInit);
