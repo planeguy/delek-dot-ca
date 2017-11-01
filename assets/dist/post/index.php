@@ -1,11 +1,14 @@
 <?php
 
+require ('secrets.php');
 require ('tweet.php');
+require ('peach.php');
 // configuration
 $url = 'http://delek.org/post/index.php';
 $file = '../feed.json';
 $postResult='';
 $tweetResult='';
+$peachResult='';
 
 $TCOLength = getTCOLength();
 
@@ -47,15 +50,23 @@ try {
         $postResult='POST SUCCESS';
     }
 } catch (RuntimeException $e) {
-    $postResult=$e->getMessage();
+    $postResult="POSTING FAILED ".$e->getMessage();
 }
 
 try {
-    if (isset($_POST['tweet'])){
-        $tweetResult = "TWEET POSTED ".tweet($_POST['tweet'])->str_id;
+    if (isset($_POST['tweet']) && isset($_POST['do-tweet']) && $_POST['do-tweet']=='YES'){
+        $tweetResult = "TWEETED ".tweet($_POST['tweet'])->id;
     }
 } catch (RuntimeException $e){
-    $tweetResult=$e->getMessage();
+    $tweetResult="TWEETING FAILED ".$e->getMessage();
+}
+
+try {
+    if (isset($_POST['peach']) && isset($_POST['do-peach']) && $_POST['do-peach']=='YES'){
+        $peachResult = "PEACHED ".peach($_POST['peach'])->data->id;
+    }
+} catch (RuntimeException $e){
+    $peachResult="PEACHING FAILED ".$e->getMessage();
 }
 ?>
 <!DOCTYPE html>
@@ -69,6 +80,7 @@ try {
     <body>
         <?php echo $postResult ?>
         <?php echo $tweetResult ?>
+        <?php echo $peachResult ?>
         <edit-app tcolength="<?php echo $TCOLength?>"></edit-app>
 
         <script src="../bluebird.core.min.js"></script>
