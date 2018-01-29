@@ -33,7 +33,11 @@ export default class Feed{
 
     load(url){
         return fetch(url,{
-            credentials: 'include'
+            credentials: 'include',
+            headers: {
+                'pragma': 'no-cache',
+                'cache-control':'no-cache'
+            }
         }).then(this.checkResponseStatus)
         .then(r=>r.json());
     }
