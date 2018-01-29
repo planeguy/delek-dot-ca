@@ -15,8 +15,9 @@ class PeachConnection {
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); 
         $result = curl_exec($ch);
         curl_close($ch);  // Seems like good practice
-
-        $this->bearer =  json_decode($result)->data->streams[0]->token;
+        $result_obj = json_decode($result);
+        if($result_obj->success!==1) { throw new RuntimeException("Peach Service Error ".json_encode($result_obj->data)); }
+        $this->bearer =  $result_obj->data->streams[0]->token;
     }
 
     public function post($endpoint, $json){
@@ -29,7 +30,9 @@ class PeachConnection {
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); 
         $result = curl_exec($ch);
         curl_close($ch);  // Seems like good practice
-        return $result;
+        $result_obj = json_decode($result);
+        if($result_obj->success!==1) { throw new RuntimeException("Peach Service Error ".json_encode($result_obj->data)); }
+        return $result_obj;
     }
 }
 
