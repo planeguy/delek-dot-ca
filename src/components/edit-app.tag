@@ -65,10 +65,10 @@ import peachFromItem from '../peachFromItem.js';
             this.feed = this.opts.feed.feed;
             this.feed.items.unshift(this.item);
 
-            let maxitems=25;
+            let maxitems=32;
             if(this.feed['_ephemeral_items']!=undefined && this.feed['_ephemeral_items']['max_items']!=undefined) maxitems = this.feed['_ephemeral_items']['max_items'];
             if (this.feed.items.length>maxitems){
-                this.feed.items.slice(0,maxitems-1)
+                this.feed.items = this.feed.items.slice(0,maxitems-1)
             }
             this.updateFeed();
         }
