@@ -18,36 +18,14 @@ body {
 .intro {
     background-color:#ddd;
     text-align: center;
+    border: double black 2vmin;
+    padding: 1em;
     position:-webkit-sticky;
     position:sticky;
     top:0;
 }
-
-.intro .stuff-box{
-    border: double black 2vmin;
-    padding: 1em;
-}
-
-.field>label {
-    font-size:x-large;
-    font-weight:bold;
-    letter-spacing: -0.1em;
-}
-
-input[type=submit]{
-    background:darkgrey;
-    border:0.1em solid black;
-    color:white;
-    font-size:x-large;
-    font-weight:bold;
-    margin-top:1em;
-    padding:2em;
-    width:100%;
-}
-@media screen and (orientation:landscape) {
-    input[type=submit]{
-        width: auto;
-    }
+.intro.js-is-stuck{
+    font-size:xx-small;
 }
 
 .feed-item{
@@ -99,4 +77,29 @@ input[type=submit]{
     margin:0;
     height:90vh;
     width:auto;
+}
+
+/* ************* */
+/* posting style */
+/* ************* */
+.field>label {
+    font-size:x-large;
+    font-weight:bold;
+    letter-spacing: -0.1em;
+}
+
+input[type=submit]{
+    background:darkgrey;
+    border:0.1em solid black;
+    color:white;
+    font-size:x-large;
+    font-weight:bold;
+    margin-top:1em;
+    padding:2em;
+    width:100%;
+}
+@media screen and (orientation:landscape) {
+    input[type=submit]{
+        width: auto;
+    }
 }

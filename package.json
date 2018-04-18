@@ -27,9 +27,8 @@
   "scripts": {
     "dev:js": "webpack --config webpack.config.dev.js",
     "dev:copy": "node build-tools/copystuff ./assets/dist/** -o ./builds/dev && node build-tools/copystuff ./assets/dev/** -o ./builds/dev",
-    "dev:js:watch": "onchange \"src/**/*.js\" \"src/**/*.tag\" -i -- yarn dev:js",
-    "dev:copy:watch": "onchange \"assets/**\" -i -- yarn dev:copy",
-    "start": "concurrently -k \"yarn dev:js:watch\" \"yarn dev:copy:watch\" \"http-server ./builds/dev -p 9000 -a localhost --cors -c-1 \"",
+    "dev": "yarn dev:js && yarn dev:copy",
+    "dev:serve": "http-server ./builds/dev -p 9001 -a localhost --cors -c-1",
     "dist:js": "webpack --config webpack.config.dist.js",
     "dist:copy": "node build-tools/copystuff ./assets/dist/** -o ./builds/dist",
     "dist": "yarn dist:js && yarn dist:copy"
