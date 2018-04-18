@@ -47,6 +47,19 @@ try {
                     throw new RuntimeException('Unknown errors.');
             }
         }
+        if(isset($_POST['photos']) && isset($_POST['photonames'])){
+            for($i=0; $i<$total; $i++){
+                $data = $_POST['photos'][i];
+                $name = $_POST['photonames'][i];
+                $type = 'image/png';
+        
+                list($type, $data) = explode(';', $data);
+                list(, $data)      = explode(',', $data);
+                $data = base64_decode($data);
+        
+                file_put_contents($name.'.png', $data);
+            }
+        }
         $postResult='POST SUCCESS';
     }
 } catch (RuntimeException $e) {
@@ -76,6 +89,7 @@ try {
         <meta content="utf-8" http-equiv="encoding">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../index.css"/>
+        <link rel="stylesheet" href="./croppie.css"/>
     </head>
     <body>
         <?php echo $postResult ?>
