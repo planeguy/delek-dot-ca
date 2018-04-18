@@ -7,28 +7,25 @@ body {
     margin:0;
 }
 .title  {
+    text-align: center;
     font-family:sans-serif;
-    font-size: 16vw;
-    letter-spacing: -0.2em;
-    word-spacing: 0.25em;
+    line-height: 1.2;
+    font-size: calc(5vw + 3vh + 2vmin);
     white-space: nowrap;
     word-break: keep-all;
     overflow: hidden;
-    line-height: 1em;
-    margin-bottom: -0.1em;
-    margin-top: -0.1em;
-    margin-left: -0.1em;
 }
 .intro {
+    background-color:#ddd;
     text-align: center;
-    padding: 2em;
+    position:-webkit-sticky;
     position:sticky;
     top:0;
 }
 
 .intro .stuff-box{
     border: double black 2vmin;
-    padding: 2em;
+    padding: 1em;
 }
 
 .field>label {
@@ -51,4 +48,55 @@ input[type=submit]{
     input[type=submit]{
         width: auto;
     }
+}
+
+.feed-item{
+    margin:0;
+    padding:1em;
+}
+.feed-item .metadata{
+    margin-top: 1em;
+    padding-top:1em;
+    font-size:small;
+    text-align:right;
+    border-top:dashed 0.5vmin;
+}
+.feed-item .ext-url{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    font-size:large;
+    width:90%;
+}
+
+.item-text.plain{
+    font-size:3vmin;
+}
+.item-text.big{
+    font-size:5vmin;
+}
+.item-text.bigger{
+    font-size:10vmin;
+}
+.item-text.uge{
+    font-size:15vmin;
+}
+
+.item-image {
+    margin:0;
+    padding:0;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+    overflow: hidden;
+    height:90vh;
+    width:auto;
+    background-size: auto 100vh;
+}
+.item-image .image {
+    visibility:hidden;
+    margin:0;
+    height:90vh;
+    width:auto;
 }
