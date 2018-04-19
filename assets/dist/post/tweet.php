@@ -4,21 +4,11 @@ require ('twitteroauth/autoload.php');
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 function uploadImagesToTwitter($connection){
-    global $_FILES;
+    global $_POST;
     $images=array();
-    $total = count($_FILES['itemphoto']['tmp_name']);
+    $total = count($_POST['photonames']);
     for($i=0; $i<$total; $i++){
-        switch($_FILES['itemphoto']['error'][$i]){
-            case UPLOAD_ERR_OK:
-                $images[] = $connection->upload('media/upload',['media'=>'../photos/'.$_FILES['itemphoto']['name'][$i]])->media_id_string;
-                break;
-            case UPLOAD_ERR_NO_FILE:
-                //that's ok, we are allowed to send no file
-                break;
-            default:
-                http_response_code(400);
-                throw new RuntimeException('Unknown errors.');
-        }
+        $images[] = $connection->upload('media/upload',['media'=>'../photos/'.$_POST['photonames'][$i]])->media_id_string;
     }
     return implode(',',$images);
 }
