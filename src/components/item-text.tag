@@ -1,5 +1,5 @@
 <item-text>
-    <span class="item-text {size} e-content">{opts.text}</span>
+    <span class="item-text {size} p-name">{opts.text}</span>
     <script>
         function getSize(txt){
             if(txt===undefined) return 'no-text';
