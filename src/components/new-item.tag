@@ -36,8 +36,8 @@ import Croppie from 'croppie';
         }
 
         .new-item .uploader .cropper {
-            height:45vh;
-            width:45vh;
+            width:300px;
+            height:300px;
         }
 
     </style>
@@ -68,6 +68,8 @@ import Croppie from 'croppie';
         this.photos=[];
         this.photonames=[];
 
+        this.croppersize=300;
+
         this.updateItem=()=>{
             this.opts.item.date_published=new Date();
             this.opts.updatefeed();
@@ -78,6 +80,7 @@ import Croppie from 'croppie';
             let id=e.currentTarget.id;
             this.opts.item[id]=e.currentTarget.value;
             this.updateItem();
+            e.preventUpdate=true;
         }
 
         this.onSelectPhoto = (e)=>this.refs.photopick.click();
@@ -142,6 +145,7 @@ import Croppie from 'croppie';
                     width:250,
                     height:250
                 },
+                showZoomer: false,
                 enableExif: true
             });
             this.refs.photopick.addEventListener('change',((e)=>{

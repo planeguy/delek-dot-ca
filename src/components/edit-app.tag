@@ -6,21 +6,25 @@ import peachFromItem from '../peachFromItem.js';
     <style>
         .previews{
             display:flex;
-            flex:row wrap;
+            flex-flow:row wrap;
             border: dashed .01em black;
             margin: 1em;
             padding:0.25em;
         }
         .previews>* {
             box-sizing:border-box;
-            min-width:25%;
+            flex: 1 0 auto;
+
             display:flex;
-            flex-flow:column;
+            flex-flow:column nowrap;
             justify-content:stretch;
             align-items:stretch;
         }
         .previews > .half {
-            min-width:50%;
+            width:50%;
+        }
+        .previews > .hide {
+            display: none;
         }
         .item-editor {
             border:double 2vmin black;
@@ -41,7 +45,7 @@ import peachFromItem from '../peachFromItem.js';
         </div>
 
         <div class="previews">
-            <div class="half">
+            <div class="hide">
                 <textarea name="feedtext" id="feedtext" ref="feedtext" rows="10" cols="10" ></textarea>
             </div>
 
