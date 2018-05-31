@@ -99,7 +99,8 @@ import Croppie from 'croppie';
                     width:3366,
                     height:3366
                 },
-                format:'jpeg'
+                format:'jpeg',
+                quality:0.8
             }).then((p)=>{
                 this.photos=[p];
                 this.cropping='finished';
