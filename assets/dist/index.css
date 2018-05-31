@@ -18,8 +18,9 @@ body {
 .intro {
     background-color:#ddd;
     text-align: center;
-    position:-webkit-sticky;
+/*    position:-webkit-sticky;
     position:sticky;
+*/
     top:0;
     z-index: 5;
     font-size: 2.125vw;
