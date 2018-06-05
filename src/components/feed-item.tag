@@ -1,7 +1,8 @@
 import './item-image.tag';
 import './item-text.tag';
-import Color from 'color'
+import invert from 'invert-color';
 import RColor from '../vendor/rcolor-esm.js';
+import iromi from 'iromi';
 <feed-item>
     <article class="feed-item h-entry" style="background-color:{backgroundColor};color:{textColor};">
         <div class="e-content">
@@ -9,14 +10,14 @@ import RColor from '../vendor/rcolor-esm.js';
             <item-image each="{image in images}" url="{image.url}"></item-image>
             <div if="{opts.item.external_url!=undefined}" class="ext-url"><a style="color:{textColor};" href="{opts.item.external_url}">{opts.item.external_url}</a></div>
         </div>
-        <div class="metadata" style="border-color:{metadatabordercolor}">
+        <div class="metadata" style="border-color:{metadataColor};">
             <time class="dt-published" datetime="{opts.item.date_published}">{opts.item.date_published}</time> || <a class="u-url" style="color:{textColor};" href="{permalink}">{permalink}</a>
         </div>
     </article>
     <script>
-        this.backgroundColor=Color((new RColor()).get(true)).saturate(0.5);
-        this.textColor=Color(this.backgroundColor).darken(0.25).dark()?'#fff':'#292f33';
-        this.metadatabordercolor=Color(this.backgroundColor).negate();
+        this.backgroundColor=(new RColor()).get(true,0.60,0.99);
+        this.textColor=iromi.type(this.backgroundColor,'more')
+        this.metadataColor=invert(this.backgroundColor);
 
         this.init=()=>{
             //images
