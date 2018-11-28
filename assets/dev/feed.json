@@ -11,11 +11,11 @@
             "date_published":"2017-07-28T14:04:00-05:00",
             "attachments":[
                 {
-                    "url": "http://lorempixel.com/1080/720/food/",
+                    "url": "http://TaftTest.com/1080x720",
                     "mime_type": "image/jpg"
                 },
                 {
-                    "url": "http://lorempixel.com/200/450/city/",
+                    "url": "http://TaftTest.com/200x450",
                     "mime_type": "image/jpg"
                 }
             ]

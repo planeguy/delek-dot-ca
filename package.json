@@ -20,8 +20,9 @@
     "webpack": "^3.0.0"
   },
   "dependencies": {
-    "color": "^2.0.0",
     "croppie": "^2.6.2",
+    "invert-color": "^1.2.3",
+    "iromi": "^1.0.1",
     "riot": "^3.6.1",
     "unfetch": "^3.0.0"
   },
@@ -30,7 +31,7 @@
     "dev:copy": "node build-tools/copystuff ./assets/dist/** -o ./builds/dev && node build-tools/copystuff ./assets/dev/** -o ./builds/dev",
     "dev": "yarn dev:js && yarn dev:copy",
     "dev:serve": "http-server ./builds/dev -p 9001 -a localhost --cors -c-1",
-    "start":"yarn dev:serve",
+    "start": "yarn dev:serve",
     "dist:js": "webpack --config webpack.config.dist.js",
     "dist:copy": "node build-tools/copystuff ./assets/dist/** -o ./builds/dist",
     "dist": "yarn dist:js && yarn dist:copy"
