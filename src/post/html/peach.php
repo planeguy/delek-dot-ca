@@ -36,10 +36,10 @@ class PeachConnection {
     }
 }
 
-function peach($text){
+function peach($messagejson){
     global $peach_email, $peach_password;
     $pc=new PeachConnection($peach_email, $peach_password);
-    return $pc->post('post',json_encode(array('message'=>array(array('text'=>$text,'type'=>'text')))));
+    return $pc->post('post',$messagejson);
 }
 
 ?>

@@ -23,7 +23,7 @@ try {
         }
         if(isset($_POST['photos']) && isset($_POST['photonames'])){
             $total = count($_POST['photos']);
-            $type = 'image/jpeg';
+            $type = 'image/png';
             for($i=0; $i<$total; $i++){
                 $data = $_POST['photos'][$i];
                 $name = "../photos/".$_POST['photonames'][$i];
@@ -70,7 +70,7 @@ try {
         <?php echo $postResult ?>
         <?php echo $tweetResult ?>
         <?php echo $peachResult ?>
-        <edit-app tcolength="<?php echo $TCOLength?>"></edit-app>
+        <postapp tcolength="<?php echo $TCOLength?>"></postapp>
 
         <script src="./bluebird.core.min.js"></script>
         <script src="./settings.js"></script>

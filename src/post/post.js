@@ -1,14 +1,10 @@
-import Feed from '../Feed.js';
-import riot from 'riot';
-import '../scss/index.css';
-import './components/edit-app.tag';
+import App from './App.svelte';
 
-document.addEventListener('DOMContentLoaded',
-    () => {
-        riot.mount('edit-app', {
-            feed: new Feed('../feed.json'),
-            photosurl: settings.photosurl,
-            permaurl: settings.permaurl
-        });
+const app = new App({
+    target: document.querySelector('postapp'),
+    props: {
+        photosurl: settings.photosurl
     }
-);
+});
+
+export default app;

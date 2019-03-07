@@ -24,21 +24,24 @@ export default [
             //minify in production
             production && terser()
         ]
+    },
+    {
+        input: 'src/post/post.js',
+        output: {
+            //sourcemap: true,
+            format: 'iife',
+            name: 'app',
+            file: 'dist/post/post.js'
+        },
+        plugins: [
+            svelte({
+                //dev: !production,
+                css: css => { css.write('dist/post/post.css'); }
+            }),
+            resolve(),
+            commonjs(),
+            //minify in production
+            terser()
+        ]
     }
-    // ,
-    // {
-    //     input: 'src/post/post.js',
-    //     output: {
-    //         file: 'builds/dev/post/post.js',
-    //         format: 'esm'
-    //     },
-    //     plugins: [
-    //         riot(),
-    //         resolve(),
-    //         common(),
-    //         scss({
-    //             output: 'builds/dev/post/index.css'
-    //         })
-    //     ]
-    // }
 ];
