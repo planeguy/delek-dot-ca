@@ -1,16 +1,10 @@
-import Feed from '../Feed.js';
-import riot from 'riot';
-import cleanHash from '../cleanHash.js';
-import '../scss/index.css';
-import './components/feed-app.tag';
+import App from './App.svelte';
 
-let fd = new Feed(null, cleanHash(document.location.hash));
-addEventListener('hashchange', () => fd.onSelected(cleanHash(document.location.hash)));
-
-document.addEventListener('DOMContentLoaded',
-    () => {
-        riot.mount('feed-app', {
-            feed: fd
-        });
+const app = new App({
+    target: document.querySelector('feed'),
+    props: {
+        url:'feed.json'
     }
-);
+});
+
+export default app;

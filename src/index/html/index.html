@@ -1,18 +1,18 @@
 <!doctype html>
 <html>
     <meta name="viewport" content="width=device-width, minimum-scale = 1.0, initial-scale = 1.0, maximum-scale = 5.0, user-scalable=yes, shrink-to-fit=no">
+    <link rel="stylesheet" href="delek.css"/>
     <link rel="stylesheet" href="index.css"/>
     <header>
         <h1 class="title">DELEK DOT ORG</h1>
     </header>
     <div class="intro">
-        <p>delek dot org is a <a href="https://jsonfeed.org/">jsonfeed</a>-backed site using <a href="http://riotjs.com/">riot</a>. don't forget about the <a href="telnet:stripittoride.club:9000">strip it to ride bbs</a>!</p>
+        <p>delek dot org is a <a href="https://jsonfeed.org/">jsonfeed</a>-backed site using <a href="https://v3.svelte.technology">svelte 3 beta</a>. don't forget about the <a href="telnet:stripittoride.club:9000">strip it to ride bbs</a>!</p>
         <div class="social-links">
             <a rel="me" href="http://delek.org">ddo</a>
             <a rel="me" href="https://github.com/planeguy">github</a>
             <a rel="me" href="https://twitter.com/SaPlaneGuy">twitter</a>
             <a rel="me" href="https://www.facebook.com/delek.turner">fb</a>
-            <a rel="me" href="https://plus.google.com/u/0/106482333467802265750">g+</a>
             <a rel="me" href="https://forums.somethingawful.com/member.php?action=getinfo&userid=19899">sa</a>
             <link rel="openid.delegate" href="http://delek.org.com/" />
             <link rel="openid.server" href="https://openid.indieauth.com/openid" />
@@ -25,7 +25,7 @@
         </div>
     </div>
     <main>
-        <feed-app></feed-app>
+        <feed></feed>
     </main>
     <script src="bluebird.core.min.js"></script>
     <script src="index.js"></script>

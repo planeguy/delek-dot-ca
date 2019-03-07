@@ -6,33 +6,33 @@
   "devDependencies": {
     "copyfiles": "^2.1.0",
     "http-server": "^0.10.0",
+    "npm-run-all": "^4.1.5",
     "rename-cli": "^5.1.2",
     "rimraf": "^2.6.2",
     "rollup": "^0.67.3",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-riot": "^2.0.0",
-    "rollup-plugin-scss": "^0.4.0"
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-terser": "^4.0.4",
+    "svelte": "^3.0.0-beta.10"
   },
   "dependencies": {
     "croppie": "^2.6.2",
     "invert-color": "^1.2.3",
     "iromi": "^1.0.1",
-    "riot": "^3.6.1",
     "unfetch": "^3.0.0"
   },
   "scripts": {
-    "dev:clean": "rimraf builds/dev",
-    "dev:index": "copyfiles --up 3 \"src/index/html/**/*.*\" builds/dev",
-    "dev:post": "copyfiles --up 3 \"src/post/html/**/*.*\" builds/dev/post && rname --force builds/dev/post/index.php builds/dev/post/index.html",
-    "dev:configure": "copyfiles --up 2 \"config/dev/**/*.*\" builds/dev",
-    "dev:build": "rollup --config rollup.config.dev.js",
-    "dev": "yarn dev:build & yarn dev:index & yarn dev:post & yarn dev:configure",
-    "start": "http-server builds/dev --cors -p 3505",
-    "dist:clean": "rimraf builds/dist",
-    "dist:index": "copyfiles --up 3 \"src/index/html/**/*.*\" builds/dist",
-    "dist:post": "copyfiles --up 3 \"src/post/html/**/*.*\" builds/dist/post",
-    "dist:build": "rollup --config rollup.config.dist.js",
-    "dist": "yarn dist:clean && yarn dist:build & yarn dist:index & yarn dist:post"
+    "clean": "rimraf dist",
+    "index": "copyfiles --up 3 \"src/index/html/**/*.*\" dist",
+    "post": "copyfiles --up 3 \"src/post/html/**/*.*\" dist/post",
+    "configure:dev": "copyfiles --up 2 \"config/dev/**/*.*\" dist",
+    "js": "rollup -c",
+    "build": "npm-run-all --sequential clean --parallel index post js",
+    "build:dev": "npm-run-all -s build configure:dev",
+    "start:index": "http-server dist --cors -p 3505",
+    "start:post": "php -S localhost:8000 -t dist/post/",
+    "start": "npm-run-all -p start:index"
   }
 }
