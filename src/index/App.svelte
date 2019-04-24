@@ -4,17 +4,20 @@
     import {sortFeedItems} from '../sortFeedItems.js';
 
     let items = [];
+    let home = '';
 
     async function loadFeed(url){
         let feed = await fetch(url).then(r=>r.json());
-        console.log(feed)
         items = feed.items;
-        items.sort(sortFeedItems);
+        items.sort(sortItems);
+        home=feed.home_page_url;
     }
     
     loadFeed('feed.json');
 </script>
 
-{#each items as item}
-<FeedItem {item}></FeedItem>
-{/each}
+<div class="h-feed">
+    {#each items as item}
+    <FeedItem {item} {home}></FeedItem>
+    {/each}
+</div>

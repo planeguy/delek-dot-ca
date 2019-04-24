@@ -3,13 +3,13 @@
     import FeedItemText from './FeedItemText.svelte';
     import FeedItemImage from './FeedItemImage.svelte';
 
-    export let item={};
+    export let item={}, home='';
     let bg = (new RColor()).get(false,0.60,0.99);
 
     let images=(item.attachments||[]).filter(a=>a.mime_type!=undefined &&(a.mime_type=='image'||a.mime_type.indexOf('image/')===0));
     if(item.image!=undefined) images.unshift(item.image);
 
-    let permalink=item.url;
+    let permalink=`${home}#${item.id}`;
 </script>
 
 <article class="feed-item h-entry" style="--red:{bg[0]}; --green:{bg[1]}; --blue:{bg[2]};">
