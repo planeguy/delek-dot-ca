@@ -1,6 +1,5 @@
 <script>
     import Croppie from 'croppie';
-    import swal from 'sweetalert';
 
     export let photosurl='';
 
@@ -19,7 +18,7 @@
         enableExif: true
     });
 
-    function addPhoto(file){
+    async function addPhoto(file){
         let purl = photosurl+'/'+file.name+'.jpeg';
         this.photonames=[file.name+'.jpeg'];
         this.opts.item.attachments = [{
@@ -89,7 +88,7 @@
         {#each photos as photo}
         <input type="hidden" name="photonames[]" id="photonames" value="{photo.name}">
         <input type="hidden" name="photos[]" id="photos" value="{photo.photo}">
-        <img src="data:image/png;base64,{photo.photo}">
+        <img src="data:image/png;base64,{photo.photo}" alt="{photo.name}">
         {/each}
     </div>
     <div class="field">

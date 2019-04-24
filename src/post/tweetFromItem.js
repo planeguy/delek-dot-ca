@@ -8,6 +8,7 @@
     tags:[]
 }
 */
+const Twitter = require('twitter');
 const TWEETMAX = 140;
 
 function concatenatedTweet(item){
@@ -23,7 +24,19 @@ function createTweet(item, exl, pl){
     return `${item.content_text} ${item.external_url} ${item.url}`.replace(/\s+/g,' ').trim();
 }
 
-export default function tweetFromItem(item, tcolength){
+export function tweetFromItem(item, tcolength){
     if(!!tcolength) return createTweet(item, (!!item.external_url?tcolength:0), (!!item.url?tcolength:0));
     return createTweet(item, (!!item.external_url?item.external_url.length:0), (!!item.url?item.url.length:0));
+}
+
+export async function tweet(item) {
+    let client = new Twitter({
+        consumer_key: process.env.TWITTER_CONSUMER_KEY,
+        consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+        access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+        access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+    });
+    let photoposts = item.attachments.map(img=>client.post('media/upload',{media:img}));
+    let photos = await Promise.all(photoposts);
+    return await client.post('statuses/update',Object.assign(tweetFromItem(item), {media_ids: photos.map(p=>p.media_id_string)}));
 }
