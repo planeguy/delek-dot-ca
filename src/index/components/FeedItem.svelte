@@ -13,7 +13,7 @@
 </script>
 
 <article class="feed-item h-entry" style="--red:{bg[0]}; --green:{bg[1]}; --blue:{bg[2]};">
-    <a href="#{item.id}"><time class="dt-published" datetime="{item.date_published}">{item.date_published}</time></a>
+    <time id="{item.id}" class="dt-published" datetime="{item.date_published}">{item.date_published}</time>
     <div class="e-content">
         <FeedItemText text="{item.content_text}"></FeedItemText>
         {#each images as image}
@@ -24,6 +24,7 @@
         {/if}
     </div>
     <a class="u-url" href="{permalink}">{permalink}</a>
+    <hr>
 </article>
 
 <style>

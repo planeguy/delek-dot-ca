@@ -31,6 +31,8 @@
     "js": "rollup -c",
     "build": "npm-run-all --sequential clean --parallel index post js",
     "build:dev": "npm-run-all -s build configure:dev",
-    "start": "http-server dist --cors -p 3505"
+    "start:index": "http-server dist --cors -p 3505",
+    "start:post": "php -S localhost:8000 -t dist/post/",
+    "start": "npm-run-all -p start:index"
   }
 }

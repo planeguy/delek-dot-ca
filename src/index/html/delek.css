@@ -46,6 +46,10 @@ a[href] {
     display:none;
 }
 
+.h-entry .dt-published, .h-entry .u-url {
+    font-size: x-small;
+}
+
 .field>label {
     font-size:x-large;
     font-weight:bold;
