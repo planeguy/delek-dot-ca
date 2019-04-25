@@ -47,7 +47,7 @@ class PeachConnection {
             })
         }).then(r => r.json()).then(rj => {
             if (rj.success !== 1) throw new Error('Peach login failed');
-            retrun rj.data.streams[0].token;
+            return rj.data.streams[0].token;
         });
     }
     async peach(message) {

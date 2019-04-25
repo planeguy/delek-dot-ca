@@ -5,6 +5,7 @@ async function server() {
     const cors = require('@koa/cors');
     const passport = require('koa-passport');
     const authorize = require('./authorize.js').authorize;
+    const micropubAddToJsonfeed = require('./micropub-koa.js').micropubAddToJsonfeed;
 
     const app = new Koa();
 
@@ -13,11 +14,12 @@ async function server() {
     app.use(passport.session());
 
     app.use(cors({ credentials: true }));
-    app.use(body());
+    app.use(body({ multipart: true }));
 
-    route.post('/posts',
+    route.post('/',
         passport.authenticate('basic', { session: false }),
-        authorize('poster')
+        authorize('poster'),
+        micropubAddToJsonfeed(process.env.JSON_FEED || 'feed.json')
     )
     app.use(route.routes());
     app.use(route.allowedMethods());
