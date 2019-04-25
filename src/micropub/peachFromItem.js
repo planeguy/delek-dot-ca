@@ -8,9 +8,9 @@
     tags:[]
 }
 */
-const fetch = require('unfetch');
+const request = require('request-promise');
 
-export function peachFromItem(item, posselinkback) {
+function peachFromItem(item, posselinkback) {
     let peachmessage = [
         {
             type: 'text',
@@ -36,7 +36,8 @@ class PeachConnection {
         this.pasword = password;
     }
     login() {
-        return fetch('https://v1.peachapi.com/login', {
+        return request({
+            uri: 'https://v1.peachapi.com/login',
             method: 'POST',
             headers: {
                 'Accept': 'application/json'
@@ -44,26 +45,29 @@ class PeachConnection {
             body: JSON.stringify({
                 email: this.email,
                 password: this.password
-            })
-        }).then(r => r.json()).then(rj => {
+            }),
+            json: true
+        }).then(rj => {
             if (rj.success !== 1) throw new Error('Peach login failed');
             return rj.data.streams[0].token;
         });
     }
     async peach(message) {
         let bearer = await this.login();
-        return fetch('https://v1.peachapi.com/post', {
+        return request({
+            uri: 'https://v1.peachapi.com/post',
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${bearer}`
             },
-            body: JSON.stringify(message)
-        }).then(r => r.json());
+            body: JSON.stringify(message),
+            json: true
+        });
     }
 }
 
-export async function peach(item) {
+module.exports.peach = async function peach(item) {
     let pc = new PeachConnection(
         process.env.PEACH_EMAIL,
         process.env.PEACH_PASSWORD

@@ -17,9 +17,9 @@ async function server() {
     app.use(body({ multipart: true }));
 
     route.post('/',
-        passport.authenticate('basic', { session: false }),
-        authorize('poster'),
-        micropubAddToJsonfeed(process.env.JSON_FEED || 'feed.json')
+        // passport.authenticate('basic', { session: false }),
+        // authorize('poster'),
+        micropubAddToJsonfeed(process.env.JSON_FEED || './feed.json')
     )
     app.use(route.routes());
     app.use(route.allowedMethods());
