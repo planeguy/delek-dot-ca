@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const newid = require('uuid/v4');
+
 const photospath = (process.env.PHOTOS_PATH || './photos');
+const photosurlbase = (process.env.PHOTOS_URL_BASE || './photos');
+const websitebase = (process.env.WEBSITE_BASE || 'https://delek.org/#/');
 
 module.exports.itemFromEntry = function itemFromEntry(entry, photos) {
     photos.forEach(p => {
@@ -19,8 +22,9 @@ module.exports.itemFromEntry = function itemFromEntry(entry, photos) {
         syndicate_to: Array.isArray(entry['mp-syndicate-to']) ? entry['mp-syndicate-to'] : [entry['mp-syndicate-to']]
     }
     mfe.attachments = photos.map(p => ({
-        url: path.join(photospath, p.name),
+        url: path.join(photosurlbase, p.name),
         mime_type: 'image/png'
     }));
+    mfe.url = `${websitebase}${mfe.id}`;
     return mfe;
 }

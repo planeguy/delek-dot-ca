@@ -17,7 +17,12 @@ function syndicate(item) {
     item.syndicate_to.forEach(posse => {
         let target = SYNDICATION_TARGETS[posse];
         if (!!target && target.fn) {
-            results[posse] = target.fn(item);
+            try {
+                console.log(item);
+                results[posse] = target.fn(item);
+            } catch (e) {
+                console.log(e)
+            }
         }
     });
 }
@@ -25,14 +30,17 @@ function syndicate(item) {
 module.exports.micropubAddToJsonfeed = function micropubAddToJsonfeed(jsonfeedpath) {
     return async function micropubAdd(context, next) {
         //accept a micropub add request
-        let db = await jsonfile.readFile(jsonfeedpath);
-        let item = itemFromEntry(context.request.body, context.request.files.photo);
-        db.items.push(item);
         try {
+            let db = await jsonfile.readFile(jsonfeedpath);
+            let item = itemFromEntry(context.request.body, context.request.files.photo);
+            db.items.push(item);
             await jsonfile.writeFile(jsonfeedpath, db, { spaces: 2 });
             context.status = 200;
-            syndicationResults = syndicate(item);
+
+            let itemPlusPhotos = { ...item, photos: context.request.files.photo };
+            syndicationResults = syndicate(itemPlusPhotos);
             context.body = syndicationResults;
+            await next();
         } catch (e) {
             context.status = 500;
         }

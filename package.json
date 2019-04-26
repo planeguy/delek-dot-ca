@@ -34,7 +34,7 @@
     "passport-http": "^0.3.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
-    "twitter": "^1.7.1",
+    "twit": "^2.2.11",
     "unfetch": "^4.1.0",
     "uuid": "^3.3.2"
   },
