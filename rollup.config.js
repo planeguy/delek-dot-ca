@@ -43,11 +43,11 @@ export default [
             }),
             resolve(),
             commonjs(),
-            terser(),
+            //terser(),
             filesize(),
             copy({
                 targets: {
-                    'src/index/html': 'dist',
+                    'src/post/html': 'dist/post'
                 }
             })
         ]

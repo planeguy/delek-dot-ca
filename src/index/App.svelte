@@ -13,7 +13,8 @@
         home=feed.home_page_url;
     }
     
-    loadFeed('feed.json');
+    export let url='feed.json';
+    loadFeed(url);
 </script>
 
 <div class="h-feed">

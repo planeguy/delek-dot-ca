@@ -1332,6 +1332,11 @@ iltorb@^2.0.5:
     prebuild-install "^5.2.4"
     which-pm-runs "^1.0.0"
 
+image-size@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.7.4.tgz#092c1e541a93511917bfc957a1fc7add21c72e87"
+  integrity sha512-GqPgxs+VkOr12aWwjSkyRzf5atzObWpFtiRuDgxCl2I/SDpZOKZFRD3iIAeAN6/usmn8SeLWRt7a8JRYK0Whbw==
+
 inflation@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/inflation/-/inflation-2.0.0.tgz#8b417e47c28f925a45133d914ca1fd389107f30f"
@@ -3235,10 +3240,10 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-svelte@^3.0.0-beta.10:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.0.0.tgz#70e1e9d9980a5cd6c5516b62518e49dab5859bb4"
-  integrity sha512-4QQ7eBuVw/t0kMSSjLCiAjQYTj7ZF0OtH24YOWtTrTJHTLd58gEAPZeKSGOYDXtwpcrMi4Cxo3MgEbdI1m4erg==
+svelte@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.1.0.tgz#87a4b643169037f0b3d28a6b1832c28dc0a3fbc3"
+  integrity sha512-b5TyzV7Dx1ijN4QPNarhKq5rX98QHDmi18nF0G8KV3d5KX3Jj98Yu4+tzM97ktnXcfoVJmvONvPaX1ZI0mr8Dw==
 
 tar-fs@^1.13.0:
   version "1.16.3"

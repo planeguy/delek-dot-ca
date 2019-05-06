@@ -1,68 +1,49 @@
 <script>
     import Croppie from 'croppie';
+    import { onMount } from 'svelte';
+    import {ULID} from './ulid-es6.js';
+    
+    let content_text='', external_url = '';
+    let pics=[], tags=[], syndicate_to=[];
+    let cropper, cropperhost, croppedimage;
 
-    export let photosurl='';
+    let newid = ULID();
 
-    let content_text='',
-        external_url = '',
-        photos=[];
-
-    let cropperHost = docuemnt.getElementById('cr');
-    let cropper=new Croppie.Croppie(cropperHost,{
-        customClass:'cropper',
-        viewport:{
-            width:250,
-            height:250
-        },
-        showZoomer: false,
-        enableExif: true
+    onMount(()=>{
+        cropper = new Croppie(cropperhost,{
+            customClass:'cropper',
+            viewport:{ width:250, height:250 },
+            showZoomer: false,
+            enableExif: true
+        });
     });
 
-    async function addPhoto(file){
-        let purl = photosurl+'/'+file.name+'.jpeg';
-        this.photonames=[file.name+'.jpeg'];
-        this.opts.item.attachments = [{
-            url:purl,
-            mime_type:'image/jpeg'
-        }];
+    function removeDataUrl(data){
+        let splitted = data.split('base64,');
+        splitted.shift();
+        return splitted.join('');
+    }
+
+    async function addPhoto(){
         let cropped = await cropper.result({
             type:'base64',
             size:{
                 width:3366,
                 height:3366
-            },
-            format:'jpeg',
-            quality:0.8
+            }
         });
-        photos.push({
-            name:file.name+'.png',
-            photo:cropped
-        });
+        croppedimage=cropped;
+        pics = [...pics,{name:newid(), data:cropped}];
     };
 
     function readFile (input){
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            
-            reader.onload = ((e)=>{
-                cropper.bind({
+            reader.onload = (async (e)=>{
+                await cropper.bind({
                     url: e.target.result
-                }).then(()=>{
-                    setCroppedPhoto(input.files[0],cropper);
-                    console.log('bind complete');
-                    cropperelement.addEventListener('update',((ev)=>{
-                        this.cropping='cropping';
-                        this.update();
-                        if(this.cropwait) {
-                            clearTimeout(this.cropwait);
-                        }
-                        this.cropwait=setTimeout(()=>{
-                            console.log('croppie changed');
-                            this.setCroppedPhoto(input.files[0],cropper);
-                        }, 1500);
-                    }).bind(this));
                 });
-            }).bind(this);
+            });
             reader.readAsDataURL(input.files[0]);
         }
     }
@@ -73,22 +54,71 @@
     
 </script>
 
+<svelte:head>
+    <link rel="stylesheet" href="./croppie.css"/>
+</svelte:head>
+
+<style>
+.new-item {
+    display:flex;
+    flex-flow:column;
+    justify-content:center;
+    align-items:center;
+}
+.new-item .field {
+    flex: 1 1 auto;
+    align-self:stretch;
+}
+.new-item .field>* {
+    width:100%;
+}
+
+.new-item .uploader {
+    display:flex;
+    flex-flow:column nowrap;
+    min-height:300px;
+    max-height:50vh;
+}
+.new-item .uploader>* {
+    flex: 0 0 auto;
+    align-self:center;
+}
+
+.new-item .pics {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height:250px;
+}
+
+.new-item .pics>*{
+    flex: 0 1 auto;
+    max-height:250px;
+    max-width:250px;
+}
+
+</style>
+
 <div class="new-item">
     <div class="field">
         <label for="text">TEXT</label>
         <input name="content_text" id="content_text" type="text" bind:value={content_text}/>
     </div>
     <div class="field">
-        <label for="text">PICTURES</label>                
+        <label for="text">PICTURES</label>
         <div class="uploader">
-            <input type="file" id="photopick" value="pick a photo" accept="image/*" on:change={onChangePhotoInput} />
-            <div id="cr"></div>
-            <button>ADD</button>
+            <input type="file" id="photopick" accept="image/*" on:change={onChangePhotoInput} />
+            <div class="cropper" style="flex-basis:100%;" bind:this="{cropperhost}"></div>
+            <button on:click="{addPhoto}">ADD</button>
         </div>
-        {#each photos as photo}
-        <input type="hidden" name="photonames[]" id="photonames" value="{photo.name}">
-        <input type="hidden" name="photos[]" id="photos" value="{photo.photo}">
-        <img src="data:image/png;base64,{photo.photo}" alt="{photo.name}">
+        <div class="pics">
+            {#each pics as pic}
+            <img class="pic" src="{pic.data}" alt="{pic.name}">
+            {/each}
+        </div>
+        {#each pics as pic}
+        <input type="hidden" name="photonames[]" id="photonames" value="{pic.name}">
+        <input type="hidden" name="photos[]" id="photos" value="{removeDataUrl(pic.data)}">
         {/each}
     </div>
     <div class="field">

@@ -17,12 +17,14 @@
     "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^4.0.4",
-    "svelte": "^3.0.0-beta.10"
+    "svelte": "^3.1.0"
   },
   "dependencies": {
     "@koa/cors": "^3.0.0",
     "bcryptjs": "^2.4.3",
     "croppie": "^2.6.2",
+    "cuid": "^2.1.6",
+    "image-size": "^0.7.4",
     "invert-color": "^2.0.0",
     "iromi": "^1.0.1",
     "jsonfile": "^5.0.0",
@@ -35,8 +37,8 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
     "twit": "^2.2.11",
-    "unfetch": "^4.1.0",
-    "uuid": "^3.3.2"
+    "ulid": "^2.3.0",
+    "unfetch": "^4.1.0"
   },
   "scripts": {
     "clean": "rimraf dist",

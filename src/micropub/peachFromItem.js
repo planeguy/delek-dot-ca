@@ -21,8 +21,8 @@ function peachFromItem(item, posselinkback) {
         item.attachments.forEach(a => {
             peachmessage.push({
                 type: "image",
-                width: 3366,
-                height: 3366,
+                width: a.width,
+                height: a.height,
                 src: a.url
             });
         });
