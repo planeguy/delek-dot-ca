@@ -18,15 +18,13 @@ export default [
             svelte({
                 css: css => { css.write('dist/index.css'); }
             }),
+            copy({
+                targets: [{src:'src/index/html/*', dest:'dist' }]
+            }),
             resolve(),
             commonjs(),
             terser(),
-            filesize(),
-            copy({
-                targets: {
-                    'src/index/html': 'dist',
-                }
-            })
+            filesize()
         ]
     },
     {
@@ -41,15 +39,13 @@ export default [
             svelte({
                 css: css => { css.write('dist/post/post.css'); }
             }),
+            copy({
+                targets: [{src:'src/post/html/*', dest:'dist/post'}]
+            }),
             resolve(),
             commonjs(),
             //terser(),
-            filesize(),
-            copy({
-                targets: {
-                    'src/post/html': 'dist/post'
-                }
-            })
+            filesize()
         ]
     }
 ];
