@@ -14,6 +14,7 @@ const SYNDICATION_TARGETS = {
 
 function syndicate(item) {
     let results = {};
+    if(!item.syndicate_to) return;
     item.syndicate_to.forEach(posse => {
         let target = SYNDICATION_TARGETS[posse];
         if (!!target && target.fn) {
@@ -43,6 +44,7 @@ module.exports.micropubAddToJsonfeed = function micropubAddToJsonfeed(jsonfeedpa
             await next();
         } catch (e) {
             context.status = 500;
+            console.log(e);
         }
     }
 }
