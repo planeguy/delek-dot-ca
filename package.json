@@ -25,11 +25,12 @@
     "unfetch": "^4.1.0"
   },
   "scripts": {
-    "clean": "rimraf dist",
-    "configure:dev": "copyfiles --up 2 \"config/dev/**/*.*\" dist",
+    "clean": "rimraf dist dev",
+    "configure:dev": "copyfiles --up 1 \"config/**/*.*\" dev",
+    "copy:dev":"copyfiles --up 1 \"dist/**/*.*\" dev",
     "js": "rollup -c",
     "build": "npm-run-all --sequential clean js",
-    "build:dev": "npm-run-all --sequential build configure:dev",
-    "start": "http-server dist --cors -p 3507"
+    "build:dev": "npm-run-all --sequential build copy:dev configure:dev",
+    "start": "http-server dev --cors -p 3507"
   }
 }

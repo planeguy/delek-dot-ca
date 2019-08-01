@@ -1,7 +1,7 @@
 <script>
     import FeedItem from './components/FeedItem.svelte'
     import fetch from 'unfetch';
-    import {sortFeedItems} from '../sortFeedItems.js';
+    import {sortFeedItems} from './sortFeedItems.js';
 
     let items = [];
     let home = '';
