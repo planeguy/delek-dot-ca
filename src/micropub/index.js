@@ -14,7 +14,7 @@ async function server() {
     app.use(passport.session());
 
     app.use(cors({ credentials: true }));
-    app.use(body({ multipart: true }));
+    app.use(body({ multipart: true, formidable:{maxFieldsSize:10*1024*1024} }));
 
     route.post('/',
         // passport.authenticate('basic', { session: false }),

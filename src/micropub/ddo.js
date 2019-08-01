@@ -27,23 +27,24 @@ module.exports.itemFromEntry = function itemFromEntry(entry, photos) {
         tags,
         syndicate_to
     }
+    console.log(photos);
     if(photos!=undefined){
         if(!Array.isArray(photos))photos=[photos];
-        photos.forEach(p => {
-            let file = p;
-            let reader = fs.createReadStream(file.path);
-            let writer = fs.createWriteStream(path.join(photospath, file.name));
+        for(i=0;i<photos.length;i++){
+            let photopath = path.join(photospath, entry.photoname[i]);
+            let p = photos[i];
+            let reader = fs.createReadStream(p.path);
+            let writer = fs.createWriteStream(path.join(photospath, entry.photoname[i]));
             reader.pipe(writer);
-        });
-        mfe.attachments = photos.map(p => {
+            if(!mfe.attachments) mfe.attachments=[];
             let d = imageSize(p.path);
-            return {
-                url: path.join(photosurlbase, p.name),
+            mfe.attachments.push({
+                url: path.join(photosurlbase, entry.photoname[i]),
                 mime_type: p.type,
                 width: d.width,
                 height: d.height
-            };
-        });
+            });
+        }
     }
     mfe.url = `${websitebase}${mfe.id}`;
     return mfe;

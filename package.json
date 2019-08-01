@@ -45,7 +45,7 @@
     "js": "rollup -c",
     "build": "npm-run-all --sequential clean js",
     "build:dev": "npm-run-all --sequential build configure:dev",
-    "start": "http-server dist --cors -p 3505",
+    "start": "http-server dist --cors -p 3507",
     "start:service:dev": "node -r dotenv/config src/micropub/index"
   }
 }

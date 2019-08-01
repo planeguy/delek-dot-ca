@@ -1,4 +1,3 @@
 var settings = {
-    photosurl:'../photos',
-    permaurl:'http://localhost:4000'
+    postingendpoint:'http://localhost:9014'
 }
