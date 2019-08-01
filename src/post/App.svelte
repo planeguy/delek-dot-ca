@@ -56,9 +56,10 @@
             },
             quality:0.9
         });
-        let na = newid();
+        let na = `${newid()}.png`;
+
         addThumb(na,cropped);
-        pics = [...pics,{na, data:cropped}];
+        pics = [...pics,{name: na, data:cropped}];
     };
 
     function readFile (input){
@@ -192,8 +193,8 @@
         <input name="external_url" id="external_url" type="text"/>
     </div> -->
     <div class="field">
-
-        <button class="post">JUST POST</button>
-        {#if poststate}<p>{poststate}</p>{/if}
+        {#if poststate}<p>{poststate}</p>
+        {:else}<button class="post">JUST POST</button>
+        {/if}
     </div>
 </form>
