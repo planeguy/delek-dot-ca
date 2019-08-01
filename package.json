@@ -1,5 +1,5 @@
 {
-  "name": "ddo",
+  "name": "@delek-dot-ca/main",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -19,7 +19,6 @@
     "svelte": "^3.6.10"
   },
   "dependencies": {
-    "croppie": "^2.6.2",
     "invert-color": "^2.0.0",
     "iromi": "^1.0.1",
     "unfetch": "^4.1.0"
@@ -27,7 +26,7 @@
   "scripts": {
     "clean": "rimraf dist dev",
     "configure:dev": "copyfiles --up 1 \"config/**/*.*\" dev",
-    "copy:dev":"copyfiles --up 1 \"dist/**/*.*\" dev",
+    "copy:dev": "copyfiles --up 1 \"dist/**/*.*\" dev",
     "js": "rollup -c",
     "build": "npm-run-all --sequential clean js",
     "build:dev": "npm-run-all --sequential build copy:dev configure:dev",
