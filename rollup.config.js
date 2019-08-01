@@ -2,6 +2,8 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
+import filesize from 'rollup-plugin-filesize';
+import copy from 'rollup-plugin-copy';
 
 export default [
     {
@@ -14,29 +16,36 @@ export default [
         },
         plugins: [
             svelte({
-                //dev: !production,
                 css: css => { css.write('dist/index.css'); }
+            }),
+            copy({
+                targets: [{src:'src/index/html/*', dest:'dist' }]
             }),
             resolve(),
             commonjs(),
-            //minify in production
-            terser()
+            terser(),
+            filesize()
+        ]
+    },
+    {
+        input: 'src/post/post.js',
+        output: {
+            sourcemap: true,
+            format: 'iife',
+            name: 'app',
+            file: 'dist/post/post.js'
+        },
+        plugins: [
+            svelte({
+                css: css => { css.write('dist/post/post.css'); }
+            }),
+            copy({
+                targets: [{src:'src/post/html/*', dest:'dist/post'}]
+            }),
+            resolve(),
+            commonjs(),
+            //terser(),
+            filesize()
         ]
     }
-    // ,
-    // {
-    //     input: 'src/post/post.js',
-    //     output: {
-    //         file: 'builds/dev/post/post.js',
-    //         format: 'esm'
-    //     },
-    //     plugins: [
-    //         riot(),
-    //         resolve(),
-    //         common(),
-    //         scss({
-    //             output: 'builds/dev/post/index.css'
-    //         })
-    //     ]
-    // }
 ];
