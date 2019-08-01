@@ -5,7 +5,6 @@
   "license": "MIT",
   "devDependencies": {
     "copyfiles": "^2.1.1",
-    "dotenv": "^8.0.0",
     "http-server": "^0.11.1",
     "npm-run-all": "^4.1.5",
     "rename-cli": "^6.0.0",
@@ -20,23 +19,9 @@
     "svelte": "^3.6.10"
   },
   "dependencies": {
-    "@koa/cors": "^3.0.0",
-    "bcryptjs": "^2.4.3",
     "croppie": "^2.6.2",
-    "image-size": "^0.7.4",
     "invert-color": "^2.0.0",
     "iromi": "^1.0.1",
-    "jsonfile": "^5.0.0",
-    "koa": "^2.7.0",
-    "koa-body": "^4.1.0",
-    "koa-passport": "^4.1.3",
-    "koa-router": "^7.4.0",
-    "koa-session": "^5.12.2",
-    "passport-http": "^0.3.0",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.4",
-    "twit": "^2.2.11",
-    "ulid": "^2.3.0",
     "unfetch": "^4.1.0"
   },
   "scripts": {
@@ -45,7 +30,6 @@
     "js": "rollup -c",
     "build": "npm-run-all --sequential clean js",
     "build:dev": "npm-run-all --sequential build configure:dev",
-    "start": "http-server dist --cors -p 3507",
-    "start:service:dev": "node -r dotenv/config src/micropub/index"
+    "start": "http-server dist --cors -p 3507"
   }
 }
